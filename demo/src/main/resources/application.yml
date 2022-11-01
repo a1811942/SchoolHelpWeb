@@ -1,0 +1,72 @@
+server:
+  port: 8080
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/demo?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: root
+
+  mail:
+    host: smtp.qq.com
+    username: 2940193593@qq.com
+    password: nuznntqklibqdghj
+    default-encoding: utf-8
+
+
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    password:
+    lettuce:
+      pool:
+        max-idle: 500
+        max-wait: 100
+        max-active: 1000
+        min-idle: 100
+    timeout: 1000
+mybatis-plus:
+  #配置MyBatis映射文件
+  mapper-locations: classpath:/mybatis/mappers/*.xml
+  #配置MyBatis返回类型别名
+  type-aliases-package: com.max.back.demo.entity
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: true
+    jdbc-type-for-null: 'null'
+    default-statement-timeout: 3000
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
+logging:
+  config: classpath:logback-spring.xml
+
+
+#照片上传地址
+photo:
+  path: D:\demoImages\
+
+#阿里云对象存储
+OSS:
+  endpoint: oss-cn-hangzhou.aliyuncs.com
+  accessId: LTAI5t9a4okNdzHmaprgE4ck
+  accessKey: A1vk4LlVbYWBtKL7mSaPPDq3kPC907
+  bucketName: emo-sutdent
+
+
+elasticsearch:
+  schema: http
+  address: 192.168.127.100:9200
+  connectTimeout: 5000
+  socketTimeout: 5000
+  connectionRequestTimeout: 5000
+  maxConnectNum: 100
+  maxConnectPerRoute: 100
+
+
+
+

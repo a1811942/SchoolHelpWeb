@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.CommentDao">
+
+
+    <select id="getCommentAndStudentByMomentId" resultType="java.util.Map">
+        select  c.comment,c.date ,s.name,s.phone from moments m
+            left join comment c on m.id=c.moments_id
+            LEFT JOIN student s on c.student_id=s.id
+            where m.id=#{id} order by c.date
+    </select>
+</mapper>

@@ -1,0 +1,14 @@
+2022-10-29 20:17:28.748 [main] INFO  com.example.demo.SelectOssTest -
+				Starting SelectOssTest using Java 15.0.7 on DESKTOP-UN3KSEH with PID 13204 (started by liu in C:\Users\liu\Desktop\project\MyProject\demo)
+2022-10-29 20:17:28.755 [main] INFO  com.example.demo.SelectOssTest -
+				No active profile set, falling back to 1 default profile: "default"
+2022-10-29 20:17:30.810 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate -
+				Multiple Spring Data modules found, entering strict repository configuration mode
+2022-10-29 20:17:30.824 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate -
+				Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2022-10-29 20:17:30.970 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate -
+				Finished Spring Data repository scanning in 70 ms. Found 0 Redis repository interfaces.
+2022-10-29 20:17:34.775 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLoggingListener -
+				
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.

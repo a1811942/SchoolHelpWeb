@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.MomentsDao">
+    <insert id="saveMoments">
+        insert into moments  (id, student_id, content, date)
+        values
+               (#{id},#{studentId},#{content},#{date})
+    </insert>
+
+
+    <select id="getMomentsAndStudent" resultType="map">
+#         select distinct m.content,m.student_id,m.date,m.id,
+#                s.* ,p.id, p.moments_Id, p.comment_Id
+#                from moments m  left join student s on m.student_id=s.id
+# left join photo p on m.id = p.moments_Id
+select * from moments m LEFT JOIN student s ON m.student_id=s.id order by m.date desc
+    </select>
+     <select id="getMomentsAndStudentById" resultType="java.util.Map">
+        select * from moments m  left join student s on m.student_id=s.id where m.id=#{momentId}
+    </select>
+</mapper>

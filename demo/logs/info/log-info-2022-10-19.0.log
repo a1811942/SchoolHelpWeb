@@ -1,0 +1,653 @@
+2022-10-19 09:57:17.495 [main] INFO  com.example.demo.DemoApplication -
+				Starting DemoApplication using Java 1.8.0_202 on DESKTOP-UN3KSEH with PID 20308 (C:\Users\liu\Desktop\project\MyProject\demo\target\classes started by liu in C:\Users\liu\Desktop\project\MyProject\demo)
+2022-10-19 09:57:17.508 [main] INFO  com.example.demo.DemoApplication -
+				No active profile set, falling back to 1 default profile: "default"
+2022-10-19 09:57:22.096 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate -
+				Multiple Spring Data modules found, entering strict repository configuration mode
+2022-10-19 09:57:22.104 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate -
+				Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2022-10-19 09:57:22.239 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate -
+				Finished Spring Data repository scanning in 69 ms. Found 0 Redis repository interfaces.
+2022-10-19 09:57:24.120 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer -
+				Tomcat initialized with port(s): 8080 (http)
+2022-10-19 09:57:24.143 [main] INFO  org.apache.coyote.http11.Http11NioProtocol -
+				Initializing ProtocolHandler ["http-nio-8080"]
+2022-10-19 09:57:24.147 [main] INFO  org.apache.catalina.core.StandardService -
+				Starting service [Tomcat]
+2022-10-19 09:57:24.148 [main] INFO  org.apache.catalina.core.StandardEngine -
+				Starting Servlet engine: [Apache Tomcat/9.0.65]
+2022-10-19 09:57:24.482 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] -
+				Initializing Spring embedded WebApplicationContext
+2022-10-19 09:57:24.483 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext -
+				Root WebApplicationContext: initialization completed in 6857 ms
+2022-10-19 09:57:28.253 [main] INFO  org.apache.coyote.http11.Http11NioProtocol -
+				Starting ProtocolHandler ["http-nio-8080"]
+2022-10-19 09:57:28.322 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer -
+				Tomcat started on port(s): 8080 (http) with context path ''
+2022-10-19 09:57:28.378 [main] INFO  com.example.demo.DemoApplication -
+				Started DemoApplication in 12.338 seconds (JVM running for 14.381)
+2022-10-19 09:57:38.521 [http-nio-8080-exec-3] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] -
+				Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-10-19 09:57:38.523 [http-nio-8080-exec-3] INFO  org.springframework.web.servlet.DispatcherServlet -
+				Initializing Servlet 'dispatcherServlet'
+2022-10-19 09:57:38.524 [http-nio-8080-exec-3] INFO  org.springframework.web.servlet.DispatcherServlet -
+				Completed initialization in 1 ms
+2022-10-19 09:57:45.140 [http-nio-8080-exec-7] INFO  com.zaxxer.hikari.HikariDataSource -
+				HikariPool-1 - Starting...
+2022-10-19 09:57:45.451 [http-nio-8080-exec-7] INFO  com.zaxxer.hikari.HikariDataSource -
+				HikariPool-1 - Start completed.
+2022-10-19 09:57:57.690 [http-nio-8080-exec-1] INFO  org.apache.tomcat.util.http.parser.Cookie -
+				A cookie header was received [Hm_lvt_5804d09853fcc4866132fbc306348993=1655279936,1655287959;] that contained an invalid cookie. That cookie will be ignored.
+ Note: further occurrences of this error will be logged at DEBUG level.
+2022-10-19 10:49:34.651 [lettuce-nioEventLoop-4-1] INFO  io.lettuce.core.protocol.CommandHandler -
+				null Unexpected exception during request: java.io.IOException: 远程主机强迫关闭了一个现有的连接。
+java.io.IOException: 远程主机强迫关闭了一个现有的连接。
+	at sun.nio.ch.SocketDispatcher.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:43)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223)
+	at sun.nio.ch.IOUtil.read(IOUtil.java:192)
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:380)
+	at io.netty.buffer.PooledByteBuf.setBytes(PooledByteBuf.java:258)
+	at io.netty.buffer.AbstractByteBuf.writeBytes(AbstractByteBuf.java:1132)
+	at io.netty.channel.socket.nio.NioSocketChannel.doReadBytes(NioSocketChannel.java:357)
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:151)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:722)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:658)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:584)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:496)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.lang.Thread.run(Thread.java:748)
+2022-10-19 10:49:34.761 [lettuce-eventExecutorLoop-1-1] INFO  io.lettuce.core.protocol.ConnectionWatchdog -
+				Reconnecting, last destination was /127.0.0.1:6379
+2022-10-19 10:49:38.973 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource -
+				HikariPool-1 - Shutdown initiated...
+2022-10-19 10:49:38.985 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource -
+				HikariPool-1 - Shutdown completed.
+2022-10-19 13:28:33.476 [main] INFO  com.example.demo.DemoApplication -
+				Starting DemoApplication using Java 1.8.0_202 on DESKTOP-UN3KSEH with PID 10880 (C:\Users\liu\Desktop\project\MyProject\demo\target\classes started by liu in C:\Users\liu\Desktop\project\MyProject\demo)
+2022-10-19 13:28:33.482 [main] INFO  com.example.demo.DemoApplication -
+				No active profile set, falling back to 1 default profile: "default"
+2022-10-19 13:28:35.122 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate -
+				Multiple Spring Data modules found, entering strict repository configuration mode
+2022-10-19 13:28:35.128 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate -
+				Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2022-10-19 13:28:35.188 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate -
+				Finished Spring Data repository scanning in 23 ms. Found 0 Redis repository interfaces.
+2022-10-19 13:28:36.209 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer -
+				Tomcat initialized with port(s): 8080 (http)
+2022-10-19 13:28:36.227 [main] INFO  org.apache.coyote.http11.Http11NioProtocol -
+				Initializing ProtocolHandler ["http-nio-8080"]
+2022-10-19 13:28:36.228 [main] INFO  org.apache.catalina.core.StandardService -
+				Starting service [Tomcat]
+2022-10-19 13:28:36.230 [main] INFO  org.apache.catalina.core.StandardEngine -
+				Starting Servlet engine: [Apache Tomcat/9.0.65]
+2022-10-19 13:28:36.764 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] -
+				Initializing Spring embedded WebApplicationContext
+2022-10-19 13:28:36.765 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext -
+				Root WebApplicationContext: initialization completed in 3173 ms
+2022-10-19 13:28:40.139 [main] INFO  org.apache.coyote.http11.Http11NioProtocol -
+				Starting ProtocolHandler ["http-nio-8080"]
+2022-10-19 13:28:40.184 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer -
+				Tomcat started on port(s): 8080 (http) with context path ''
+2022-10-19 13:28:40.207 [main] INFO  com.example.demo.DemoApplication -
+				Started DemoApplication in 8.73 seconds (JVM running for 11.932)
+2022-10-19 13:28:42.077 [http-nio-8080-exec-1] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] -
+				Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-10-19 13:28:42.078 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet -
+				Initializing Servlet 'dispatcherServlet'
+2022-10-19 13:28:42.079 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet -
+				Completed initialization in 1 ms
+2022-10-19 13:28:42.362 [http-nio-8080-exec-3] INFO  com.zaxxer.hikari.HikariDataSource -
+				HikariPool-1 - Starting...
+2022-10-19 13:28:42.691 [http-nio-8080-exec-3] INFO  com.zaxxer.hikari.HikariDataSource -
+				HikariPool-1 - Start completed.
+2022-10-19 13:29:01.365 [http-nio-8080-exec-4] INFO  org.apache.tomcat.util.http.parser.Cookie -
+				A cookie header was received [Hm_lvt_5804d09853fcc4866132fbc306348993=1655279936,1655287959;] that contained an invalid cookie. That cookie will be ignored.
+ Note: further occurrences of this error will be logged at DEBUG level.
+2022-10-19 14:59:08.294 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource -
+				HikariPool-1 - Shutdown initiated...
+2022-10-19 14:59:08.305 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource -
+				HikariPool-1 - Shutdown completed.
+2022-10-19 14:59:19.032 [main] INFO  com.example.demo.DemoApplication -
+				Starting DemoApplication using Java 1.8.0_202 on DESKTOP-UN3KSEH with PID 12460 (C:\Users\liu\Desktop\project\MyProject\demo\target\classes started by liu in C:\Users\liu\Desktop\project\MyProject\demo)
+2022-10-19 14:59:19.035 [main] INFO  com.example.demo.DemoApplication -
+				No active profile set, falling back to 1 default profile: "default"
+2022-10-19 14:59:20.006 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate -
+				Multiple Spring Data modules found, entering strict repository configuration mode
+2022-10-19 14:59:20.017 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate -
+				Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2022-10-19 14:59:20.090 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate -
+				Finished Spring Data repository scanning in 30 ms. Found 0 Redis repository interfaces.
+2022-10-19 14:59:20.957 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer -
+				Tomcat initialized with port(s): 8080 (http)
+2022-10-19 14:59:21.141 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext -
+				Root WebApplicationContext: initialization completed in 2049 ms
+2022-10-19 14:59:23.442 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer -
+				Tomcat started on port(s): 8080 (http) with context path ''
+2022-10-19 14:59:23.451 [main] INFO  com.example.demo.DemoApplication -
+				Started DemoApplication in 5.196 seconds (JVM running for 6.885)
+2022-10-19 14:59:35.793 [main] INFO  com.example.demo.DemoApplication -
+				Starting DemoApplication using Java 1.8.0_202 on DESKTOP-UN3KSEH with PID 9616 (C:\Users\liu\Desktop\project\MyProject\demo\target\classes started by liu in C:\Users\liu\Desktop\project\MyProject\demo)
+2022-10-19 14:59:35.797 [main] INFO  com.example.demo.DemoApplication -
+				No active profile set, falling back to 1 default profile: "default"
+2022-10-19 14:59:36.625 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate -
+				Multiple Spring Data modules found, entering strict repository configuration mode
+2022-10-19 14:59:36.630 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate -
+				Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2022-10-19 14:59:36.656 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate -
+				Finished Spring Data repository scanning in 12 ms. Found 0 Redis repository interfaces.
+2022-10-19 14:59:37.208 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer -
+				Tomcat initialized with port(s): 8080 (http)
+2022-10-19 14:59:37.221 [main] INFO  org.apache.coyote.http11.Http11NioProtocol -
+				Initializing ProtocolHandler ["http-nio-8080"]
+2022-10-19 14:59:37.221 [main] INFO  org.apache.catalina.core.StandardService -
+				Starting service [Tomcat]
+2022-10-19 14:59:37.222 [main] INFO  org.apache.catalina.core.StandardEngine -
+				Starting Servlet engine: [Apache Tomcat/9.0.65]
+2022-10-19 14:59:37.362 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] -
+				Initializing Spring embedded WebApplicationContext
+2022-10-19 14:59:37.362 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext -
+				Root WebApplicationContext: initialization completed in 1507 ms
+2022-10-19 14:59:39.846 [main] INFO  org.apache.coyote.http11.Http11NioProtocol -
+				Starting ProtocolHandler ["http-nio-8080"]
+2022-10-19 14:59:39.866 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer -
+				Tomcat started on port(s): 8080 (http) with context path ''
+2022-10-19 14:59:39.879 [main] INFO  com.example.demo.DemoApplication -
+				Started DemoApplication in 4.764 seconds (JVM running for 6.223)
+2022-10-19 14:59:43.809 [http-nio-8080-exec-1] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] -
+				Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-10-19 14:59:43.809 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet -
+				Initializing Servlet 'dispatcherServlet'
+2022-10-19 14:59:43.813 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet -
+				Completed initialization in 4 ms
+2022-10-19 14:59:43.876 [http-nio-8080-exec-2] INFO  org.apache.tomcat.util.http.parser.Cookie -
+				A cookie header was received [Hm_lvt_5804d09853fcc4866132fbc306348993=1655279936,1655287959;] that contained an invalid cookie. That cookie will be ignored.
+ Note: further occurrences of this error will be logged at DEBUG level.
+2022-10-19 14:59:45.139 [http-nio-8080-exec-2] INFO  com.zaxxer.hikari.HikariDataSource -
+				HikariPool-1 - Starting...
+2022-10-19 14:59:45.338 [http-nio-8080-exec-2] INFO  com.zaxxer.hikari.HikariDataSource -
+				HikariPool-1 - Start completed.
+2022-10-19 15:21:52.887 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource -
+				HikariPool-1 - Shutdown initiated...
+2022-10-19 15:21:52.933 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource -
+				HikariPool-1 - Shutdown completed.
+2022-10-19 15:21:59.734 [main] INFO  com.example.demo.DemoApplication -
+				Starting DemoApplication using Java 1.8.0_202 on DESKTOP-UN3KSEH with PID 500 (C:\Users\liu\Desktop\project\MyProject\demo\target\classes started by liu in C:\Users\liu\Desktop\project\MyProject\demo)
+2022-10-19 15:21:59.737 [main] INFO  com.example.demo.DemoApplication -
+				No active profile set, falling back to 1 default profile: "default"
+2022-10-19 15:22:00.590 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate -
+				Multiple Spring Data modules found, entering strict repository configuration mode
+2022-10-19 15:22:00.593 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate -
+				Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2022-10-19 15:22:00.624 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate -
+				Finished Spring Data repository scanning in 16 ms. Found 0 Redis repository interfaces.
+2022-10-19 15:22:01.194 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer -
+				Tomcat initialized with port(s): 8080 (http)
+2022-10-19 15:22:01.204 [main] INFO  org.apache.coyote.http11.Http11NioProtocol -
+				Initializing ProtocolHandler ["http-nio-8080"]
+2022-10-19 15:22:01.204 [main] INFO  org.apache.catalina.core.StandardService -
+				Starting service [Tomcat]
+2022-10-19 15:22:01.205 [main] INFO  org.apache.catalina.core.StandardEngine -
+				Starting Servlet engine: [Apache Tomcat/9.0.65]
+2022-10-19 15:22:01.354 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] -
+				Initializing Spring embedded WebApplicationContext
+2022-10-19 15:22:01.354 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext -
+				Root WebApplicationContext: initialization completed in 1557 ms
+2022-10-19 15:22:03.032 [main] INFO  org.apache.coyote.http11.Http11NioProtocol -
+				Starting ProtocolHandler ["http-nio-8080"]
+2022-10-19 15:22:03.049 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer -
+				Tomcat started on port(s): 8080 (http) with context path ''
+2022-10-19 15:22:03.061 [main] INFO  com.example.demo.DemoApplication -
+				Started DemoApplication in 3.849 seconds (JVM running for 5.202)
+2022-10-19 15:23:04.820 [http-nio-8080-exec-1] INFO  org.apache.tomcat.util.http.parser.Cookie -
+				A cookie header was received [Hm_lvt_5804d09853fcc4866132fbc306348993=1655279936,1655287959;] that contained an invalid cookie. That cookie will be ignored.
+ Note: further occurrences of this error will be logged at DEBUG level.
+2022-10-19 15:23:04.827 [http-nio-8080-exec-1] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] -
+				Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-10-19 15:23:04.828 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet -
+				Initializing Servlet 'dispatcherServlet'
+2022-10-19 15:23:04.829 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet -
+				Completed initialization in 1 ms
+2022-10-19 15:23:05.709 [http-nio-8080-exec-1] INFO  com.zaxxer.hikari.HikariDataSource -
+				HikariPool-1 - Starting...
+2022-10-19 15:23:05.845 [http-nio-8080-exec-1] INFO  com.zaxxer.hikari.HikariDataSource -
+				HikariPool-1 - Start completed.
+2022-10-19 15:24:08.640 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource -
+				HikariPool-1 - Shutdown initiated...
+2022-10-19 15:24:08.650 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource -
+				HikariPool-1 - Shutdown completed.
+2022-10-19 15:24:14.686 [main] INFO  com.example.demo.DemoApplication -
+				Starting DemoApplication using Java 1.8.0_202 on DESKTOP-UN3KSEH with PID 8600 (C:\Users\liu\Desktop\project\MyProject\demo\target\classes started by liu in C:\Users\liu\Desktop\project\MyProject\demo)
+2022-10-19 15:24:14.689 [main] INFO  com.example.demo.DemoApplication -
+				No active profile set, falling back to 1 default profile: "default"
+2022-10-19 15:24:15.464 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate -
+				Multiple Spring Data modules found, entering strict repository configuration mode
+2022-10-19 15:24:15.467 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate -
+				Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2022-10-19 15:24:15.502 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate -
+				Finished Spring Data repository scanning in 16 ms. Found 0 Redis repository interfaces.
+2022-10-19 15:24:16.094 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer -
+				Tomcat initialized with port(s): 8080 (http)
+2022-10-19 15:24:16.104 [main] INFO  org.apache.coyote.http11.Http11NioProtocol -
+				Initializing ProtocolHandler ["http-nio-8080"]
+2022-10-19 15:24:16.105 [main] INFO  org.apache.catalina.core.StandardService -
+				Starting service [Tomcat]
+2022-10-19 15:24:16.106 [main] INFO  org.apache.catalina.core.StandardEngine -
+				Starting Servlet engine: [Apache Tomcat/9.0.65]
+2022-10-19 15:24:16.257 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] -
+				Initializing Spring embedded WebApplicationContext
+2022-10-19 15:24:16.257 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext -
+				Root WebApplicationContext: initialization completed in 1511 ms
+2022-10-19 15:24:18.119 [main] INFO  org.apache.coyote.http11.Http11NioProtocol -
+				Starting ProtocolHandler ["http-nio-8080"]
+2022-10-19 15:24:18.139 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer -
+				Tomcat started on port(s): 8080 (http) with context path ''
+2022-10-19 15:24:18.147 [main] INFO  com.example.demo.DemoApplication -
+				Started DemoApplication in 4.009 seconds (JVM running for 6.513)
+2022-10-19 15:24:37.639 [http-nio-8080-exec-5] INFO  org.apache.tomcat.util.http.parser.Cookie -
+				A cookie header was received [Hm_lvt_5804d09853fcc4866132fbc306348993=1655279936,1655287959;] that contained an invalid cookie. That cookie will be ignored.
+ Note: further occurrences of this error will be logged at DEBUG level.
+2022-10-19 15:24:37.646 [http-nio-8080-exec-5] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] -
+				Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-10-19 15:24:37.647 [http-nio-8080-exec-5] INFO  org.springframework.web.servlet.DispatcherServlet -
+				Initializing Servlet 'dispatcherServlet'
+2022-10-19 15:24:37.650 [http-nio-8080-exec-5] INFO  org.springframework.web.servlet.DispatcherServlet -
+				Completed initialization in 3 ms
+2022-10-19 15:24:57.212 [http-nio-8080-exec-5] INFO  com.zaxxer.hikari.HikariDataSource -
+				HikariPool-1 - Starting...
+2022-10-19 15:24:57.484 [http-nio-8080-exec-5] INFO  com.zaxxer.hikari.HikariDataSource -
+				HikariPool-1 - Start completed.
+2022-10-19 15:24:57.736 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource -
+				HikariPool-1 - Shutdown initiated...
+2022-10-19 15:24:57.747 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource -
+				HikariPool-1 - Shutdown completed.
+2022-10-19 15:25:04.238 [main] INFO  com.example.demo.DemoApplication -
+				Starting DemoApplication using Java 1.8.0_202 on DESKTOP-UN3KSEH with PID 14428 (C:\Users\liu\Desktop\project\MyProject\demo\target\classes started by liu in C:\Users\liu\Desktop\project\MyProject\demo)
+2022-10-19 15:25:04.242 [main] INFO  com.example.demo.DemoApplication -
+				No active profile set, falling back to 1 default profile: "default"
+2022-10-19 15:25:04.939 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate -
+				Multiple Spring Data modules found, entering strict repository configuration mode
+2022-10-19 15:25:04.940 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate -
+				Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2022-10-19 15:25:04.968 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate -
+				Finished Spring Data repository scanning in 12 ms. Found 0 Redis repository interfaces.
+2022-10-19 15:25:05.644 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer -
+				Tomcat initialized with port(s): 8080 (http)
+2022-10-19 15:25:05.652 [main] INFO  org.apache.coyote.http11.Http11NioProtocol -
+				Initializing ProtocolHandler ["http-nio-8080"]
+2022-10-19 15:25:05.653 [main] INFO  org.apache.catalina.core.StandardService -
+				Starting service [Tomcat]
+2022-10-19 15:25:05.654 [main] INFO  org.apache.catalina.core.StandardEngine -
+				Starting Servlet engine: [Apache Tomcat/9.0.65]
+2022-10-19 15:25:05.824 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] -
+				Initializing Spring embedded WebApplicationContext
+2022-10-19 15:25:05.824 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext -
+				Root WebApplicationContext: initialization completed in 1533 ms
+2022-10-19 15:25:07.755 [main] INFO  org.apache.coyote.http11.Http11NioProtocol -
+				Starting ProtocolHandler ["http-nio-8080"]
+2022-10-19 15:25:07.775 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer -
+				Tomcat started on port(s): 8080 (http) with context path ''
+2022-10-19 15:25:07.785 [main] INFO  com.example.demo.DemoApplication -
+				Started DemoApplication in 4.173 seconds (JVM running for 5.146)
+2022-10-19 15:25:12.368 [http-nio-8080-exec-1] INFO  org.apache.tomcat.util.http.parser.Cookie -
+				A cookie header was received [Hm_lvt_5804d09853fcc4866132fbc306348993=1655279936,1655287959;] that contained an invalid cookie. That cookie will be ignored.
+ Note: further occurrences of this error will be logged at DEBUG level.
+2022-10-19 15:25:12.375 [http-nio-8080-exec-1] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] -
+				Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-10-19 15:25:12.376 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet -
+				Initializing Servlet 'dispatcherServlet'
+2022-10-19 15:25:12.377 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet -
+				Completed initialization in 1 ms
+2022-10-19 15:25:13.273 [http-nio-8080-exec-1] INFO  com.zaxxer.hikari.HikariDataSource -
+				HikariPool-1 - Starting...
+2022-10-19 15:25:13.460 [http-nio-8080-exec-1] INFO  com.zaxxer.hikari.HikariDataSource -
+				HikariPool-1 - Start completed.
+2022-10-19 15:25:54.479 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource -
+				HikariPool-1 - Shutdown initiated...
+2022-10-19 15:25:54.487 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource -
+				HikariPool-1 - Shutdown completed.
+2022-10-19 15:25:59.389 [main] INFO  com.example.demo.DemoApplication -
+				Starting DemoApplication using Java 1.8.0_202 on DESKTOP-UN3KSEH with PID 15104 (C:\Users\liu\Desktop\project\MyProject\demo\target\classes started by liu in C:\Users\liu\Desktop\project\MyProject\demo)
+2022-10-19 15:25:59.393 [main] INFO  com.example.demo.DemoApplication -
+				No active profile set, falling back to 1 default profile: "default"
+2022-10-19 15:26:00.172 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate -
+				Multiple Spring Data modules found, entering strict repository configuration mode
+2022-10-19 15:26:00.175 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate -
+				Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2022-10-19 15:26:00.209 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate -
+				Finished Spring Data repository scanning in 15 ms. Found 0 Redis repository interfaces.
+2022-10-19 15:26:00.857 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer -
+				Tomcat initialized with port(s): 8080 (http)
+2022-10-19 15:26:00.871 [main] INFO  org.apache.coyote.http11.Http11NioProtocol -
+				Initializing ProtocolHandler ["http-nio-8080"]
+2022-10-19 15:26:00.872 [main] INFO  org.apache.catalina.core.StandardService -
+				Starting service [Tomcat]
+2022-10-19 15:26:00.872 [main] INFO  org.apache.catalina.core.StandardEngine -
+				Starting Servlet engine: [Apache Tomcat/9.0.65]
+2022-10-19 15:26:01.029 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] -
+				Initializing Spring embedded WebApplicationContext
+2022-10-19 15:26:01.029 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext -
+				Root WebApplicationContext: initialization completed in 1577 ms
+2022-10-19 15:26:03.481 [main] INFO  org.apache.coyote.http11.Http11NioProtocol -
+				Starting ProtocolHandler ["http-nio-8080"]
+2022-10-19 15:26:03.506 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer -
+				Tomcat started on port(s): 8080 (http) with context path ''
+2022-10-19 15:26:03.520 [main] INFO  com.example.demo.DemoApplication -
+				Started DemoApplication in 4.868 seconds (JVM running for 6.177)
+2022-10-19 15:26:08.159 [http-nio-8080-exec-2] INFO  org.apache.tomcat.util.http.parser.Cookie -
+				A cookie header was received [Hm_lvt_5804d09853fcc4866132fbc306348993=1655279936,1655287959;] that contained an invalid cookie. That cookie will be ignored.
+ Note: further occurrences of this error will be logged at DEBUG level.
+2022-10-19 15:26:08.169 [http-nio-8080-exec-2] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] -
+				Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-10-19 15:26:08.170 [http-nio-8080-exec-2] INFO  org.springframework.web.servlet.DispatcherServlet -
+				Initializing Servlet 'dispatcherServlet'
+2022-10-19 15:26:08.171 [http-nio-8080-exec-2] INFO  org.springframework.web.servlet.DispatcherServlet -
+				Completed initialization in 1 ms
+2022-10-19 15:26:17.153 [http-nio-8080-exec-2] INFO  com.zaxxer.hikari.HikariDataSource -
+				HikariPool-1 - Starting...
+2022-10-19 15:26:17.318 [http-nio-8080-exec-2] INFO  com.zaxxer.hikari.HikariDataSource -
+				HikariPool-1 - Start completed.
+2022-10-19 15:26:51.157 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource -
+				HikariPool-1 - Shutdown initiated...
+2022-10-19 15:26:51.164 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource -
+				HikariPool-1 - Shutdown completed.
+2022-10-19 15:26:55.697 [main] INFO  com.example.demo.DemoApplication -
+				Starting DemoApplication using Java 1.8.0_202 on DESKTOP-UN3KSEH with PID 2540 (C:\Users\liu\Desktop\project\MyProject\demo\target\classes started by liu in C:\Users\liu\Desktop\project\MyProject\demo)
+2022-10-19 15:26:55.703 [main] INFO  com.example.demo.DemoApplication -
+				No active profile set, falling back to 1 default profile: "default"
+2022-10-19 15:26:56.595 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate -
+				Multiple Spring Data modules found, entering strict repository configuration mode
+2022-10-19 15:26:56.597 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate -
+				Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2022-10-19 15:26:56.628 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate -
+				Finished Spring Data repository scanning in 14 ms. Found 0 Redis repository interfaces.
+2022-10-19 15:26:57.316 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer -
+				Tomcat initialized with port(s): 8080 (http)
+2022-10-19 15:26:57.325 [main] INFO  org.apache.coyote.http11.Http11NioProtocol -
+				Initializing ProtocolHandler ["http-nio-8080"]
+2022-10-19 15:26:57.326 [main] INFO  org.apache.catalina.core.StandardService -
+				Starting service [Tomcat]
+2022-10-19 15:26:57.327 [main] INFO  org.apache.catalina.core.StandardEngine -
+				Starting Servlet engine: [Apache Tomcat/9.0.65]
+2022-10-19 15:26:57.486 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] -
+				Initializing Spring embedded WebApplicationContext
+2022-10-19 15:26:57.487 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext -
+				Root WebApplicationContext: initialization completed in 1702 ms
+2022-10-19 15:26:59.553 [main] INFO  org.apache.coyote.http11.Http11NioProtocol -
+				Starting ProtocolHandler ["http-nio-8080"]
+2022-10-19 15:26:59.574 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer -
+				Tomcat started on port(s): 8080 (http) with context path ''
+2022-10-19 15:26:59.589 [main] INFO  com.example.demo.DemoApplication -
+				Started DemoApplication in 4.732 seconds (JVM running for 5.879)
+2022-10-19 15:26:59.682 [http-nio-8080-exec-1] INFO  org.apache.tomcat.util.http.parser.Cookie -
+				A cookie header was received [Hm_lvt_5804d09853fcc4866132fbc306348993=1655279936,1655287959;] that contained an invalid cookie. That cookie will be ignored.
+ Note: further occurrences of this error will be logged at DEBUG level.
+2022-10-19 15:26:59.693 [http-nio-8080-exec-1] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] -
+				Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-10-19 15:26:59.693 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet -
+				Initializing Servlet 'dispatcherServlet'
+2022-10-19 15:26:59.694 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet -
+				Completed initialization in 1 ms
+2022-10-19 15:27:00.896 [http-nio-8080-exec-1] INFO  com.zaxxer.hikari.HikariDataSource -
+				HikariPool-1 - Starting...
+2022-10-19 15:27:01.059 [http-nio-8080-exec-1] INFO  com.zaxxer.hikari.HikariDataSource -
+				HikariPool-1 - Start completed.
+2022-10-19 15:27:18.700 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource -
+				HikariPool-1 - Shutdown initiated...
+2022-10-19 15:27:18.708 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource -
+				HikariPool-1 - Shutdown completed.
+2022-10-19 15:27:22.665 [main] INFO  com.example.demo.DemoApplication -
+				Starting DemoApplication using Java 1.8.0_202 on DESKTOP-UN3KSEH with PID 7524 (C:\Users\liu\Desktop\project\MyProject\demo\target\classes started by liu in C:\Users\liu\Desktop\project\MyProject\demo)
+2022-10-19 15:27:22.668 [main] INFO  com.example.demo.DemoApplication -
+				No active profile set, falling back to 1 default profile: "default"
+2022-10-19 15:27:23.364 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate -
+				Multiple Spring Data modules found, entering strict repository configuration mode
+2022-10-19 15:27:23.366 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate -
+				Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2022-10-19 15:27:23.392 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate -
+				Finished Spring Data repository scanning in 14 ms. Found 0 Redis repository interfaces.
+2022-10-19 15:27:23.912 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer -
+				Tomcat initialized with port(s): 8080 (http)
+2022-10-19 15:27:23.920 [main] INFO  org.apache.coyote.http11.Http11NioProtocol -
+				Initializing ProtocolHandler ["http-nio-8080"]
+2022-10-19 15:27:23.920 [main] INFO  org.apache.catalina.core.StandardService -
+				Starting service [Tomcat]
+2022-10-19 15:27:23.921 [main] INFO  org.apache.catalina.core.StandardEngine -
+				Starting Servlet engine: [Apache Tomcat/9.0.65]
+2022-10-19 15:27:24.055 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] -
+				Initializing Spring embedded WebApplicationContext
+2022-10-19 15:27:24.055 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext -
+				Root WebApplicationContext: initialization completed in 1339 ms
+2022-10-19 15:27:25.668 [main] INFO  org.apache.coyote.http11.Http11NioProtocol -
+				Starting ProtocolHandler ["http-nio-8080"]
+2022-10-19 15:27:25.682 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer -
+				Tomcat started on port(s): 8080 (http) with context path ''
+2022-10-19 15:27:25.692 [main] INFO  com.example.demo.DemoApplication -
+				Started DemoApplication in 3.575 seconds (JVM running for 4.523)
+2022-10-19 15:27:30.976 [http-nio-8080-exec-1] INFO  org.apache.tomcat.util.http.parser.Cookie -
+				A cookie header was received [Hm_lvt_5804d09853fcc4866132fbc306348993=1655279936,1655287959;] that contained an invalid cookie. That cookie will be ignored.
+ Note: further occurrences of this error will be logged at DEBUG level.
+2022-10-19 15:27:30.982 [http-nio-8080-exec-1] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] -
+				Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-10-19 15:27:30.983 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet -
+				Initializing Servlet 'dispatcherServlet'
+2022-10-19 15:27:30.986 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet -
+				Completed initialization in 3 ms
+2022-10-19 15:27:31.941 [http-nio-8080-exec-1] INFO  com.zaxxer.hikari.HikariDataSource -
+				HikariPool-1 - Starting...
+2022-10-19 15:27:32.077 [http-nio-8080-exec-1] INFO  com.zaxxer.hikari.HikariDataSource -
+				HikariPool-1 - Start completed.
+2022-10-19 15:40:41.297 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource -
+				HikariPool-1 - Shutdown initiated...
+2022-10-19 15:40:41.316 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource -
+				HikariPool-1 - Shutdown completed.
+2022-10-19 15:40:51.464 [main] INFO  com.example.demo.DemoApplication -
+				Starting DemoApplication using Java 1.8.0_202 on DESKTOP-UN3KSEH with PID 12584 (C:\Users\liu\Desktop\project\MyProject\demo\target\classes started by liu in C:\Users\liu\Desktop\project\MyProject\demo)
+2022-10-19 15:40:51.475 [main] INFO  com.example.demo.DemoApplication -
+				No active profile set, falling back to 1 default profile: "default"
+2022-10-19 15:40:52.508 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate -
+				Multiple Spring Data modules found, entering strict repository configuration mode
+2022-10-19 15:40:52.511 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate -
+				Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2022-10-19 15:40:52.549 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate -
+				Finished Spring Data repository scanning in 16 ms. Found 0 Redis repository interfaces.
+2022-10-19 15:40:53.145 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer -
+				Tomcat initialized with port(s): 8080 (http)
+2022-10-19 15:40:53.154 [main] INFO  org.apache.coyote.http11.Http11NioProtocol -
+				Initializing ProtocolHandler ["http-nio-8080"]
+2022-10-19 15:40:53.155 [main] INFO  org.apache.catalina.core.StandardService -
+				Starting service [Tomcat]
+2022-10-19 15:40:53.155 [main] INFO  org.apache.catalina.core.StandardEngine -
+				Starting Servlet engine: [Apache Tomcat/9.0.65]
+2022-10-19 15:40:53.296 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] -
+				Initializing Spring embedded WebApplicationContext
+2022-10-19 15:40:53.296 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext -
+				Root WebApplicationContext: initialization completed in 1753 ms
+2022-10-19 15:40:55.429 [main] INFO  org.apache.coyote.http11.Http11NioProtocol -
+				Starting ProtocolHandler ["http-nio-8080"]
+2022-10-19 15:40:55.451 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer -
+				Tomcat started on port(s): 8080 (http) with context path ''
+2022-10-19 15:40:55.461 [main] INFO  com.example.demo.DemoApplication -
+				Started DemoApplication in 5.073 seconds (JVM running for 6.33)
+2022-10-19 15:41:18.691 [http-nio-8080-exec-1] INFO  org.apache.tomcat.util.http.parser.Cookie -
+				A cookie header was received [Hm_lvt_5804d09853fcc4866132fbc306348993=1655279936,1655287959;] that contained an invalid cookie. That cookie will be ignored.
+ Note: further occurrences of this error will be logged at DEBUG level.
+2022-10-19 15:41:18.703 [http-nio-8080-exec-1] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] -
+				Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-10-19 15:41:18.704 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet -
+				Initializing Servlet 'dispatcherServlet'
+2022-10-19 15:41:18.706 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet -
+				Completed initialization in 2 ms
+2022-10-19 15:41:19.963 [http-nio-8080-exec-1] INFO  com.zaxxer.hikari.HikariDataSource -
+				HikariPool-1 - Starting...
+2022-10-19 15:41:20.226 [http-nio-8080-exec-1] INFO  com.zaxxer.hikari.HikariDataSource -
+				HikariPool-1 - Start completed.
+2022-10-19 16:06:46.215 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource -
+				HikariPool-1 - Shutdown initiated...
+2022-10-19 16:06:46.227 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource -
+				HikariPool-1 - Shutdown completed.
+2022-10-19 16:09:39.133 [main] INFO  com.example.demo.DemoApplication -
+				Starting DemoApplication using Java 1.8.0_202 on DESKTOP-UN3KSEH with PID 16568 (C:\Users\liu\Desktop\project\MyProject\demo\target\classes started by liu in C:\Users\liu\Desktop\project\MyProject\demo)
+2022-10-19 16:09:39.137 [main] INFO  com.example.demo.DemoApplication -
+				No active profile set, falling back to 1 default profile: "default"
+2022-10-19 16:09:40.005 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate -
+				Multiple Spring Data modules found, entering strict repository configuration mode
+2022-10-19 16:09:40.009 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate -
+				Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2022-10-19 16:09:40.041 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate -
+				Finished Spring Data repository scanning in 14 ms. Found 0 Redis repository interfaces.
+2022-10-19 16:09:40.811 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer -
+				Tomcat initialized with port(s): 8080 (http)
+2022-10-19 16:09:40.826 [main] INFO  org.apache.coyote.http11.Http11NioProtocol -
+				Initializing ProtocolHandler ["http-nio-8080"]
+2022-10-19 16:09:40.827 [main] INFO  org.apache.catalina.core.StandardService -
+				Starting service [Tomcat]
+2022-10-19 16:09:40.828 [main] INFO  org.apache.catalina.core.StandardEngine -
+				Starting Servlet engine: [Apache Tomcat/9.0.65]
+2022-10-19 16:09:41.021 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] -
+				Initializing Spring embedded WebApplicationContext
+2022-10-19 16:09:41.021 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext -
+				Root WebApplicationContext: initialization completed in 1825 ms
+2022-10-19 16:09:43.496 [main] INFO  org.apache.coyote.http11.Http11NioProtocol -
+				Starting ProtocolHandler ["http-nio-8080"]
+2022-10-19 16:09:43.561 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer -
+				Tomcat started on port(s): 8080 (http) with context path ''
+2022-10-19 16:09:43.609 [main] INFO  com.example.demo.DemoApplication -
+				Started DemoApplication in 5.284 seconds (JVM running for 6.474)
+2022-10-19 16:10:24.901 [main] INFO  com.example.demo.DemoApplication -
+				Starting DemoApplication using Java 1.8.0_202 on DESKTOP-UN3KSEH with PID 15032 (C:\Users\liu\Desktop\project\MyProject\demo\target\classes started by liu in C:\Users\liu\Desktop\project\MyProject\demo)
+2022-10-19 16:10:24.905 [main] INFO  com.example.demo.DemoApplication -
+				No active profile set, falling back to 1 default profile: "default"
+2022-10-19 16:10:25.643 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate -
+				Multiple Spring Data modules found, entering strict repository configuration mode
+2022-10-19 16:10:25.646 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate -
+				Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2022-10-19 16:10:25.674 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate -
+				Finished Spring Data repository scanning in 15 ms. Found 0 Redis repository interfaces.
+2022-10-19 16:10:26.219 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer -
+				Tomcat initialized with port(s): 8080 (http)
+2022-10-19 16:10:26.226 [main] INFO  org.apache.coyote.http11.Http11NioProtocol -
+				Initializing ProtocolHandler ["http-nio-8080"]
+2022-10-19 16:10:26.227 [main] INFO  org.apache.catalina.core.StandardService -
+				Starting service [Tomcat]
+2022-10-19 16:10:26.227 [main] INFO  org.apache.catalina.core.StandardEngine -
+				Starting Servlet engine: [Apache Tomcat/9.0.65]
+2022-10-19 16:10:26.407 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] -
+				Initializing Spring embedded WebApplicationContext
+2022-10-19 16:10:26.407 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext -
+				Root WebApplicationContext: initialization completed in 1451 ms
+2022-10-19 16:10:28.280 [main] INFO  org.apache.coyote.http11.Http11NioProtocol -
+				Starting ProtocolHandler ["http-nio-8080"]
+2022-10-19 16:10:28.298 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer -
+				Tomcat started on port(s): 8080 (http) with context path ''
+2022-10-19 16:10:28.309 [main] INFO  com.example.demo.DemoApplication -
+				Started DemoApplication in 3.956 seconds (JVM running for 4.991)
+2022-10-19 16:10:36.099 [http-nio-8080-exec-1] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] -
+				Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-10-19 16:10:36.100 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet -
+				Initializing Servlet 'dispatcherServlet'
+2022-10-19 16:10:36.101 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet -
+				Completed initialization in 1 ms
+2022-10-19 16:11:04.543 [http-nio-8080-exec-8] INFO  org.apache.tomcat.util.http.parser.Cookie -
+				A cookie header was received [Hm_lvt_5804d09853fcc4866132fbc306348993=1655279936,1655287959;] that contained an invalid cookie. That cookie will be ignored.
+ Note: further occurrences of this error will be logged at DEBUG level.
+2022-10-19 16:11:04.586 [http-nio-8080-exec-8] INFO  com.zaxxer.hikari.HikariDataSource -
+				HikariPool-1 - Starting...
+2022-10-19 16:11:05.031 [http-nio-8080-exec-8] INFO  com.zaxxer.hikari.HikariDataSource -
+				HikariPool-1 - Start completed.
+2022-10-19 16:21:06.885 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource -
+				HikariPool-1 - Shutdown initiated...
+2022-10-19 16:21:06.894 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource -
+				HikariPool-1 - Shutdown completed.
+2022-10-19 16:21:12.378 [main] INFO  com.example.demo.DemoApplication -
+				Starting DemoApplication using Java 1.8.0_202 on DESKTOP-UN3KSEH with PID 20440 (C:\Users\liu\Desktop\project\MyProject\demo\target\classes started by liu in C:\Users\liu\Desktop\project\MyProject\demo)
+2022-10-19 16:21:12.382 [main] INFO  com.example.demo.DemoApplication -
+				No active profile set, falling back to 1 default profile: "default"
+2022-10-19 16:21:13.335 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate -
+				Multiple Spring Data modules found, entering strict repository configuration mode
+2022-10-19 16:21:13.341 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate -
+				Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2022-10-19 16:21:13.395 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate -
+				Finished Spring Data repository scanning in 26 ms. Found 0 Redis repository interfaces.
+2022-10-19 16:21:14.292 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer -
+				Tomcat initialized with port(s): 8080 (http)
+2022-10-19 16:21:14.308 [main] INFO  org.apache.coyote.http11.Http11NioProtocol -
+				Initializing ProtocolHandler ["http-nio-8080"]
+2022-10-19 16:21:14.309 [main] INFO  org.apache.catalina.core.StandardService -
+				Starting service [Tomcat]
+2022-10-19 16:21:14.309 [main] INFO  org.apache.catalina.core.StandardEngine -
+				Starting Servlet engine: [Apache Tomcat/9.0.65]
+2022-10-19 16:21:14.583 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] -
+				Initializing Spring embedded WebApplicationContext
+2022-10-19 16:21:14.583 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext -
+				Root WebApplicationContext: initialization completed in 2138 ms
+2022-10-19 16:21:17.259 [main] INFO  org.apache.coyote.http11.Http11NioProtocol -
+				Starting ProtocolHandler ["http-nio-8080"]
+2022-10-19 16:21:17.293 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer -
+				Tomcat started on port(s): 8080 (http) with context path ''
+2022-10-19 16:21:17.307 [main] INFO  com.example.demo.DemoApplication -
+				Started DemoApplication in 5.642 seconds (JVM running for 7.436)
+2022-10-19 16:21:28.606 [http-nio-8080-exec-1] INFO  org.apache.tomcat.util.http.parser.Cookie -
+				A cookie header was received [Hm_lvt_5804d09853fcc4866132fbc306348993=1655279936,1655287959;] that contained an invalid cookie. That cookie will be ignored.
+ Note: further occurrences of this error will be logged at DEBUG level.
+2022-10-19 16:21:28.614 [http-nio-8080-exec-1] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] -
+				Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-10-19 16:21:28.614 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet -
+				Initializing Servlet 'dispatcherServlet'
+2022-10-19 16:21:28.615 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet -
+				Completed initialization in 1 ms
+2022-10-19 16:21:29.828 [http-nio-8080-exec-1] INFO  com.zaxxer.hikari.HikariDataSource -
+				HikariPool-1 - Starting...
+2022-10-19 16:21:29.995 [http-nio-8080-exec-1] INFO  com.zaxxer.hikari.HikariDataSource -
+				HikariPool-1 - Start completed.
+2022-10-19 16:21:45.682 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource -
+				HikariPool-1 - Shutdown initiated...
+2022-10-19 16:21:45.692 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource -
+				HikariPool-1 - Shutdown completed.
+2022-10-19 16:21:52.136 [main] INFO  com.example.demo.DemoApplication -
+				Starting DemoApplication using Java 1.8.0_202 on DESKTOP-UN3KSEH with PID 15572 (C:\Users\liu\Desktop\project\MyProject\demo\target\classes started by liu in C:\Users\liu\Desktop\project\MyProject\demo)
+2022-10-19 16:21:52.140 [main] INFO  com.example.demo.DemoApplication -
+				No active profile set, falling back to 1 default profile: "default"
+2022-10-19 16:21:52.903 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate -
+				Multiple Spring Data modules found, entering strict repository configuration mode
+2022-10-19 16:21:52.906 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate -
+				Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2022-10-19 16:21:52.934 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate -
+				Finished Spring Data repository scanning in 14 ms. Found 0 Redis repository interfaces.
+2022-10-19 16:21:53.453 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer -
+				Tomcat initialized with port(s): 8080 (http)
+2022-10-19 16:21:53.462 [main] INFO  org.apache.coyote.http11.Http11NioProtocol -
+				Initializing ProtocolHandler ["http-nio-8080"]
+2022-10-19 16:21:53.463 [main] INFO  org.apache.catalina.core.StandardService -
+				Starting service [Tomcat]
+2022-10-19 16:21:53.463 [main] INFO  org.apache.catalina.core.StandardEngine -
+				Starting Servlet engine: [Apache Tomcat/9.0.65]
+2022-10-19 16:21:53.607 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] -
+				Initializing Spring embedded WebApplicationContext
+2022-10-19 16:21:53.608 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext -
+				Root WebApplicationContext: initialization completed in 1406 ms
+2022-10-19 16:21:55.345 [main] INFO  org.apache.coyote.http11.Http11NioProtocol -
+				Starting ProtocolHandler ["http-nio-8080"]
+2022-10-19 16:21:55.366 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer -
+				Tomcat started on port(s): 8080 (http) with context path ''
+2022-10-19 16:21:55.379 [main] INFO  com.example.demo.DemoApplication -
+				Started DemoApplication in 3.881 seconds (JVM running for 4.868)
+2022-10-19 16:22:10.598 [http-nio-8080-exec-1] INFO  org.apache.tomcat.util.http.parser.Cookie -
+				A cookie header was received [Hm_lvt_5804d09853fcc4866132fbc306348993=1655279936,1655287959;] that contained an invalid cookie. That cookie will be ignored.
+ Note: further occurrences of this error will be logged at DEBUG level.
+2022-10-19 16:22:10.607 [http-nio-8080-exec-1] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] -
+				Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-10-19 16:22:10.607 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet -
+				Initializing Servlet 'dispatcherServlet'
+2022-10-19 16:22:10.608 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet -
+				Completed initialization in 1 ms
+2022-10-19 16:22:11.484 [http-nio-8080-exec-1] INFO  com.zaxxer.hikari.HikariDataSource -
+				HikariPool-1 - Starting...
+2022-10-19 16:22:11.621 [http-nio-8080-exec-1] INFO  com.zaxxer.hikari.HikariDataSource -
+				HikariPool-1 - Start completed.
+2022-10-19 22:20:41.007 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource -
+				HikariPool-1 - Shutdown initiated...
+2022-10-19 22:20:41.027 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource -
+				HikariPool-1 - Shutdown completed.

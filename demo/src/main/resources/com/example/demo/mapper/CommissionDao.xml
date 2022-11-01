@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.CommissionDao">
+    <update id="setStatusOne">
+        update commission
+        set status='1',
+            employee_id=#{studentId}
+        where id = #{commissionId}
+    </update>
+
+
+    <select id="getCommissionAndStudent" resultType="java.util.Map">
+        SELECT
+        c.content,
+        c.id,
+        c.student_id as studentId,
+
+        c.date,
+        c.money,
+        c.status,
+
+        c.employee_id as employeeId,
+        c.limit_sex as limitSex,
+        s.id as studentId,
+
+        s.address,
+        s.birthday,
+        s.email,
+        s.enrollment_time,
+        s.`name`,
+        s.school,
+        s.avatar,
+        s.phone
+        FROM
+        commission c
+        LEFT JOIN student s ON c.student_id = s.id
+
+        <if test="status !=null and   ''!=status ">
+            where status=#{status}
+        </if>
+
+        <if test="orderType!=null and ''!=orderType ">
+            order by ${orderField} ${orderType}
+        </if>
+
+    </select>
+    <select id="getCommissionAndStudentBycommissionId" resultType="java.util.Map">
+        select *
+        from commission c
+                 left join student s on c.student_id = s.id
+        where c.id = #{commissionId}
+    </select>
+    <select id="getCommissionAndStudentByStudentId" resultType="java.util.Map">
+        select c.content,
+               c.id,
+               c.student_id  as studentId,
+
+               c.date,
+               c.money,
+               c.status,
+
+               c.employee_id as employeeId,
+               c.limit_sex   as limitSex,
+               s.id          as studentId,
+
+               s.address,
+               s.birthday,
+               s.email,
+               s.enrollment_time,
+               s.`name`,
+               s.school,
+               s.avatar,
+               s.phone
+        from commission c
+                 left join student s on c.student_id = s.id
+        where s.id = #{studentId}
+    </select>
+</mapper>
