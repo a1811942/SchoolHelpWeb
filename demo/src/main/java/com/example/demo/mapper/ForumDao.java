@@ -11,4 +11,5 @@ import java.util.Map;
 public interface ForumDao extends BaseMapper<Forum> {
     List<Map<String ,Object>> getALlForumAndStudent();
     List<ForumDoc> getForumDoc();
+    ForumDoc getForumDocById(String forumId);
 }

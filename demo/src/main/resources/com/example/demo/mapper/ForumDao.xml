@@ -20,5 +20,11 @@
 
                  left join student s on f.student_id = s.id;
     </select>
+    <select id="getForumDocById" resultType="com.example.demo.entity.ForumDoc">
+        select s.name, f.date, f.forum_content as content, f.title,f.id
+        from forum f
+
+                 left join student s on f.student_id = s.id where f.id=#{forumId}
+    </select>
 
 </mapper>

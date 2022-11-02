@@ -28,18 +28,18 @@ public class SendMailTest {
     private ForumService forumService;
 
     @Test
-    public void testAddDocument() throws IOException {
-        BulkRequest request = new BulkRequest();
-        List<ForumDoc> list = forumService.getForumDoc();
-        for (ForumDoc doc : list) {
-            ForumDoc forumDoc = new ForumDoc(doc);
-            request.add(new IndexRequest("forum")
-                    .id(forumDoc.getId())
-                    .source("json",XContentType.JSON));
-
-        }
-        client.bulk(request,RequestOptions.DEFAULT);
-    }
+//    public void testAddDocument() throws IOException {
+//        BulkRequest request = new BulkRequest();
+//        List<ForumDoc> list = forumService.getForumDoc();
+//        for (ForumDoc doc : list) {
+//            ForumDoc forumDoc = new ForumDoc(doc);
+//            request.add(new IndexRequest("forum")
+//                    .id(forumDoc.getId())
+//                    .source("json",XContentType.JSON));
+//
+//        }
+//        client.bulk(request,RequestOptions.DEFAULT);
+//    }
 
     @BeforeEach
     public void serUp(){

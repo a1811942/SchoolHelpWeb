@@ -5,7 +5,8 @@ import {
 import Login from '../views/login.vue'
 import Register from '../views/register.vue'
 import Home from '../views/home.vue'
-import List from '../views/list.vue'
+import List from '../views/forum/list.vue'
+import Forum_publish from '../views/forum/forum_publish.vue'
 import User from '../views/user.vue'
 import Moments from '../views/moments2.vue'
 import Information from '../views/information2.vue'
@@ -73,7 +74,12 @@ const routes = [{
 		},
 		{
 			path: '/home/forum',
-			component: Forum
+			component: Forum,
+			
+		},
+		{
+			path: '/home/forum/forum_publish',
+			component: Forum_publish
 		},
 
 		{
