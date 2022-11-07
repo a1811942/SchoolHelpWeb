@@ -284,7 +284,7 @@ const submitForm = async (formEl: FormInstance | undefined) => {
   await formEl.validate((valid, fields) => {
     if (valid) {
       axios
-        .put(
+        .post(
           "/demo/commission/SaveCommission",
 
           {
@@ -323,59 +323,7 @@ const resetForm = (formEl: FormInstance | undefined) => {
   if (!formEl) return;
   formEl.resetFields();
 };
-const rules = reactive<FormRules>({
-  name: [
-    { required: true, message: "Please input Activity name", trigger: "blur" },
-    { min: 3, max: 5, message: "Length should be 3 to 5", trigger: "blur" },
-  ],
-  region: [
-    {
-      required: true,
-      message: "Please select Activity zone",
-      trigger: "change",
-    },
-  ],
-  count: [
-    {
-      required: true,
-      message: "Please select Activity count",
-      trigger: "change",
-    },
-  ],
-  date1: [
-    {
-      type: "date",
-      required: true,
-      message: "Please pick a date",
-      trigger: "change",
-    },
-  ],
-  date2: [
-    {
-      type: "date",
-      required: true,
-      message: "Please pick a time",
-      trigger: "change",
-    },
-  ],
-  type: [
-    {
-      type: "array",
-      required: true,
-      message: "Please select at least one activity type",
-      trigger: "change",
-    },
-  ],
-  sex: [
-    {
-      required: true,
-      message: "请选择条件",
-      trigger: "change",
-    },
-  ],
-  money: [{ required: true, message: "请填写委托金", trigger: "blur" }],
-  content: [{ required: true, message: "请填写委托内容", trigger: "blur" }],
-});
+
 //发布委托
 const centerDialogVisible = ref(false);
 const centerDialogVisible2 = ref(false);
@@ -393,13 +341,13 @@ const cancelEvent = () => {
 const buttons = reactive({
   type: "primary",
 });
-//点击按钮
+//点击接单按钮
 const recept = (id) => {
   axios
-    .put(
+    .post(
       "/demo/commission/setStatusOne",
 
-      { id: id, studentId: sessionStorage.getItem("studentId") },
+      { id: id, acceptStudentId: sessionStorage.getItem("studentId"),acceptName:sessionStorage.getItem("studentName") },
       {
         headers: {
           token: sessionStorage.getItem("token"),
@@ -431,6 +379,25 @@ const recept = (id) => {
 const commissions = reactive({
   commission: [],
 });
+//查询接单人信息
+const getAcceptStudentByAcceptStudentId = (AcceptStudentId) => {
+  axios
+    .post(
+      "/demo/commission/getAcceptStudentByAcceptStudentId",
+      {
+        headers: {
+          token: sessionStorage.getItem("token"),
+        },
+      }
+    )
+    .then((res) => {
+      commissions.commission = res.data.result;
+      console.log("");
+    })
+    .catch((error) => {
+      ElMessage.error("查看评论失败");
+    });
+};
 //查询所有的委托信息
 const getCommissionAndStudent = () => {
   axios
@@ -484,6 +451,59 @@ const orderType = ref([
     label: "时间最晚",
   },
 ]);
+const rules = reactive<FormRules>({
+  name: [
+    { required: true, message: "Please input Activity name", trigger: "blur" },
+    { min: 3, max: 5, message: "Length should be 3 to 5", trigger: "blur" },
+  ],
+  region: [
+    {
+      required: true,
+      message: "Please select Activity zone",
+      trigger: "change",
+    },
+  ],
+  count: [
+    {
+      required: true,
+      message: "Please select Activity count",
+      trigger: "change",
+    },
+  ],
+  date1: [
+    {
+      type: "date",
+      required: true,
+      message: "Please pick a date",
+      trigger: "change",
+    },
+  ],
+  date2: [
+    {
+      type: "date",
+      required: true,
+      message: "Please pick a time",
+      trigger: "change",
+    },
+  ],
+  type: [
+    {
+      type: "array",
+      required: true,
+      message: "Please select at least one activity type",
+      trigger: "change",
+    },
+  ],
+  sex: [
+    {
+      required: true,
+      message: "请选择条件",
+      trigger: "change",
+    },
+  ],
+  money: [{ required: true, message: "请填写委托金", trigger: "blur" }],
+  content: [{ required: true, message: "请填写委托内容", trigger: "blur" }],
+});
 </script>
 
   <style scoped>

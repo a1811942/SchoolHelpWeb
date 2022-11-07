@@ -5,8 +5,7 @@
 <mapper namespace="com.example.demo.mapper.CommissionDao">
     <update id="setStatusOne">
         update commission
-        set status='1',
-            employee_id=#{studentId}
+        set status='1',accept_name=#{acceptName},accept_student_id=#{acceptStudentId}
         where id = #{commissionId}
     </update>
 
@@ -15,13 +14,14 @@
         SELECT
         c.content,
         c.id,
+               c.accept_student_id as acceptStudentId,
         c.student_id as studentId,
 
         c.date,
         c.money,
         c.status,
 
-        c.employee_id as employeeId,
+        c.accept_student_id as acceptStudentId,
         c.limit_sex as limitSex,
         s.id as studentId,
 
@@ -56,14 +56,14 @@
         select c.content,
                c.id,
                c.student_id  as studentId,
-
+               c.accept_student_id as acceptStudentId,
+               c.accept_name as acceptName,
                c.date,
                c.money,
                c.status,
 
-               c.employee_id as employeeId,
                c.limit_sex   as limitSex,
-               s.id          as studentId,
+               s.id ,
 
                s.address,
                s.birthday,
@@ -75,6 +75,9 @@
                s.phone
         from commission c
                  left join student s on c.student_id = s.id
-        where s.id = #{studentId}
+        where s.id = #{studentId} order by c.date desc
+    </select>
+    <select id="getAcceptStudentByAcceptStudentId" resultType="com.example.demo.entity.Student">
+        select * from student where id=#{acceptStudentId}
     </select>
 </mapper>

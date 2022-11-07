@@ -7,6 +7,7 @@ import com.example.demo.entity.Commission;
 import com.example.demo.entity.Student;
 import com.example.demo.mapper.CommissionDao;
 import com.example.demo.service.CommissionService;
+import org.apache.ibatis.annotations.Update;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -51,11 +52,12 @@ public class CommissionController{
      * @param commission
      * @return
      */
-    @PutMapping("/setStatusOne")
+    @PostMapping("/setStatusOne")
     public Result<Boolean> setStatusOne(@RequestBody Commission  commission) {
         String commissionId = commission.getId();
-        String studentId = commission.getStudentId();
-        Boolean res = commissionService.setStatusOne(commissionId,studentId);
+        String acceptStudentId = commission.getAcceptStudentId();
+        String acceptName = commission.getAcceptName();
+        Boolean res = commissionService.setStatusOne(commissionId,acceptName,acceptStudentId);
         if (res){
             return Result.getMessageResult(res,"A001");
         }
@@ -67,17 +69,18 @@ public class CommissionController{
      * @param commission
      * @return
      */
-    @PutMapping("/SaveCommission")
-    public Result<String > SaveCommission(@RequestBody Commission  commission) {
+    @PostMapping("/SaveCommission")
+    public Result<String > saveCommission(@RequestBody Commission  commission) {
         BigDecimal money = commission.getMoney();
 
-        Boolean res = commissionService.SaveCommission(commission);
+        Boolean res = commissionService.saveCommission(commission);
         if (res){
             return Result.getMessageResult("success","A001");
 
         }
         return Result.getMessageResult("error","A002");
     }
+
 
     /**
      * 根据委托id查询详细信息
@@ -105,5 +108,47 @@ public class CommissionController{
     public Result<List<Map<String ,Object>>> getCommissionAndStudentByStudentId(@RequestBody String studentId) {
         List<Map<String ,Object>> res = commissionService.getCommissionAndStudentByStudentId(studentId);
         return Result.getSuccessResult(res);
+    }
+
+    /**
+     * 修改-个人信息
+     * @param commission
+     * @return
+     */
+    @PutMapping("/updateCommission")
+    public Result<String > updateCommission(@RequestBody Commission  commission) {
+        Boolean res = commissionService.updateCommission(commission);
+        if (res){
+            return Result.getMessageResult("success","A001");
+
+        }
+        return Result.getMessageResult("error","A002");
+    }
+
+    /**
+     * 删除-个人信息
+     * @param commissionId
+     * @return
+     */
+    @PostMapping("/deleteCommissionById")
+    public Result<String > deleteCommissionById(@RequestBody String  commissionId) {
+        Boolean res = commissionService.deleteCommissionById(commissionId);
+        if (res){
+            return Result.getMessageResult("success","A001");
+
+        }
+        return Result.getMessageResult("error","A002");
+    }
+
+    /**
+     * 查询接单人信息
+     * @param acceptStudentId
+     * @return
+     */
+    @PostMapping("/getAcceptStudentByAcceptStudentId")
+    public Result<Student> getAcceptStudentByAcceptStudentId(@RequestBody String  acceptStudentId) {
+        Student student = commissionService.getAcceptStudentByAcceptStudentId(acceptStudentId);
+
+        return Result.getSuccessResult(student);
     }
 }

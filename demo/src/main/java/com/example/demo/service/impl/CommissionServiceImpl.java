@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
@@ -70,28 +71,54 @@ public class CommissionServiceImpl extends ServiceImpl<CommissionDao, Commission
      * @return
      */
     @Override
-    public Boolean setStatusOne(String commissionId,String studentId) {
+    public Boolean setStatusOne(String commissionId,String acceptName,String acceptStudentId) {
         Commission commission = this.getById(commissionId);
         String status = commission.getStatus();
         if (status.equals("1")){
             return false;
         }
-        Boolean res = commissionDao.setStatusOne(commissionId,studentId);
+        Boolean res = commissionDao.setStatusOne(commissionId,acceptName,acceptStudentId);
         return res;
     }
 
     @Override
-    public Boolean SaveCommission(Commission commission) {
+    public Boolean saveCommission(Commission commission) {
         commission.setId(UUID.randomUUID().toString());
         commission.setDate(Timestamp.valueOf(LocalDateTime.now()));
         boolean res = this.save(commission);
         return res;
     }
 
+    /**
+     * 修改
+     * @param commissionId
+     * @return
+     */
+    @Override
+    public Boolean updateCommission(Commission commission) {
+        boolean res = this.updateById(commission);
+        return res;
+    }
+
+    /**
+     * 删除
+     * @param commissionId
+     * @return
+     */
+    @Override
+    public Boolean deleteCommissionById(String commissionId) {
+        boolean res = this.removeById(commissionId);
+        return res;
+    }
+
     @Override
     public Map<String, Object> getCommissionAndStudentById(String commissionId) {
-        Map<String, Object> res = commissionDao.getCommissionAndStudentBycommissionId(commissionId);
-        return res;
+        Map<String, Object> map = commissionDao.getCommissionAndStudentBycommissionId(commissionId);
+        Timestamp date = (Timestamp) map.get("date");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy年MM月dd日 HH:mm");
+        String dateString = simpleDateFormat.format(date);
+        map.put("date", dateString);
+        return map;
     }
 
     @Override
@@ -102,7 +129,25 @@ public class CommissionServiceImpl extends ServiceImpl<CommissionDao, Commission
 
     @Override
     public List<Map<String ,Object>> getCommissionAndStudentByStudentId(String studentId) {
-        List<Map<String ,Object>> res = commissionDao.getCommissionAndStudentByStudentId(studentId);
-        return res;
+        List<Map<String ,Object>> list = commissionDao.getCommissionAndStudentByStudentId(studentId);
+        for (Map<String, Object> map : list) {
+            Timestamp date = (Timestamp) map.get("date");
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy年MM月dd日 HH:mm");
+            String dateString = simpleDateFormat.format(date);
+            map.put("date", dateString);
+        }
+
+        return list;
+    }
+
+    /**
+     * 显示接单人的姓名等
+     * @param acceptStudentId
+     * @return
+     */
+    @Override
+    public Student getAcceptStudentByAcceptStudentId(String acceptStudentId) {
+        Student student = commissionDao.getAcceptStudentByAcceptStudentId(acceptStudentId);
+        return student;
     }
 }

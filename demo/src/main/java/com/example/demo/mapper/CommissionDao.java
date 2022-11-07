@@ -2,6 +2,7 @@ package com.example.demo.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.example.demo.entity.Commission;
+import com.example.demo.entity.Student;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -16,8 +17,11 @@ public interface CommissionDao extends BaseMapper<Commission> {
                                                              @Param("status")String status);
 
     Boolean setStatusOne(@Param("commissionId") String commissionId,
-                         @Param("studentId") String studentId);
+                         @Param("acceptName") String acceptName,
+                         @Param("acceptStudentId") String acceptStudentId);
     Map<String ,Object>  getCommissionAndStudentBycommissionId(String commissionId);
+    //-个人信息中的
     List<Map<String ,Object>> getCommissionAndStudentByStudentId(String studentId);
+    Student getAcceptStudentByAcceptStudentId(String acceptStudentId);
 
 }

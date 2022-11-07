@@ -22,9 +22,10 @@ public class Commission {
     @TableField("limit_sex")
     private String limitSex;
     private String content;
-    @TableField("employee_id")
-    private String employeeId;
-
+    @TableField("accept_name")
+    private String acceptName;
+    @TableField("accept_student_id")
+    private String acceptStudentId;
     public Commission() {
     }
 }
