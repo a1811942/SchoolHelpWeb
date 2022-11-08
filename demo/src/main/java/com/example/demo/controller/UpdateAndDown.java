@@ -1,7 +1,9 @@
 package com.example.demo.controller;
 
 import com.example.demo.common.R.Result;
+import com.example.demo.service.UpdateAndDownService;
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -17,6 +19,8 @@ import java.util.UUID;
 //@CrossOrigin
 @RequestMapping("/demo/UpdateAndDown")
 public class UpdateAndDown {
+    @Autowired
+    private UpdateAndDownService updateAndDownService;
     @Value("${photo.path}")
     private String basePath;
 
@@ -70,12 +74,14 @@ public class UpdateAndDown {
         }
 
     }
+
+    /**
+     * 删除图片
+     * @param name
+     */
     @RequestMapping("/detelePhoto")
     public void deletePhoto(@RequestBody String name){
-        File file = new File(basePath + name);
-        if (file.exists()){
-            file.delete();
-        }
+        updateAndDownService.deletePhoto(name);
 
     }
     @Test

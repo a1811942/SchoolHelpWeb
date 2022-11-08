@@ -67,7 +67,8 @@
               <el-container>
                 <el-aside width="50px">
                   <!-- 头像 -->
-                  <el-avatar :size="50" :src="state.circleUrl" @click="checkPerson(o.studentId)" class="avatar"
+                  <el-avatar :size="50" :src="'http://localhost:8080/demo/UpdateAndDown/down?name=' +o.avatar"
+                   @click="checkPerson(o.studentId)" class="avatar"
                 /></el-aside>
                 <el-container>
                   <el-header height="10px">
@@ -132,11 +133,11 @@
                   <el-tag size="small">{{ o.school }}</el-tag>
                 </el-descriptions-item>
                 <el-descriptions-item label="地址">{{
-                  o.address
+                  o.commissionAddress
                 }}</el-descriptions-item>
                 <div v-if="o.status == '1' && o.employeeId == studentId">
                   <el-descriptions-item label="联系方式" :span="2">
-                    {{ o.phone }}
+                    {{ o.contact }}
                   </el-descriptions-item>
                 </div>
                 <div
@@ -195,6 +196,12 @@
         <div>委托内容</div>
         <el-form-item label="委托" prop="content">
           <el-input v-model="form.content" type="input" />
+        </el-form-item>
+        <el-form-item label="联系方式" prop="content">
+          <el-input v-model="form.contact" type="input" />
+        </el-form-item>
+        <el-form-item label="地址" prop="content">
+          <el-input v-model="form.address" type="input" />
         </el-form-item>
         <el-form-item label="金额" prop="money">
           <el-input v-model="form.money" type="input" />
@@ -264,8 +271,8 @@ const form = reactive({
   region: "",
   date1: "",
   date2: "",
-  delivery: false,
-  type: [],
+  address:"",
+  contact:"",
   sex: "",
   content: "",
   money: "",
@@ -292,6 +299,8 @@ const submitForm = async (formEl: FormInstance | undefined) => {
             limitSex: form.sex,
             content: form.content,
             money: form.money,
+            contact:form.contact,
+            address:form.address
           },
           {
             headers: {
@@ -503,6 +512,8 @@ const rules = reactive<FormRules>({
   ],
   money: [{ required: true, message: "请填写委托金", trigger: "blur" }],
   content: [{ required: true, message: "请填写委托内容", trigger: "blur" }],
+  contact: [{ required: true, message: "请填写联系方式", trigger: "blur" }],
+  address: [{ required: true, message: "请填写地址", trigger: "blur" }],
 });
 </script>
 

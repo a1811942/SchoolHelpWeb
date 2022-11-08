@@ -289,8 +289,6 @@ const uploadSuccess = (response, file, fileList) => {
 };
 const beforeAvatarUpload: UploadProps["beforeUpload"] = (rawFile) => {
   beforePhotoName.push(rawFile.name);
-  console.log("rawFile==", rawFile.name);
-  console.log("policyData==1", policyData.value);
 
   if (rawFile.type !== "image/jpeg") {
     ElMessage.error("Avatar picture must be JPG format!");

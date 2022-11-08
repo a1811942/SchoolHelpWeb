@@ -7,9 +7,11 @@ import com.example.demo.common.R.Result;
 import com.example.demo.entity.Student;
 import com.example.demo.mapper.StudentDao;
 import com.example.demo.service.StudentService;
+import com.example.demo.service.UpdateAndDownService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
 import java.util.List;
@@ -22,7 +24,8 @@ public class StudentServiceImpl extends ServiceImpl<StudentDao, Student> impleme
 
     @Autowired
     private StudentDao studentDao;
-
+    @Autowired
+    private UpdateAndDownService updateAndDownService;
     @Autowired
     private RedisTemplate<String ,Object> redisTemplate;
 
@@ -131,5 +134,17 @@ public class StudentServiceImpl extends ServiceImpl<StudentDao, Student> impleme
         queryWrapper.eq(Student::getUsername,username);
         Student student = this.getOne(queryWrapper);
         return student;
+    }
+
+    /**
+     * 修改头像
+     * @param student
+     * @return
+     */
+    @Override
+    public Boolean updateAvatarByStudentId(String avatar,String studentId,String oldAvatar) {
+        Boolean res = studentDao.updateAvatarByStudentId(avatar, studentId);
+        updateAndDownService.deletePhoto(oldAvatar);
+        return res;
     }
 }

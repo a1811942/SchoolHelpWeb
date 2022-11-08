@@ -4,10 +4,12 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.example.demo.common.R.Result;
 import com.example.demo.common.util.JwtTokenUtil;
 import com.example.demo.common.util.SendMailUtil;
+import com.example.demo.dto.AvatarDto;
 import com.example.demo.dto.StudentDto;
 import com.example.demo.entity.Student;
 import com.example.demo.mapper.StudentDao;
 import com.example.demo.service.StudentService;
+import com.example.demo.service.UpdateAndDownService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.*;
@@ -65,6 +67,11 @@ public class StudentController {
 
     }
 
+    /**
+     * 退出登录
+     * @param request
+     * @return
+     */
     @PostMapping("/loginOut")
     public Result<Map<String ,String >> loginOut( HttpServletRequest request){
         String token = request.getHeader("token");
@@ -144,12 +151,27 @@ public class StudentController {
         return Result.getSuccessResult(student);
 
     }
-    @PostMapping("/getStudentById")
-    public Result<Student> getStudentById(@RequestBody String studentId){
+
+    /**
+     * 根据id查询个人信息
+     * @param studentId
+     * @return
+     */
+    @GetMapping("/getStudentById")
+    public Result<Student> getStudentById( String studentId){
 
         Student student = studentService.getStudentById(studentId);
         return Result.getSuccessResult(student);
 
     }
 
+    @PutMapping("/updateAvatarByStudentId")
+    public Result<Boolean> updateAvatarByStudentId(@RequestBody AvatarDto avatarDto){
+        String studentId = avatarDto.getStudentId();
+        String avatar = avatarDto.getAvatar();
+        String oldAvatar = avatarDto.getOldAvatar();
+        Boolean res = studentService.updateAvatarByStudentId(avatar, studentId,oldAvatar);
+        return Result.getSuccessResult(res);
+
+    }
 }

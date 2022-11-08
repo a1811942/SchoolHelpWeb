@@ -26,6 +26,8 @@ public class Commission {
     private String acceptName;
     @TableField("accept_student_id")
     private String acceptStudentId;
+    private String address;
+    private String contact;
     public Commission() {
     }
 }
