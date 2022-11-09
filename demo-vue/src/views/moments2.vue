@@ -1,5 +1,5 @@
 <template>
-  <div >
+  <div>
     <el-container>
       <el-header width="100%">
         <el-card class="box-card1" shadow="hover">
@@ -68,12 +68,34 @@
             >
               <el-container>
                 <el-aside width="50px">
-                  <el-avatar :size="50" :src="circleUrl"
-                /></el-aside>
+                  <el-avatar
+                    :size="50"
+                    :src="
+                      'http://localhost:8080/demo/UpdateAndDown/down?name=' +
+                      o.avatar
+                    "
+                  />
+                </el-aside>
                 <el-container>
                   <el-header height="10px">
                     <div class="name">{{ o.name }}--{{ o.school }}</div>
                     {{ o.date }}
+                    <el-dropdown
+                      :hide-on-click="false"
+                      style="float: right"
+                      v-if="o.student_id === nowStudentId"
+                    >
+                      <el-icon size="large"><More /></el-icon>
+
+                      <template #dropdown>
+                        <el-dropdown-menu>
+                          <el-dropdown-item @click="deleteMoments(o.id)"
+                            >删除</el-dropdown-item
+                          >
+                          <el-dropdown-item>修改</el-dropdown-item>
+                        </el-dropdown-menu>
+                      </template>
+                    </el-dropdown>
                   </el-header>
                   <el-main>
                     <br />
@@ -102,37 +124,37 @@
                     </div>
                   </el-main>
                   <el-footer>
+                    <div v-if="like.momentsId !== o.id">
+                      <el-button
+                        text
+                        circle
+                        @click.stop="dialogTableVisible = true"
+                      >
+                        <el-icon size="large"><ChatRound /></el-icon>
+                      </el-button>
+                      &#12288;
 
-                    <div v-if="like.momentsId!==o.id" >
-                    <el-button
-                      text
-                      circle
-                      @click.stop="dialogTableVisible = true"
-                    >
-                      <el-icon size="large"><ChatRound /></el-icon
-                    > </el-button>
-                    &#12288;
-                    
-                    <el-button text circle @click.stop="likePoint(o.id)" >
-                      <el-icon size="large" color="red"><Pointer  /></el-icon>{{o.likeCount}}
-                    </el-button>
-                  </div>
-                  
-                    <div v-if="like.temp==='1' && like.momentsId===o.id" >
-                    <el-button
-                      text
-                      circle
-                      @click.stop="dialogTableVisible = true"
-                    >
-                      <el-icon size="large"><ChatRound /></el-icon
-                    > </el-button>
-                    &#12288;
-                    
-                    <el-button text circle @click.stop="likePoint(o.id)" >
-                      <el-icon size="large" color="red"><Pointer  /></el-icon>{{like.likeCount}}
-                    </el-button>
-                      </div>
+                      <el-button text circle @click.stop="likePoint(o.id)">
+                        <el-icon size="large" color="red"><Pointer /></el-icon
+                        >{{ o.likeCount }}
+                      </el-button>
+                    </div>
 
+                    <div v-if="like.temp === '1' && like.momentsId === o.id">
+                      <el-button
+                        text
+                        circle
+                        @click.stop="dialogTableVisible = true"
+                      >
+                        <el-icon size="large"><ChatRound /></el-icon>
+                      </el-button>
+                      &#12288;
+
+                      <el-button text circle @click.stop="likePoint(o.id)">
+                        <el-icon size="large" color="red"><Pointer /></el-icon
+                        >{{ like.likeCount }}
+                      </el-button>
+                    </div>
                   </el-footer>
                 </el-container>
               </el-container>
@@ -187,7 +209,7 @@ const headerObj = ref({ token: sessionStorage.getItem("token") });
 // 上传照片
 const dialogImageUrl = ref("");
 const dialogVisible = ref(false);
-const studentId =sessionStorage.getItem("studentId")
+const nowStudentId = sessionStorage.getItem("studentId");
 //动态内容
 const MomentContent = ref({
   content: "",
@@ -206,16 +228,16 @@ const moments = reactive({
   date: "",
 });
 //点赞
-const like=ref({
+const like = ref({
   //点赞数量
-  likeCount:"",
+  likeCount: "",
   //是否点赞 1点赞 0未点赞
-  isLike:"",
+  isLike: "",
   //点赞的动态id
-  momentsId:"",
+  momentsId: "",
   //标记变量
-  temp:'',
-})
+  temp: "",
+});
 let params = new FormData();
 const policyData = ref({
   policy: "",
@@ -226,37 +248,78 @@ const policyData = ref({
   host: "",
 });
 const uploadRef = ref<UploadInstance>();
+onMounted(() => {
+  //  Cookies.set("token",sessionStorage.getItem("token"))
 
+  getMomentsAndStudent();
+});
+//删除动态
+const deleteMoments = (momentsId) => {
+  ElMessageBox.confirm("这将永久删除此条动态，是否继续?", "警告", {
+    confirmButtonText: "确定",
+    cancelButtonText: "取消",
+    type: "warning",
+  })
+    .then(() => {
+      axios
+        .post("/demo/moments/deleteMoments", momentsId, {
+          headers: { token: sessionStorage.getItem("token") },
+        })
+        .then((res) => {
+          ElMessage({
+            type: "success",
+            message: "删除成功",
+          });
+          getMomentsAndStudent();
+        })
+        .catch((error) => {
+          ElMessage.error("点赞失败");
+        });
+    })
+    .catch(() => {
+      ElMessage({
+        type: "info",
+        message: "已取消",
+      });
+    });
+};
 //点赞
-const likePoint=(momentsId)=>{
-  axios.post("/demo/like/doLike",{momentsId,studentId}, {
-       
+const likePoint = (momentsId) => {
+  axios
+    .post(
+      "/demo/like/doLike",
+      { momentsId, studentId },
+      {
         headers: { token: sessionStorage.getItem("token") },
-      })
-      .then((res) => {
-        like.value.isLike=res.data.result.result
-        like.value.momentsId=res.data.result.momentsId
-        like.value.temp='1'
-        getLikeCount(momentsId);
-      })
-      .catch((error) => {
-        ElMessage.error("点赞失败");
-      });
-}
+      }
+    )
+    .then((res) => {
+      like.value.isLike = res.data.result.result;
+      like.value.momentsId = res.data.result.momentsId;
+      like.value.temp = "1";
+      getLikeCount(momentsId);
+    })
+    .catch((error) => {
+      ElMessage.error("点赞失败");
+    });
+};
 //查询点赞个数
-const getLikeCount=(momentsId)=>{
-  axios.post("/demo/like/getLikeCount",{momentsId,studentId}, {
-       
+const getLikeCount = (momentsId) => {
+  axios
+    .post(
+      "/demo/like/getLikeCount",
+      { momentsId, nowStudentId },
+      {
         headers: { token: sessionStorage.getItem("token") },
-      })
-      .then((res) => {
-        like.value.likeCount=res.data.result
-
-      })
-      .catch((error) => {
-        ElMessage.error("查询点赞失败");
-      });
-}
+      }
+    )
+    .then((res) => {
+      like.value.likeCount = res.data.result;
+    })
+    .catch((error) => {
+      ElMessage.error("查询点赞失败");
+    });
+};
 //发布动态
 const saveMoments = () => {
   // saveMomentsPhoto();
@@ -393,11 +456,6 @@ const saveComment = () => {
     });
 };
 
-onMounted(() => {
-  //  Cookies.set("token",sessionStorage.getItem("token"))
-
-  getMomentsAndStudent();
-});
 //查询所有用户用户发布的朋友圈信息
 const getMomentsAndStudent = () => {
   axios
@@ -413,8 +471,6 @@ const getMomentsAndStudent = () => {
     .then((res) => {
       moments.photoName = res.data.result.photo;
       moments.moments = res.data.result;
-      console.log(" moments.moments", moments.moments.name);
-      console.log(" moments.content", moments.content);
     })
     .catch((error) => {
       ElMessage.error("查询失败");
@@ -554,7 +610,10 @@ function guid() {
   background-color: brown;
   height: 100vw;
 }
-.like{
+.like {
   color: red;
+}
+.update {
+  float: right;
 }
 </style>

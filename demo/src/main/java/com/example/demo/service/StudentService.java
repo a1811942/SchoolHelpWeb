@@ -15,5 +15,6 @@ public interface StudentService extends IService<Student> {
     Student select(String username);
     //修改头像
     Boolean updateAvatarByStudentId(String  avatar,String studentId,String oldAvatar);
-
+    //修改信息
+    Boolean updateStudentById(Student student);
 }

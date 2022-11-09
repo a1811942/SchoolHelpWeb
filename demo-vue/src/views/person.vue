@@ -31,7 +31,6 @@
           <br />
           <br />
           <div style="text-align: center">
-
             <el-upload
               class="avatar-uploader"
               action=" http://localhost:8080/demo/UpdateAndDown/upload"
@@ -41,98 +40,101 @@
               :before-upload="beforeAvatarUpload"
             >
               <el-avatar
-                    :size="200"
-                    :src="
-                      'http://localhost:8080/demo/UpdateAndDown/down?name=' +ruleForm.avatar
-                    "
-                    class="avatar2"
-                
-                />
+                :size="200"
+                :src="
+                  'http://localhost:8080/demo/UpdateAndDown/down?name=' +
+                  ruleForm.avatar
+                "
+                class="avatar2"
+              />
             </el-upload>
           </div>
           <el-tabs v-model="activeName" class="aa" @tab-click="handleClick">
             <div class="aa">
-              <el-tab-pane label="委托" name="first"
-                ><button @click="getCommission">aaaaaa</button></el-tab-pane
-              >
+              <el-tab-pane label="委托" name="first" @click="getCommission">
+                <div
+                  v-for="o in commissions.commission"
+                  :key="o"
+                  class="infinite-list-item"
+                >
+                  <el-card width="1000px">
+                    <el-container>
+                      <el-aside width="50px">
+                        <!-- 头像 -->
+
+                        <el-avatar
+                          :size="50"
+                          :src="
+                            'http://localhost:8080/demo/UpdateAndDown/down?name=' +
+                            o.avatar
+                          "
+                          class="avatar"
+                      /></el-aside>
+                      <el-container>
+                        <el-header height="10px">
+                          <div>{{ o.name }}</div>
+                          {{ o.date }}
+                          <div v-if="o.status == '0'">
+                            <el-button @click="postCommission(o.id)"
+                              >--修改--</el-button
+                            >
+                            <el-button @click="deleteCommission(o.id)"
+                              >--删除--</el-button
+                            >
+                          </div>
+                          <div class="reception" v-if="o.status == '1'">
+                            已被接
+                          </div>
+                          <div class="reception" v-if="o.status == '0'">
+                            未被接
+                          </div>
+                        </el-header>
+                      </el-container>
+                    </el-container>
+                    <br /><br />
+                    <el-descriptions
+                      direction="vertical"
+                      :column="4"
+                      size="large"
+                      border
+                    >
+                      <el-descriptions-item label="学校">
+                        <el-tag size="small">{{ o.school }}</el-tag>
+                      </el-descriptions-item>
+                      <el-descriptions-item label="地址">{{
+                        o.commissionAddress
+                      }}</el-descriptions-item>
+
+                      <el-descriptions-item label="联系方式" :span="2">
+                        {{ o.contact }}
+                      </el-descriptions-item>
+
+                      <el-descriptions-item label="委托" :span="4"
+                        >{{ o.content }}
+                      </el-descriptions-item>
+                      <el-descriptions-item label="金额"
+                        >{{ o.money }}
+                      </el-descriptions-item>
+                      <el-descriptions-item label="接单人"
+                        >{{ o.acceptName }}
+                      </el-descriptions-item>
+                    </el-descriptions>
+                  </el-card>
+                  <br />
+                </div>
+              </el-tab-pane>
             </div>
+            <button @click="getCommission">aaaaaa</button>
             <el-tab-pane label="动态" name="second">Config</el-tab-pane>
             <el-tab-pane label="文章" name="third">Role</el-tab-pane>
             <el-tab-pane label="关注" name="fourth">Task</el-tab-pane>
           </el-tabs>
-
-          <div
-            v-for="o in commissions.commission"
-            :key="o"
-            class="infinite-list-item"
-          >
-            <el-card width="1000px">
-              <el-container>
-                <el-aside width="50px">
-                  <!-- 头像 -->
-
-                  <el-avatar
-                    :size="50"
-                    :src="
-                      'http://localhost:8080/demo/UpdateAndDown/down?name=' +
-                      o.avatar
-                    "
-                    class="avatar"
-                /></el-aside>
-                <el-container>
-                  <el-header height="10px">
-                    <div>{{ o.name }}</div>
-                    {{ o.date }}
-                    <div v-if="o.status == '0'">
-                      <el-button @click="postCommission(o.id)"
-                        >--修改--</el-button
-                      >
-                      <el-button @click="deleteCommission(o.id)"
-                        >--删除--</el-button
-                      >
-                    </div>
-                    <div class="reception" v-if="o.status == '1'">已被接</div>
-                    <div class="reception" v-if="o.status == '0'">未被接</div>
-                  </el-header>
-                </el-container>
-              </el-container>
-              <br /><br />
-              <el-descriptions
-                direction="vertical"
-                :column="4"
-                size="large"
-                border
-              >
-                <el-descriptions-item label="学校">
-                  <el-tag size="small">{{ o.school }}</el-tag>
-                </el-descriptions-item>
-                <el-descriptions-item label="地址">{{
-                  o.commissionAddress
-                }}</el-descriptions-item>
-
-                <el-descriptions-item label="联系方式" :span="2">
-                  {{ o.contact }}
-                </el-descriptions-item>
-
-                <el-descriptions-item label="委托" :span="4"
-                  >{{ o.content }}
-                </el-descriptions-item>
-                <el-descriptions-item label="金额"
-                  >{{ o.money }}
-                </el-descriptions-item>
-                <el-descriptions-item label="接单人"
-                  >{{ o.acceptName }}
-                </el-descriptions-item>
-              </el-descriptions>
-            </el-card>
-            <br />
-          </div>
         </el-aside>
         <el-main>Main</el-main>
       </el-container>
     </el-container>
   </div>
-  <el-dialog v-model="dialogTableVisible" title="Shipping address">
+  <el-dialog v-model="dialogTableVisible" title="编辑资料">
     <el-form
       ref="ruleFormRef"
       :model="ruleForm"
@@ -145,36 +147,33 @@
       <el-form-item label="昵称" prop="name">
         <el-input style="with: 50%" class="w-50 m-2" v-model="ruleForm.name" />
       </el-form-item>
-      <el-form-item label="电话号码" prop="name">
-        <el-input style="with: 50%" class="w-50 m-2" v-model="ruleForm.name" />
+      <el-form-item label="电话号码" prop="phone">
+        <el-input style="with: 50%" class="w-50 m-2" v-model="ruleForm.phone" />
       </el-form-item>
 
-      <el-form-item label="学生公寓" prop="name">
-        <el-input style="with: 50%" class="w-50 m-2" v-model="ruleForm.name" />
+      <el-form-item label="学生公寓" prop="address">
+        <el-input
+          style="with: 50%"
+          class="w-50 m-2"
+          v-model="ruleForm.address"
+        />
       </el-form-item>
-
-      <el-form-item label="Activity zone" prop="region">
-        <el-select v-model="ruleForm.region" placeholder="Activity zone">
-          <el-option label="Zone one" value="shanghai" />
-          <el-option label="Zone two" value="beijing" />
-        </el-select>
-      </el-form-item>
-      <el-form-item label="年龄" prop="count">
+      <el-form-item label="年龄" prop="age">
         <el-select-v2
-          v-model="ruleForm.count"
+          v-model="ruleForm.age"
           placeholder="Activity count"
           :options="options"
         />
       </el-form-item>
-      <el-form-item label="学校" prop="name">
-        <el-input class="w-50 m-2" v-model="ruleForm.name" />
+      <el-form-item label="学校" prop="school">
+        <el-input class="w-50 m-2" v-model="ruleForm.school" />
       </el-form-item>
 
       <el-form-item label="出生日期" required>
         <el-col :span="11">
-          <el-form-item prop="date1">
+          <el-form-item prop="birthday">
             <el-date-picker
-              v-model="ruleForm.date1"
+              v-model="ruleForm.birthday"
               type="date"
               label="Pick a date"
               placeholder="Pick a date"
@@ -188,9 +187,9 @@
       </el-form-item>
       <el-form-item label="入学时间" required>
         <el-col :span="11">
-          <el-form-item prop="date1">
+          <el-form-item prop="enrollmentTime">
             <el-date-picker
-              v-model="ruleForm.date1"
+              v-model="ruleForm.enrollmentTime"
               type="date"
               label="Pick a date"
               placeholder="Pick a date"
@@ -202,31 +201,21 @@
           <span class="text-gray-500"></span>
         </el-col>
       </el-form-item>
-      <el-form-item label="Instant delivery" prop="delivery">
-        <el-switch v-model="ruleForm.delivery" />
-      </el-form-item>
-      <el-form-item label="Activity type" prop="type">
-        <el-checkbox-group v-model="ruleForm.type">
-          <el-checkbox label="Online activities" name="type" />
-          <el-checkbox label="Promotion activities" name="type" />
-          <el-checkbox label="Offline activities" name="type" />
-          <el-checkbox label="Simple brand exposure" name="type" />
-        </el-checkbox-group>
-      </el-form-item>
-      <el-form-item label="性别" prop="resource">
-        <el-radio-group v-model="ruleForm.resource">
+
+      <el-form-item label="性别" prop="sex">
+        <el-radio-group v-model="ruleForm.sex">
           <el-radio label="男" />
           <el-radio label="女" />
         </el-radio-group>
       </el-form-item>
-      <el-form-item label="Activity form" prop="desc">
-        <el-input v-model="ruleForm.desc" type="textarea" />
+      <el-form-item label="签名" >
+        <el-input v-model="ruleForm.signature" type="textarea" />
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="submitForm(ruleFormRef)"
-          >Create</el-button
+          >确定</el-button
         >
-        <el-button @click="resetForm(ruleFormRef)">Reset</el-button>
+        <el-button @click="resetForm(ruleFormRef)">取消</el-button>
       </el-form-item>
     </el-form>
   </el-dialog>
@@ -251,6 +240,12 @@
       <div>委托内容</div>
       <el-form-item label="委托" prop="content">
         <el-input v-model="form.content" type="input" />
+      </el-form-item>
+      <el-form-item label="联系方式" prop="content">
+        <el-input v-model="form.contact" type="input" />
+      </el-form-item>
+      <el-form-item label="地址" prop="content">
+        <el-input v-model="form.address" type="input" />
       </el-form-item>
       <el-form-item label="金额" prop="money">
         <el-input v-model="form.money" type="input" />
@@ -287,15 +282,17 @@ const nowStudentId = sessionStorage.getItem("studentId");
 const headerObj = ref({ token: sessionStorage.getItem("token") });
 const ruleForm = reactive({
   name: "Hello",
-  schoole: "",
+  school: "",
   birthday: "",
   sex: "",
-  enrollment_time: "",
+  enrollmentTime: "",
   email: "",
   phone: "",
   address: "",
   school_address: "",
   avatar: "",
+  signature: "",
+  age: "",
 });
 const form = reactive({
   name: "",
@@ -304,10 +301,13 @@ const form = reactive({
   content: "",
   money: "",
   id: "",
+  contact: "",
+  address: "",
 });
 const centerDialogVisible = ref(false);
 onMounted(() => {
   getPerson();
+  getCommission();
 });
 
 //获取个人信息
@@ -326,9 +326,11 @@ const getPerson = () => {
       ruleForm.address = res.data.result.address;
       ruleForm.phone = res.data.result.phone;
       ruleForm.email = res.data.result.email;
-      ruleForm.enrollment_time = res.data.result.enrollment_time;
-      ruleForm.schoole = res.data.result.schoole;
+      ruleForm.enrollmentTime = res.data.result.enrollmentTime;
+      ruleForm.school = res.data.result.school;
       ruleForm.birthday = res.data.result.birthday;
+      ruleForm.signature = res.data.result.signature;
+      ruleForm.age = res.data.result.age;
     })
     .catch((error) => {
       ElMessage.error("查看评论失败");
@@ -353,6 +355,8 @@ const postCommission = (commissionId) => {
       form.content = res.data.result.content;
       form.money = res.data.result.money;
       form.id = res.data.result.id;
+      form.contact = res.data.result.contact;
+      form.address = res.data.result.address;
     })
     .catch((error) => {
       ElMessage.error("查看评论失败");
@@ -369,12 +373,38 @@ const commissions = reactive({
 const updatePerson = () => {
   dialogTableVisible.value = true;
 };
-
+//修改个人资料
 const submitForm = async (formEl: FormInstance | undefined) => {
+  
   if (!formEl) return;
   await formEl.validate((valid, fields) => {
     if (valid) {
-      console.log("submit!");
+      axios
+        .put(
+          "/demo/student/updateStudentById",
+          {
+            name: ruleForm.name,
+            sex: ruleForm.sex,
+            address: ruleForm.address,
+            enrollmentTime: ruleForm.enrollmentTime,
+            school: ruleForm.school,
+            birthday: ruleForm.birthday,
+            signature: ruleForm.signature,
+            age: ruleForm.age,
+            id: sessionStorage.getItem("studentId"),
+          },
+          {
+            headers: {
+              token: sessionStorage.getItem("token"),
+            },
+          }
+        )
+        .then((res) => {
+          dialogTableVisible.value = false;
+        })
+        .catch((error) => {
+          ElMessage.error("修改个人信息失败");
+        });
     } else {
       console.log("error submit!", fields);
     }
@@ -384,6 +414,7 @@ const submitForm = async (formEl: FormInstance | undefined) => {
 const resetForm = (formEl: FormInstance | undefined) => {
   if (!formEl) return;
   formEl.resetFields();
+  dialogTableVisible.value = false;
 };
 
 const options = Array.from({ length: 150 }).map((_, idx) => ({
@@ -483,6 +514,8 @@ const updateCommission = async (formEl: FormInstance | undefined) => {
             content: form.content,
             money: form.money,
             id: form.id,
+            contact: form.contact,
+            address: form.address,
           },
           {
             headers: {
@@ -522,7 +555,7 @@ const handleAvatarSuccess: UploadProps["onSuccess"] = (
       {
         avatar: response.result,
         studentId: sessionStorage.getItem("studentId"),
-        oldAvatar: ruleForm.avatar
+        oldAvatar: ruleForm.avatar,
       },
 
       {
@@ -556,13 +589,13 @@ const resetForm2 = (formEl: FormInstance | undefined) => {
 };
 const rules = reactive<FormRules>({
   name: [
-    { required: true, message: "Please input Activity name", trigger: "blur" },
-    { min: 3, max: 5, message: "Length should be 3 to 5", trigger: "blur" },
+    { required: true, message: "昵称不能为空", trigger: "blur" },
+  
   ],
-  region: [
+  age: [
     {
       required: true,
-      message: "Please select Activity zone",
+      message: "请选择年龄",
       trigger: "change",
     },
   ],
@@ -573,19 +606,19 @@ const rules = reactive<FormRules>({
       trigger: "change",
     },
   ],
-  date1: [
+  birthday: [
     {
       type: "date",
       required: true,
-      message: "Please pick a date",
+      message: "请选择出生日期",
       trigger: "change",
     },
   ],
-  date2: [
+  enrollmentTime: [
     {
       type: "date",
       required: true,
-      message: "Please pick a time",
+      message: "请选择入学时间",
       trigger: "change",
     },
   ],
@@ -606,6 +639,12 @@ const rules = reactive<FormRules>({
   ],
   desc: [
     { required: true, message: "Please input activity form", trigger: "blur" },
+  ],
+  address: [
+    { required: true, message: "宿舍公寓不能为空", trigger: "blur" },
+  ],
+  phone: [
+    { required: true, message: "手机号不能为空", trigger: "blur" },
   ],
 });
 
@@ -682,7 +721,7 @@ const rules2 = reactive<FormRules>({
   height: 100%;
 }
 
-.avatar2{
+.avatar2 {
   text-align: center;
 }
 .avatar {

@@ -15,7 +15,7 @@
 #                s.* ,p.id, p.moments_Id, p.comment_Id
 #                from moments m  left join student s on m.student_id=s.id
 # left join photo p on m.id = p.moments_Id
-select * from moments m LEFT JOIN student s ON m.student_id=s.id order by m.date desc
+    select * from moments m LEFT JOIN student s ON m.student_id=s.id order by m.date desc
     </select>
      <select id="getMomentsAndStudentById" resultType="java.util.Map">
         select * from moments m  left join student s on m.student_id=s.id where m.id=#{momentId}

@@ -1,0 +1,16 @@
+2022-11-08 09:46:10.569 [http-nio-8080-exec-3] WARN  o.s.w.s.m.support.DefaultHandlerExceptionResolver -
+				Resolved [org.springframework.http.converter.HttpMessageNotReadableException: Required request body is missing: public com.example.demo.common.R.Result<com.example.demo.entity.Student> com.example.demo.controller.StudentController.getStudentById(java.lang.String)]
+2022-11-08 09:46:18.533 [http-nio-8080-exec-6] WARN  o.s.w.s.m.support.DefaultHandlerExceptionResolver -
+				Resolved [org.springframework.http.converter.HttpMessageNotReadableException: Required request body is missing: public com.example.demo.common.R.Result<com.example.demo.entity.Student> com.example.demo.controller.StudentController.getStudentById(java.lang.String)]
+2022-11-08 09:46:27.563 [http-nio-8080-exec-8] WARN  o.s.w.s.m.support.DefaultHandlerExceptionResolver -
+				Resolved [org.springframework.http.converter.HttpMessageNotReadableException: Required request body is missing: public com.example.demo.common.R.Result<com.example.demo.entity.Student> com.example.demo.controller.StudentController.getStudentById(java.lang.String)]
+2022-11-08 09:47:08.129 [http-nio-8080-exec-2] WARN  o.s.w.s.m.support.DefaultHandlerExceptionResolver -
+				Resolved [org.springframework.http.converter.HttpMessageNotReadableException: Required request body is missing: public com.example.demo.common.R.Result<com.example.demo.entity.Student> com.example.demo.controller.StudentController.getStudentById(java.lang.String)]
+2022-11-08 18:31:50.062 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool -
+				HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=20m5s992ms755µs600ns).
+2022-11-08 18:35:12.275 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool -
+				HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=54s175ms665µs800ns).
+2022-11-08 20:04:35.877 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool -
+				HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=11m19s457ms630µs500ns).
+2022-11-08 22:01:08.778 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool -
+				HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=27m32s549ms555µs600ns).

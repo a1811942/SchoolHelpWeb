@@ -35,6 +35,7 @@
         s.enrollment_time,
         s.`name`,
         s.school,
+        s.signature,
         s.avatar,
         s.phone
         FROM
@@ -77,6 +78,7 @@
                s.`name`,
                s.school,
                s.avatar,
+               s.signature,
                s.phone
         from commission c
                  left join student s on c.student_id = s.id

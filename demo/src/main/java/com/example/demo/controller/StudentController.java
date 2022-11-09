@@ -165,12 +165,29 @@ public class StudentController {
 
     }
 
+    /**
+     * 修改头像
+     * @param avatarDto
+     * @return
+     */
     @PutMapping("/updateAvatarByStudentId")
     public Result<Boolean> updateAvatarByStudentId(@RequestBody AvatarDto avatarDto){
         String studentId = avatarDto.getStudentId();
         String avatar = avatarDto.getAvatar();
         String oldAvatar = avatarDto.getOldAvatar();
         Boolean res = studentService.updateAvatarByStudentId(avatar, studentId,oldAvatar);
+        return Result.getSuccessResult(res);
+
+    }
+
+    /**
+     * 修改个人信息
+     * @param student
+     * @return
+     */
+    @PutMapping("/updateStudentById")
+    public Result<Boolean> updateStudentById(@RequestBody Student student){
+        Boolean res = studentService.updateStudentById(student);
         return Result.getSuccessResult(res);
 
     }

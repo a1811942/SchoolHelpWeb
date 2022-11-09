@@ -4,11 +4,26 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.demo.mapper.StudentDao">
     <update id="updateAvatarByStudentId">
-        update student set avatar=#{avatar} where id=#{studentId}
+        update student
+        set avatar=#{avatar}
+        where id = #{studentId}
+    </update>
+    <update id="updateStudentById">
+        update student
+        set name= #{name},
+            address=#{address},
+            age=#{age},
+            birthday=#{birthday},
+            enrollment_time=#{enrollmentTime},
+            sex=#{sex},
+            signature=#{signature},
+            school=#{school}
+        where id = #{id};
     </update>
 
 
     <select id="getEmails" resultType="com.example.demo.entity.Student">
-        select  distinct email from student
+        select distinct email
+        from student
     </select>
 </mapper>

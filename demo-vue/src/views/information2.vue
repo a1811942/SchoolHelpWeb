@@ -5,10 +5,10 @@
         <el-card class="box-card1" shadow="hover">
           <div class="bold">
             <router-link to="/home/moments">
-            <el-button :icon="Search" size="large" circle 
-              ><el-icon><Back /></el-icon
-            ></el-button>
-</router-link>
+              <el-button :icon="Search" size="large" circle
+                ><el-icon><Back /></el-icon
+              ></el-button>
+            </router-link>
             {{ moments.name }}
           </div>
         </el-card>
@@ -19,8 +19,31 @@
           <el-card class="box-card" shadow="never">
             <el-container>
               <el-aside width="50px">
-                <el-avatar :size="50" :src="circleUrl"
-              /></el-aside>
+                <el-avatar
+                  :size="50"
+                  :src="
+                    'http://localhost:8080/demo/UpdateAndDown/down?name=' +
+                    moments.avatar
+                  "
+                />
+                <el-dropdown :hide-on-click="false">
+                  <span class="el-dropdown-link">
+                    Dropdown List<el-icon class="el-icon--right"
+                      ><arrow-down
+                    /></el-icon>
+                  </span>
+                  <template #dropdown>
+                    <el-dropdown-menu>
+                      <el-dropdown-item>Action 1</el-dropdown-item>
+                      <el-dropdown-item>Action 2</el-dropdown-item>
+                      <el-dropdown-item>Action 3</el-dropdown-item>
+                      <el-dropdown-item disabled>Action 4</el-dropdown-item>
+                      <el-dropdown-item divided>Action 5</el-dropdown-item>
+                      <el-dropdown-item divided>Action 6</el-dropdown-item>
+                    </el-dropdown-menu>
+                  </template>
+                </el-dropdown>
+              </el-aside>
               <el-container>
                 <el-header height="10px"
                   ><div class="name">
@@ -33,24 +56,26 @@
                     {{ moments.content }}
                     <!-- 显示图片 -->
                     <div class="demo-image__placeholder">
-                      <div class="block" v-for="image in url"
-                        :key="image">
-                        <el-image   src="require('../images/pjecue.jpg')"/>
+                      <div class="block" v-for="image in url" :key="image">
+                        <el-image src="require('../images/pjecue.jpg')" />
                       </div>
                     </div>
 
                     <div class="demo-image__preview">
-                        <el-image
-                          v-for="image in  photo"
-                          :key="image"
-                          style="width: 30%; height: 30%"
-                          :src="'http://localhost:8080/demo/UpdateAndDown/down?name='+image"
-                          :preview-src-list="srcList"
-                          :initial-index="1"
-                          preview="1"
-                          fit="cover"
-                        />
-                      </div>
+                      <el-image
+                        v-for="image in photo"
+                        :key="image"
+                        style="width: 30%; height: 30%"
+                        :src="
+                          'http://localhost:8080/demo/UpdateAndDown/down?name=' +
+                          image
+                        "
+                        :preview-src-list="srcList"
+                        :initial-index="1"
+                        preview="1"
+                        fit="cover"
+                      />
+                    </div>
                   </div>
                   <br />
                   {{ moments.date }}
@@ -152,9 +177,9 @@ const srcList = ref("");
 
 //返回到动态页面
 const back = () => {
-        router.push({
-          path: "/home/moments",
-        });
+  router.push({
+    path: "/home/moments",
+  });
 };
 //查询的评论信息
 const getComment = reactive({
@@ -179,7 +204,7 @@ const getCommentAndStudentByMomentId = () => {
 
       console.log("res.data.result", res.data.result);
       console.log("res.data.result.date", res.data.result.date);
-      getMomentsAndStudentById
+      getMomentsAndStudentById;
     })
     .catch((error) => {
       ElMessage.error("查看评论失败");
@@ -215,10 +240,11 @@ const saveComment = () => {
 };
 //动态显示的信息
 const moments = reactive({
-  photoName:[],
+  photoName: [],
   content: "",
   name: "",
   date: "",
+  avatar: "",
 });
 
 // onBeforeMount(()=>{
@@ -245,6 +271,7 @@ const getMomentsAndStudentById = () => {
       moments.content = res.data.result.content;
       moments.name = res.data.result.name;
       moments.date = res.data.result.date;
+      moments.avatar = res.data.result.avatar;
     })
     .catch((error) => {
       ElMessage.error("根据id查询照片名称失败");
@@ -370,8 +397,6 @@ const downPhoto = () => {
   font-weight: 600;
   font-size: large;
 }
-
-
 
 .demo-image__placeholder .block {
   padding: 30px 0;

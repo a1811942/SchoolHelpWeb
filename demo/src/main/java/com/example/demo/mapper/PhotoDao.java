@@ -10,4 +10,5 @@ import java.util.List;
 public interface PhotoDao extends BaseMapper<Photo> {
     public List<String > getPhotoByMomentsId(String momentsId);
     public List<String > getPhotoByCommentId(String coment);
+    Boolean deleteByMomentsId(String momentsId);
 }

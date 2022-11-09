@@ -32,5 +32,7 @@ public class Student {
     @TableField("school_address")
     private String schoolAddress;
     private String avatar;
+    private String signature;
+    private Integer age;
 
 }

@@ -10,4 +10,6 @@ public interface MomentsService extends IService<Moments> {
     public List<Map<String ,Object>> getMomentsStudent();
     public Map<String ,Object> getMomentsAndStudentById(String id);
     String saveMoments(Moments moments);
+    //删除动态
+    Boolean deleteMoments(String momentsId);
 }

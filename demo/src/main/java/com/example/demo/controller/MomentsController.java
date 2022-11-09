@@ -65,4 +65,17 @@ public class MomentsController {
             return Result.getMessageResult(momentsId,"A001");
 
     }
+
+    /**
+     * 删除动态 照片 本地照片
+     * @param momentsId
+     * @return
+     */
+    @PostMapping("/deleteMoments")
+    public Result<Boolean > deleteMoments(@RequestBody String momentsId){
+        Boolean res = momentsService.deleteMoments(momentsId);
+
+        return Result.getSuccessResult(res);
+
+    }
 }

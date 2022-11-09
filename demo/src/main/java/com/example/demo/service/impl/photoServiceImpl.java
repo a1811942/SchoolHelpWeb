@@ -31,4 +31,10 @@ public class photoServiceImpl extends ServiceImpl<PhotoDao, Photo> implements Ph
         List<String> photo = photoDao.getPhotoByMomentsId(momentsId);
         return photo;
     }
+
+    @Override
+    public Boolean deleteByMomentsId(String momentsId) {
+        Boolean res = photoDao.deleteByMomentsId(momentsId);
+        return res;
+    }
 }

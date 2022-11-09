@@ -10,10 +10,14 @@ import com.example.demo.mapper.MomentsDao;
 import com.example.demo.mapper.PhotoDao;
 import com.example.demo.service.LikeService;
 import com.example.demo.service.MomentsService;
+import com.example.demo.service.PhotoService;
+import com.example.demo.service.UpdateAndDownService;
 import io.netty.util.internal.UnstableApi;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Timestamp;
 import java.sql.Wrapper;
@@ -29,37 +33,43 @@ public class MomentsServiceImpl extends ServiceImpl<MomentsDao, Moments> impleme
     @Autowired
     private MomentsDao momentsDao;
     @Autowired
-    private PhotoDao photoDao;
-
+    private PhotoService photoService;
+    @Autowired
+    private UpdateAndDownService updateAndDownService;
     @Autowired
     private LikeService likeService;
     @Autowired
     private RedisTemplate redisTemplate;
+    @Value("${photo.path}")
+    private String basePath;
+
     /**
      * 查询朋友圈所有人的动态信息
+     *
      * @return
      */
     @Override
-    public List<Map<String ,Object>> getMomentsStudent() {
-        List<Map<String ,Object>> list = momentsDao.getMomentsAndStudent();//查询所有动态
+    public List<Map<String, Object>> getMomentsStudent() {
+        List<Map<String, Object>> list = momentsDao.getMomentsAndStudent();//查询所有动态
 
-        for ( Map<String, Object> stringObjectMap : list) {//遍历
+        for (Map<String, Object> stringObjectMap : list) {//遍历
             Timestamp date = (Timestamp) stringObjectMap.get("date");
-            String  momentsId = (String) stringObjectMap.get("id");//获取动态id
+            String momentsId = (String) stringObjectMap.get("id");//获取动态id
             String studentId = (String) stringObjectMap.get("studentId");
-            List<String> photoList = photoDao.getPhotoByMomentsId(momentsId);//根据动态id和phoho表查出photo集合
-            stringObjectMap.put("photoName",photoList);//放到map中
+            List<String> photoList = photoService.getPhotoByMomentsId(momentsId);//根据动态id和phoho表查出photo集合
+            stringObjectMap.put("photoName", photoList);//放到map中
             String s = DetermineTime.showDate(date, "yyyy年MM月dd日HH:mm");
-            stringObjectMap.put("date",s);
-            String key="like:"+momentsId;
+            stringObjectMap.put("date", s);
+            String key = "like:" + momentsId;
             int likeCount = likeService.getLikeCount(key);
-            stringObjectMap.put("likeCount",likeCount);
+            stringObjectMap.put("likeCount", likeCount);
         }
         return list;
     }
 
     /**
      * 根据momentId查询某个动态
+     *
      * @param momentsId
      * @return
      */
@@ -77,13 +87,36 @@ public class MomentsServiceImpl extends ServiceImpl<MomentsDao, Moments> impleme
 
     @Override
     public String saveMoments(Moments moments) {
-        moments.setDate (Timestamp.valueOf(LocalDateTime.now()));
-        String monentsId=UUID.randomUUID().toString();
+        moments.setDate(Timestamp.valueOf(LocalDateTime.now()));
+        String monentsId = UUID.randomUUID().toString();
         moments.setId(monentsId);
         Boolean res = momentsDao.saveMoments(moments);
-        if (res){
+        if (res) {
             return monentsId;
         }
-       return "插入失败";
+        return "插入失败";
+    }
+
+    /**
+     * 删除动态 照片 本地照片
+     *
+     * @param momentsId
+     * @return
+     */
+    @Override
+    @Transactional
+    public Boolean deleteMoments(String momentsId) {
+        List<String> photo = photoService.getPhotoByMomentsId(momentsId);
+        boolean res = this.removeById(momentsId);
+        for (String s : photo) {
+            updateAndDownService.deletePhoto(s);
+        }
+
+        Boolean res1 = photoService.deleteByMomentsId(momentsId);
+
+        if (res && res1) {
+            return true;
+        }
+        return false;
     }
 }
