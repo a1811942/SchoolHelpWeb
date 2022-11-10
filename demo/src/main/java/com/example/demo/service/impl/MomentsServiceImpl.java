@@ -4,14 +4,13 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.demo.common.util.DetermineTime;
+import com.example.demo.entity.Comment;
 import com.example.demo.entity.Moments;
 import com.example.demo.entity.Photo;
+import com.example.demo.mapper.CommentDao;
 import com.example.demo.mapper.MomentsDao;
 import com.example.demo.mapper.PhotoDao;
-import com.example.demo.service.LikeService;
-import com.example.demo.service.MomentsService;
-import com.example.demo.service.PhotoService;
-import com.example.demo.service.UpdateAndDownService;
+import com.example.demo.service.*;
 import io.netty.util.internal.UnstableApi;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -33,13 +32,19 @@ public class MomentsServiceImpl extends ServiceImpl<MomentsDao, Moments> impleme
     @Autowired
     private MomentsDao momentsDao;
     @Autowired
+    private CommentDao commentDao;
+    @Autowired
     private PhotoService photoService;
     @Autowired
     private UpdateAndDownService updateAndDownService;
     @Autowired
+    private CommentService commentService;
+    @Autowired
     private LikeService likeService;
     @Autowired
     private RedisTemplate redisTemplate;
+
+
     @Value("${photo.path}")
     private String basePath;
 
@@ -51,6 +56,8 @@ public class MomentsServiceImpl extends ServiceImpl<MomentsDao, Moments> impleme
     @Override
     public List<Map<String, Object>> getMomentsStudent() {
         List<Map<String, Object>> list = momentsDao.getMomentsAndStudent();//查询所有动态
+        LambdaQueryWrapper<Comment> queryWrapper = new LambdaQueryWrapper<>();
+
 
         for (Map<String, Object> stringObjectMap : list) {//遍历
             Timestamp date = (Timestamp) stringObjectMap.get("date");
@@ -59,6 +66,11 @@ public class MomentsServiceImpl extends ServiceImpl<MomentsDao, Moments> impleme
             List<String> photoList = photoService.getPhotoByMomentsId(momentsId);//根据动态id和phoho表查出photo集合
             stringObjectMap.put("photoName", photoList);//放到map中
             String s = DetermineTime.showDate(date, "yyyy年MM月dd日HH:mm");
+            //根据动态id获取评论数量
+            queryWrapper.eq(Comment::getMomentsId,momentsId);
+            Integer count = commentDao.selectCount(queryWrapper);
+            stringObjectMap.put("count", count);
+
             stringObjectMap.put("date", s);
             String key = "like:" + momentsId;
             int likeCount = likeService.getLikeCount(key);
@@ -76,18 +88,32 @@ public class MomentsServiceImpl extends ServiceImpl<MomentsDao, Moments> impleme
     @Override
     public Map<String, Object> getMomentsAndStudentById(String momentsId) {
         Map<String, Object> map = momentsDao.getMomentsAndStudentById(momentsId);
-        //        String momentsId = moments.getId();
-//        System.out.println("momentsId====="+momentsId);
+        //修改时间格式
         Timestamp date = (Timestamp) map.get("date");
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy年MM月dd日 HH:mm");
         String dateString = simpleDateFormat.format(date);
+        //查询点赞数量
+        String key = "like:" + momentsId;
+        int likeCount = likeService.getLikeCount(key);
+        //根据动态id获取评论数量
+        LambdaQueryWrapper<Comment> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.eq(Comment::getMomentsId,momentsId);
+        Integer count = commentDao.selectCount(queryWrapper);
+        map.put("commentCount", count);
         map.put("date", dateString);
+        map.put("likeCount", likeCount);
         return map;
     }
 
+    /**
+     * 发布动态
+     * @param moments
+     * @return
+     */
     @Override
     public String saveMoments(Moments moments) {
         moments.setDate(Timestamp.valueOf(LocalDateTime.now()));
+        moments.setUpdateTime(Timestamp.valueOf(LocalDateTime.now()));
         String monentsId = UUID.randomUUID().toString();
         moments.setId(monentsId);
         Boolean res = momentsDao.saveMoments(moments);
@@ -107,14 +133,14 @@ public class MomentsServiceImpl extends ServiceImpl<MomentsDao, Moments> impleme
     @Transactional
     public Boolean deleteMoments(String momentsId) {
         List<String> photo = photoService.getPhotoByMomentsId(momentsId);
-        boolean res = this.removeById(momentsId);
+
         for (String s : photo) {
             updateAndDownService.deletePhoto(s);
         }
-
+        boolean res = this.removeById(momentsId);
         Boolean res1 = photoService.deleteByMomentsId(momentsId);
-
-        if (res && res1) {
+        Boolean res2 = commentService.deleteByMomentsId(momentsId);
+        if (res && res1 &&res2) {
             return true;
         }
         return false;

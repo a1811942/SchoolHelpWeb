@@ -4,9 +4,9 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.demo.mapper.MomentsDao">
     <insert id="saveMoments">
-        insert into moments  (id, student_id, content, date)
+        insert into moments  (id, student_id, content, date,update_time)
         values
-               (#{id},#{studentId},#{content},#{date})
+               (#{id},#{studentId},#{content},#{date},#{updateTime})
     </insert>
 
 

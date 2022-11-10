@@ -567,6 +567,7 @@ const handleAvatarSuccess: UploadProps["onSuccess"] = (
     .then((res) => {
       commissions.commission = res.data.result;
       getPerson();
+      getCommission();
     })
     .catch((error) => {
       ElMessage.error("查询委托失败");

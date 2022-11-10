@@ -124,29 +124,50 @@
                     </div>
                   </el-main>
                   <el-footer>
+                    <!-- 如果点赞的动态id不和动态id相等（刚开始时like.momentsId为空，所以成立） -->
                     <div v-if="like.momentsId !== o.id">
                       <el-button
                         text
                         circle
                         @click.stop="dialogTableVisible = true"
                       >
-                        <el-icon size="large"><ChatRound /></el-icon>
+                        <el-icon size="large"><ChatRound /></el-icon
+                        >{{ o.count }}
                       </el-button>
                       &#12288;
+                      <!-- 外面评论对话框 -->
+                      <el-dialog v-model="dialogTableVisible" title="评论">
+                        <el-input
+                          :rows="2"
+                          type="textarea"
+                          placeholder="评论"
+                          class="textarea"
+                          clearable
+                          v-model="comment"
+                        />
 
+                        <br />
+                        <br />
+                        <el-row justify="end">
+                          <el-button type="primary" round @click="saveComment(o.id)"
+                            >评论</el-button
+                          >
+                        </el-row>
+                      </el-dialog>
                       <el-button text circle @click.stop="likePoint(o.id)">
                         <el-icon size="large" color="red"><Pointer /></el-icon
                         >{{ o.likeCount }}
                       </el-button>
                     </div>
-
-                    <div v-if="like.temp === '1' && like.momentsId === o.id">
+                    <!--点赞后查询点赞的动态id，所以此时like.momentsId === o.id（点赞后使用这个查询） -->
+                    <div v-if="like.momentsId === o.id">
                       <el-button
                         text
                         circle
                         @click.stop="dialogTableVisible = true"
                       >
-                        <el-icon size="large"><ChatRound /></el-icon>
+                        <el-icon size="large"><ChatRound /></el-icon
+                        >{{ o.count }}
                       </el-button>
                       &#12288;
 
@@ -165,24 +186,6 @@
       </el-container>
     </el-container>
   </div>
-
-  <!-- 外面评论对话框 -->
-  <el-dialog v-model="dialogTableVisible" title="评论">
-    <el-input
-      :rows="2"
-      type="textarea"
-      placeholder="评论"
-      class="textarea"
-      clearable
-      v-model="comment"
-    />
-
-    <br />
-    <br />
-    <el-row justify="end">
-      <el-button type="primary" round @click="saveComment">评论</el-button>
-    </el-row>
-  </el-dialog>
 </template>
 <script setup lang="ts">
 import { computed, onMounted, reactive, ref } from "vue";
@@ -288,7 +291,7 @@ const likePoint = (momentsId) => {
   axios
     .post(
       "/demo/like/doLike",
-      { momentsId, studentId },
+      { momentsId: momentsId, studentId: nowStudentId },
       {
         headers: { token: sessionStorage.getItem("token") },
       }
@@ -434,13 +437,15 @@ const ViewInformation = (id) => {
 
 //评论
 const comment = ref("");
-const saveComment = () => {
+const saveComment = (momentsId) => {
   axios
     .post(
       "/demo/comment/saveComment",
       {
         comment: comment.value,
         studentId: sessionStorage.getItem("studentId"),
+        studentName: sessionStorage.getItem("studentName"),
+        momentsId: momentsId,
       },
       {
         headers: {
@@ -450,6 +455,8 @@ const saveComment = () => {
     )
     .then((res) => {
       comment.value = "";
+      dialogTableVisible.value = false;
+      getMomentsAndStudent();
     })
     .catch((error) => {
       ElMessage.error("评论失败");

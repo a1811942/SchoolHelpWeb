@@ -3,7 +3,6 @@ package com.example.demo.entity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import lombok.Data;
 
-import java.sql.Date;
 import java.sql.Timestamp;
 
 /**
@@ -13,7 +12,7 @@ import java.sql.Timestamp;
 public class Moments {
     private String id;
     @TableField("student_id")
-    private String  studentId;
+    private String studentId;
     private String image;
     private String content;
     private Timestamp date;
@@ -21,6 +20,8 @@ public class Moments {
     private String commentId;
     @TableField("like_count")
     private int likeCount;
+    @TableField("update_time")
+    private Timestamp updateTime;
 
 
 }

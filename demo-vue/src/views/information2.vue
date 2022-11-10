@@ -16,7 +16,7 @@
 
       <el-container>
         <el-aside width="1000px">
-          <el-card class="box-card" shadow="never">
+          <el-card class="box-card2" shadow="never">
             <el-container>
               <el-aside width="50px">
                 <el-avatar
@@ -26,29 +26,24 @@
                     moments.avatar
                   "
                 />
-                <el-dropdown :hide-on-click="false">
-                  <span class="el-dropdown-link">
-                    Dropdown List<el-icon class="el-icon--right"
-                      ><arrow-down
-                    /></el-icon>
-                  </span>
-                  <template #dropdown>
-                    <el-dropdown-menu>
-                      <el-dropdown-item>Action 1</el-dropdown-item>
-                      <el-dropdown-item>Action 2</el-dropdown-item>
-                      <el-dropdown-item>Action 3</el-dropdown-item>
-                      <el-dropdown-item disabled>Action 4</el-dropdown-item>
-                      <el-dropdown-item divided>Action 5</el-dropdown-item>
-                      <el-dropdown-item divided>Action 6</el-dropdown-item>
-                    </el-dropdown-menu>
-                  </template>
-                </el-dropdown>
               </el-aside>
               <el-container>
                 <el-header height="10px"
                   ><div class="name">
                     {{ moments.name }}
                   </div>
+                  <el-dropdown :hide-on-click="false" style="float: right">
+                    <el-icon size="large"><More /></el-icon>
+
+                    <template #dropdown>
+                      <el-dropdown-menu>
+                        <el-dropdown-item @click="deleteMoments()"
+                          >删除</el-dropdown-item
+                        >
+                        <el-dropdown-item>修改</el-dropdown-item>
+                      </el-dropdown-menu>
+                    </template>
+                  </el-dropdown>
                 </el-header>
                 <el-main>
                   <div class="content">
@@ -81,23 +76,45 @@
                   {{ moments.date }}
                 </el-main>
                 <el-footer>
-                  <el-button
-                    text
-                    circle
-                    @click.stop="dialogTableVisible = true"
-                  >
-                    <el-icon size="large"><ChatRound /></el-icon
-                  ></el-button>
-                  &#12288;
-                  <el-button text circle>
-                    <el-icon size="large"><Pointer /></el-icon>
-                  </el-button>
+                  <div v-if="like.momentsId !== momentsId">
+                    <el-button
+                      text
+                      circle
+                      @click.stop="dialogTableVisible = true"
+                    >
+                      <el-icon size="large"><ChatRound /></el-icon
+                      >{{ moments.commentCount }}
+                    </el-button>
+                    &#12288;
+
+                    <el-button text circle @click.stop="likePoint()">
+                      <el-icon size="large" color="red"><Pointer /></el-icon
+                      >{{ moments.likeCount }}
+                    </el-button>
+                  </div>
+
+                  <div v-if="like.momentsId === momentsId">
+                    <el-button
+                      text
+                      circle
+                      @click.stop="dialogTableVisible = true"
+                    >
+                      <el-icon size="large"><ChatRound /></el-icon
+                      >{{ moments.commentCount }}
+                    </el-button>
+                    &#12288;
+
+                    <el-button text circle @click.stop="likePoint()">
+                      <el-icon size="large" color="red"><Pointer /></el-icon
+                      >{{ like.likeCount }}
+                    </el-button>
+                  </div>
                 </el-footer>
               </el-container>
             </el-container>
           </el-card>
           <!-- 第二个卡片-------------------------------- -->
-          <el-card shadow="never" class="box-card">
+          <el-card shadow="never" class="box-card2">
             <el-input
               :rows="2"
               type="textarea"
@@ -116,25 +133,48 @@
             </el-row>
           </el-card>
           <!-- 之后的卡片 查看评论 -->
-
-          <el-card class="box-card" shadow="hover">
-            <div v-for="o in getComment.getComment" :key="o">
+          <div v-for="o in getComment.getComment" :key="o">
+            <el-card class="box-card2" shadow="hover">
               <el-container>
                 <el-aside width="50px">
-                  <el-avatar :size="50" :src="circleUrl"
+                  <el-avatar
+                    :size="50"
+                    :src="
+                      'http://localhost:8080/demo/UpdateAndDown/down?name=' +
+                      o.avatar
+                    "
                 /></el-aside>
                 <el-container>
                   <el-header height="10px">
-                    {{ o.name }} {{ o.date }}</el-header
-                  >
+                    {{ o.name }} {{ o.date }}
+
+                    <!-- 自己的动态可以删除所有评论 -->
+                    <el-icon
+                      style="float: right; cursor: pointer"
+                      size="large"
+                      v-if="moments.studentId == nowStudentId"
+                      ><Delete
+                    /></el-icon>
+
+                    <!-- 只可以删除自己的动态 -->
+                    <el-icon
+                      style="float: right; cursor: pointer"
+                      size="large"
+                      v-if="
+                        o.studentId == nowStudentId &&
+                        moments.studentId == nowStudentId
+                      "
+                      ><Delete style="display:none;"
+                    /></el-icon>
+                  </el-header>
                   <el-main>
                     {{ o.comment }}
                   </el-main>
                 </el-container>
               </el-container>
               <br />
-            </div>
-          </el-card>
+            </el-card>
+          </div>
         </el-aside>
         <el-main>Main</el-main>
       </el-container>
@@ -165,16 +205,49 @@ import { ElMessage, ElMessageBox } from "element-plus";
 import type { Action } from "element-plus";
 import axios from "axios";
 import { useRoute, useRouter } from "vue-router";
-
+//判断删除评论图片只能出现一个
+const temp = ref("");
 const dialogTableVisible = ref(false);
-const dialogTableVisible1 = ref(false);
 const router = useRouter();
 const route = useRoute();
 console.log(route.query);
 var momentsId = route.query.momentsId;
 const url = ref([]);
 const srcList = ref("");
+const nowStudentId = sessionStorage.getItem("studentId");
+//点赞
+const like = ref({
+  //点赞数量
+  likeCount: "",
+  //是否点赞 1点赞 0未点赞
+  isLike: "",
+  //点赞的动态id
+  momentsId: "",
+  //标记变量
+  temp: "",
+});
+//动态显示的信息
+const moments = reactive({
+  photoName: [],
+  content: "",
+  name: "",
+  date: "",
+  avatar: "",
+  //发布动态的学生id
+  isStudentId: "",
+  commentCount: "",
+  likeCount: "",
+  studentId: "",
+});
+onMounted(() => {
+  console.log("url", url.value);
 
+  getMomentsAndStudentById();
+  getCommentAndStudentByMomentId();
+  getPhotoName();
+  // downPhoto();
+  console.log("momentId", route.query);
+});
 //返回到动态页面
 const back = () => {
   router.push({
@@ -189,6 +262,39 @@ const getComment = reactive({
   date: "",
   photo: "",
 });
+
+//删除动态
+const deleteMoments = () => {
+  ElMessageBox.confirm("这将永久删除此条动态，是否继续?", "警告", {
+    confirmButtonText: "确定",
+    cancelButtonText: "取消",
+    type: "warning",
+  })
+    .then(() => {
+      axios
+        .post("/demo/moments/deleteMoments", momentsId, {
+          headers: { token: sessionStorage.getItem("token") },
+        })
+        .then((res) => {
+          ElMessage({
+            type: "success",
+            message: "删除成功",
+          });
+          router.push({
+            path: "/home/moments",
+          });
+        })
+        .catch((error) => {
+          ElMessage.error("点赞失败");
+        });
+    })
+    .catch(() => {
+      ElMessage({
+        type: "info",
+        message: "已取消",
+      });
+    });
+};
 //根据动态的id查询所有评论
 const getCommentAndStudentByMomentId = () => {
   axios
@@ -198,13 +304,11 @@ const getCommentAndStudentByMomentId = () => {
       },
     })
     .then((res) => {
-      getComment.getComment = res.data.result;
       getComment.name = res.data.result.name;
       getComment.getComment = res.data.result;
 
       console.log("res.data.result", res.data.result);
       console.log("res.data.result.date", res.data.result.date);
-      getMomentsAndStudentById;
     })
     .catch((error) => {
       ElMessage.error("查看评论失败");
@@ -232,33 +336,55 @@ const saveComment = () => {
     )
     .then((res) => {
       comment.value = "";
+      dialogTableVisible.value = false;
       getCommentAndStudentByMomentId();
     })
     .catch((error) => {
       ElMessage.error("评论失败");
     });
 };
-//动态显示的信息
-const moments = reactive({
-  photoName: [],
-  content: "",
-  name: "",
-  date: "",
-  avatar: "",
-});
+//点赞
+const likePoint = () => {
+  axios
+    .post(
+      "/demo/like/doLike",
+      { momentsId: momentsId, studentId: moments.isStudentId },
+      {
+        headers: { token: sessionStorage.getItem("token") },
+      }
+    )
+    .then((res) => {
+      like.value.isLike = res.data.result.result;
+      like.value.momentsId = res.data.result.momentsId;
+      like.value.temp = "1";
+      getLikeCount();
+    })
+    .catch((error) => {
+      ElMessage.error("点赞失败");
+    });
+};
+//查询点赞个数
+const getLikeCount = () => {
+  axios
+    .post(
+      "/demo/like/getLikeCount",
+      { momentsId: momentsId, studentId: moments.isStudentId },
+      {
+        headers: { token: sessionStorage.getItem("token") },
+      }
+    )
+    .then((res) => {
+      like.value.likeCount = res.data.result;
+    })
+    .catch((error) => {
+      ElMessage.error("查询点赞失败");
+    });
+};
 
 // onBeforeMount(()=>{
 //   downPhoto();
 // });
-onMounted(() => {
-  console.log("url", url.value);
 
-  getMomentsAndStudentById();
-  getCommentAndStudentByMomentId();
-  getPhotoName();
-  // downPhoto();
-  console.log("momentId", route.query);
-});
 //根据动态的id查询详细信息
 const getMomentsAndStudentById = () => {
   axios
@@ -272,6 +398,10 @@ const getMomentsAndStudentById = () => {
       moments.name = res.data.result.name;
       moments.date = res.data.result.date;
       moments.avatar = res.data.result.avatar;
+      moments.isStudentId = res.data.result.student_id;
+      moments.commentCount = res.data.result.commentCount;
+      moments.likeCount = res.data.result.likeCount;
+      moments.studentId = res.data.result.student_id;
     })
     .catch((error) => {
       ElMessage.error("根据id查询照片名称失败");
@@ -374,6 +504,9 @@ const downPhoto = () => {
   left: 250px;
   right: 0;
   z-index: 5;
+}
+.box-card2 {
+  width: 99%;
 }
 .box-card {
   width: 99%;

@@ -46,6 +46,27 @@ public class CommentController {
 
     }
 
+    /**
+     * 根据动态id删除所有评论
+     * @param momentId
+     * @return
+     */
+    @PostMapping("deleteByMomentsId")
+    public Result<Boolean> deleteByMomentsId(@RequestBody String  momentId){
+        Boolean res = commentService.deleteByMomentsId(momentId);
+        return Result.getSuccessResult(res);
 
+    }
 
+    /**
+     * 根据动态id查询评论数量
+     * @param momentId
+     * @return
+     */
+    @PostMapping("getCountById")
+    public Result<Integer> getCountById(@RequestBody String  momentId){
+        Integer count = commentService.getCountById(momentId);
+        return Result.getSuccessResult(count);
+
+    }
 }
