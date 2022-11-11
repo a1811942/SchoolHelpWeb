@@ -8,7 +8,7 @@
     </delete>
 
     <select id="getCommentAndStudentByMomentId" resultType="java.util.Map">
-        select  c.comment,c.date,c.moments_id as momentsId,c.student_id as studentId,s.name,s.phone,s.avatar from moments m
+        select  c.id as commentId,c.comment,c.date,c.moments_id as momentsId,c.student_id as studentId,s.name,s.phone,s.avatar from moments m
             left join comment c on m.id=c.moments_id
             LEFT JOIN student s on c.student_id=s.id
             where m.id=#{id} order by c.date

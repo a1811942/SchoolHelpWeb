@@ -32,8 +32,8 @@
                   ><div class="name">
                     {{ moments.name }}
                   </div>
-                  <el-dropdown :hide-on-click="false" style="float: right">
-                    <el-icon size="large"><More /></el-icon>
+                  <el-dropdown :hide-on-click="false" style="float: right"  v-if="moments.studentId === nowStudentId">
+                    <el-icon size=25px><More /></el-icon>
 
                     <template #dropdown>
                       <el-dropdown-menu>
@@ -82,14 +82,14 @@
                       circle
                       @click.stop="dialogTableVisible = true"
                     >
-                      <el-icon size="large"><ChatRound /></el-icon
-                      >{{ moments.commentCount }}
+                      <el-icon size=25px><ChatRound /></el-icon
+                      >&nbsp;{{ moments.commentCount }}
                     </el-button>
-                    &#12288;
+                    &nbsp;
 
                     <el-button text circle @click.stop="likePoint()">
-                      <el-icon size="large" color="red"><Pointer /></el-icon
-                      >{{ moments.likeCount }}
+                      <el-icon size=25px color="red"><Pointer /></el-icon
+                      >&nbsp;{{ moments.likeCount }}
                     </el-button>
                   </div>
 
@@ -99,14 +99,14 @@
                       circle
                       @click.stop="dialogTableVisible = true"
                     >
-                      <el-icon size="large"><ChatRound /></el-icon
-                      >{{ moments.commentCount }}
+                      <el-icon size=25px><ChatRound /></el-icon
+                      >&nbsp;{{ moments.commentCount }}
                     </el-button>
-                    &#12288;
+                    &nbsp;
 
                     <el-button text circle @click.stop="likePoint()">
-                      <el-icon size="large" color="red"><Pointer /></el-icon
-                      >{{ like.likeCount }}
+                      <el-icon size=25px color="red"><Pointer /></el-icon
+                      >&nbsp;{{ like.likeCount }}
                     </el-button>
                   </div>
                 </el-footer>
@@ -148,27 +148,37 @@
                   <el-header height="10px">
                     {{ o.name }} {{ o.date }}
 
+
                     <!-- 自己的动态可以删除所有评论 -->
                     <el-icon
-                      style="float: right; cursor: pointer"
-                      size="large"
+                      style=" cursor: pointer;float:right;"
+                      size=30px
                       v-if="moments.studentId == nowStudentId"
+                      @click="deleteComment(o.commentId)"
+                      ><Delete 
+                    /></el-icon>
+  
+                    <el-icon
+                      style=" cursor: pointer;float:right;"
+                      size=30px
+                      v-if="moments.studentId !== nowStudentId
+                      && o.studentId==nowStudentId"
+                      @click="deleteComment(o.commentId)"
                       ><Delete
                     /></el-icon>
 
-                    <!-- 只可以删除自己的动态 -->
-                    <el-icon
-                      style="float: right; cursor: pointer"
-                      size="large"
-                      v-if="
-                        o.studentId == nowStudentId &&
-                        moments.studentId == nowStudentId
-                      "
-                      ><Delete style="display:none;"
-                    /></el-icon>
+
                   </el-header>
                   <el-main>
                     {{ o.comment }}
+                    <br/> <br/> 
+                    <div>
+                    <el-icon 
+                      size=25px><ChatRound /></el-icon>
+                      &nbsp;
+                      <el-icon size="25px" backg><Pointer /></el-icon
+                        >&nbsp;
+                    </div>
                   </el-main>
                 </el-container>
               </el-container>
@@ -263,6 +273,43 @@ const getComment = reactive({
   photo: "",
 });
 
+//删除评论
+
+const deleteComment = (commentId) => {
+  ElMessageBox.confirm("这将永久删除此评论，是否继续?", "警告", {
+    confirmButtonText: "确定",
+    cancelButtonText: "取消",
+    type: "warning",
+  })
+    .then(() => {
+      axios
+        .delete("/demo/comment/deleteComment?commentId="+commentId,  {
+          headers: { token: sessionStorage.getItem("token") },
+        })
+        .then((res) => {
+          if(res.data.result>0){
+            ElMessage({
+            type: "success",
+            message: "删除成功",
+          });
+          getCommentAndStudentByMomentId();
+          }
+          if(res.data.result<=0){
+            ElMessage.error("删除评论失败");
+
+          }
+        })
+        .catch((error) => {
+          ElMessage.error("删除评论失败");
+        });
+    })
+    .catch(() => {
+      ElMessage({
+        type: "info",
+        message: "已取消",
+      });
+    });
+};
 //删除动态
 const deleteMoments = () => {
   ElMessageBox.confirm("这将永久删除此条动态，是否继续?", "警告", {

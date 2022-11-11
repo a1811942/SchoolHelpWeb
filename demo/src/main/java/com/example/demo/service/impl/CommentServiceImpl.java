@@ -66,4 +66,15 @@ public class CommentServiceImpl extends ServiceImpl<CommentDao, Comment> impleme
         Integer count = commentDao.selectCount(queryWrapper);
         return count;
     }
+
+    /**
+     * 根据id删除评论
+     * @param commentId
+     * @return
+     */
+    @Override
+    public Integer deleteByCommentIs(String commentId) {
+        int res = commentDao.deleteById(commentId);
+        return res;
+    }
 }

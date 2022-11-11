@@ -1,4 +1,6 @@
-2022-11-10 13:05:36.968 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool -
-				HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=55m59s60ms154µs600ns).
-2022-11-10 18:31:11.773 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool -
-				HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1h10m55s399ms709µs200ns).
+2022-11-11 16:55:21.378 [http-nio-8080-exec-9] WARN  o.s.w.s.m.support.DefaultHandlerExceptionResolver -
+				Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'POST' not supported]
+2022-11-11 16:56:04.467 [http-nio-8080-exec-7] WARN  o.s.w.s.m.support.DefaultHandlerExceptionResolver -
+				Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'POST' not supported]
+2022-11-11 16:56:32.826 [http-nio-8080-exec-7] WARN  o.s.w.s.m.support.DefaultHandlerExceptionResolver -
+				Resolved [org.springframework.http.converter.HttpMessageNotReadableException: Required request body is missing: public com.example.demo.common.R.Result<java.lang.Integer> com.example.demo.controller.CommentController.deleteCommentById(java.lang.String)]

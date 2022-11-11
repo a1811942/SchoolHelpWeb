@@ -27,10 +27,17 @@ public class CommentController {
      * @param comment
      */
     @PostMapping("saveComment")
-    public void saveComment(@RequestBody Comment comment){
-        comment.setId(UUID.randomUUID().toString());
-        comment.setDate(Timestamp.valueOf(LocalDateTime.now()));
-        commentService.save(comment);
+    public Result<Boolean> saveComment(@RequestBody Comment comment){
+
+        if(comment.getMomentsId()=="" || comment.getMomentsId()==null){
+            return Result.getSuccessResult(false);
+        }
+
+            comment.setId(UUID.randomUUID().toString());
+            comment.setDate(Timestamp.valueOf(LocalDateTime.now()));
+            commentService.save(comment);
+
+        return Result.getSuccessResult(true);
 
     }
 
@@ -40,7 +47,7 @@ public class CommentController {
      * @return
      */
     @PostMapping("getCommentAndStudentByMomentId")
-    public Result<List<Map<String ,Object>>> getCommentAndStudentByMomentId(@RequestBody String  momentId){
+    public Result<List<Map<String ,Object>>> getCommentAndStudentByMomentId(@RequestBody  String  momentId){
         List<Map<String, Object>> list = commentService.getCommentAndStudentByMomentId(momentId);
         return Result.getSuccessResult(list);
 
@@ -67,6 +74,18 @@ public class CommentController {
     public Result<Integer> getCountById(@RequestBody String  momentId){
         Integer count = commentService.getCountById(momentId);
         return Result.getSuccessResult(count);
+
+    }
+
+    /**
+     * 根据commentId 删除评论
+     * @param commentId
+     * @return
+     */
+    @DeleteMapping("deleteComment")
+    public Result<Integer> deleteCommentById( String  commentId){
+        Integer res = commentService.deleteByCommentIs(commentId);
+        return Result.getSuccessResult(res);
 
     }
 }

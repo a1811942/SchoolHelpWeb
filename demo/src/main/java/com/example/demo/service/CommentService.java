@@ -12,5 +12,7 @@ public interface CommentService extends IService<Comment> {
     public List<Map<String ,Object>> getCommentAndStudentByMomentId(String momentId);
     Boolean deleteByMomentsId(String momentsId);
     Integer getCountById(String momentsId);
+    //根据id删除评论
+    Integer deleteByCommentIs(String commentId);
 
 }

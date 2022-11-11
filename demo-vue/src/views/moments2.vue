@@ -85,7 +85,7 @@
                       style="float: right"
                       v-if="o.student_id === nowStudentId"
                     >
-                      <el-icon size="large"><More /></el-icon>
+                      <el-icon size=25px><More /></el-icon>
 
                       <template #dropdown>
                         <el-dropdown-menu>
@@ -129,36 +129,20 @@
                       <el-button
                         text
                         circle
-                        @click.stop="dialogTableVisible = true"
+                        @click.stop="beforeComment(o.id)"
                       >
-                        <el-icon size="large"><ChatRound /></el-icon
-                        >{{ o.count }}
+                        <el-icon size="25px"><ChatRound /></el-icon>&nbsp;{{
+                          o.count
+                        }}
                       </el-button>
-                      &#12288;
-                      <!-- 外面评论对话框 -->
-                      <el-dialog v-model="dialogTableVisible" title="评论">
-                        <el-input
-                          :rows="2"
-                          type="textarea"
-                          placeholder="评论"
-                          class="textarea"
-                          clearable
-                          v-model="comment"
-                        />
 
-                        <br />
-                        <br />
-                        <el-row justify="end">
-                          <el-button type="primary" round @click="saveComment(o.id)"
-                            >评论</el-button
-                          >
-                        </el-row>
-                      </el-dialog>
+                      &nbsp;
                       <el-button text circle @click.stop="likePoint(o.id)">
-                        <el-icon size="large" color="red"><Pointer /></el-icon
-                        >{{ o.likeCount }}
+                        <el-icon size="25px" color="red"><Pointer /></el-icon
+                        >&nbsp;{{ o.likeCount }}
                       </el-button>
                     </div>
+
                     <!--点赞后查询点赞的动态id，所以此时like.momentsId === o.id（点赞后使用这个查询） -->
                     <div v-if="like.momentsId === o.id">
                       <el-button
@@ -166,14 +150,15 @@
                         circle
                         @click.stop="dialogTableVisible = true"
                       >
-                        <el-icon size="large"><ChatRound /></el-icon
-                        >{{ o.count }}
+                        <el-icon size="25px"><ChatRound /></el-icon>&nbsp;{{
+                          o.count
+                        }}
                       </el-button>
-                      &#12288;
 
+                      &nbsp;
                       <el-button text circle @click.stop="likePoint(o.id)">
-                        <el-icon size="large" color="red"><Pointer /></el-icon
-                        >{{ like.likeCount }}
+                        <el-icon size="25px" color="red"><Pointer /></el-icon
+                        >&nbsp;{{ like.likeCount }}
                       </el-button>
                     </div>
                   </el-footer>
@@ -185,6 +170,25 @@
         <el-main>Main</el-main>
       </el-container>
     </el-container>
+    <!-- 外面评论对话框 -->
+    <el-dialog v-model="dialogTableVisible" title="评论">
+      <el-input
+        :rows="2"
+        type="textarea"
+        placeholder="评论"
+        class="textarea"
+        clearable
+        v-model="comment"
+      />
+
+      <br />
+      <br />
+      <el-row justify="end">
+        <el-button type="primary" round @click="saveComment(selectMomentstId)"
+          >评论</el-button
+        >
+      </el-row>
+    </el-dialog>
   </div>
 </template>
 <script setup lang="ts">
@@ -205,6 +209,7 @@ import { policy } from "../upload/policy";
 import Cookies from "js-cookie";
 const dialogTableVisible = ref(false);
 const dialogTableVisible1 = ref(false);
+const selectMomentstId=ref('')
 const router = useRouter();
 const url = ref([]);
 const srcList = ref("");
@@ -256,6 +261,11 @@ onMounted(() => {
 
   getMomentsAndStudent();
 });
+//点击评论按钮
+const beforeComment=(id)=>{
+  dialogTableVisible.value=true;
+  selectMomentstId.value=id;
+}
 //删除动态
 const deleteMoments = (momentsId) => {
   ElMessageBox.confirm("这将永久删除此条动态，是否继续?", "警告", {
@@ -455,6 +465,10 @@ const saveComment = (momentsId) => {
     )
     .then((res) => {
       comment.value = "";
+      if(res.data.result===false){
+        ElMessage.error("评论失败");
+      }
+
       dialogTableVisible.value = false;
       getMomentsAndStudent();
     })
