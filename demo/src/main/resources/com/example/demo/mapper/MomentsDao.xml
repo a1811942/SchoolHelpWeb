@@ -20,4 +20,7 @@
      <select id="getMomentsAndStudentById" resultType="java.util.Map">
         select * from moments m  left join student s on m.student_id=s.id where m.id=#{momentId}
     </select>
+    <select id="getMomentAndStudentByStuId" resultType="java.util.Map">
+        select * from moments m left join student s on m.student_id = s.id where student_id=#{studentId}
+    </select>
 </mapper>

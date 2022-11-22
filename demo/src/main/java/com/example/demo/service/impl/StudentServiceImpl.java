@@ -54,6 +54,7 @@ public class StudentServiceImpl extends ServiceImpl<StudentDao, Student> impleme
             map.put("studentName", login.getName());
             map.put("res", "1");
             map.put("username", login.getUsername());
+            map.put("avatar",login.getAvatar());
             return map;
         } else {
             //登录不成功

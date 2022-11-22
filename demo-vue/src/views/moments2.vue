@@ -92,7 +92,7 @@
                           <el-dropdown-item @click="deleteMoments(o.id)"
                             >删除</el-dropdown-item
                           >
-                          <el-dropdown-item>修改</el-dropdown-item>
+                          <el-dropdown-item @click="updateMoments(o.id)">修改</el-dropdown-item>
                         </el-dropdown-menu>
                       </template>
                     </el-dropdown>
@@ -440,7 +440,7 @@ function recoll(aa) {
 //查询详细的动态信息
 const ViewInformation = (id) => {
   router.push({
-    path: "information",
+    path: "information2",
     query: { momentsId: id },
   });
 };

@@ -145,4 +145,35 @@ public class MomentsServiceImpl extends ServiceImpl<MomentsDao, Moments> impleme
         }
         return false;
     }
+
+    /**
+     * 根据学生id查询所有动态
+     * @param studentId
+     * @return
+     */
+    @Override
+    public List<Map<String, Object>> getMomentsAndStudentByStuId(String id) {
+        List<Map<String, Object>> list = momentsDao.getMomentAndStudentByStuId(id);//根据学生id查询
+        LambdaQueryWrapper<Comment> queryWrapper = new LambdaQueryWrapper<>();
+
+
+        for (Map<String, Object> stringObjectMap : list) {//遍历
+            Timestamp date = (Timestamp) stringObjectMap.get("date");
+            String momentsId = (String) stringObjectMap.get("id");//获取动态id
+            String studentId = (String) stringObjectMap.get("studentId");
+            List<String> photoList = photoService.getPhotoByMomentsId(momentsId);//根据动态id和phoho表查出photo集合
+            stringObjectMap.put("photoName", photoList);//放到map中
+            String s = DetermineTime.showDate(date, "yyyy年MM月dd日HH:mm");
+            //根据动态id获取评论数量
+            queryWrapper.eq(Comment::getMomentsId,momentsId);
+            Integer count = commentDao.selectCount(queryWrapper);
+            stringObjectMap.put("count", count);
+
+            stringObjectMap.put("date", s);
+            String key = "like:" + momentsId;
+            int likeCount = likeService.getLikeCount(key);
+            stringObjectMap.put("likeCount", likeCount);
+        }
+        return list;
+    }
 }

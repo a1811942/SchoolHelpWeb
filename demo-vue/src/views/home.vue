@@ -1,8 +1,6 @@
 <template>
   <div>
-    <div class="Asid">
       <Header />
-    </div>
     <div class="content-box">
       <div class="content">
 <router-view></router-view>
@@ -31,7 +29,7 @@ import Header from "../components/Header.vue";
 }
 
 .Asid {
-  width: 62%;
+  width: 100%;
   position: fixed;
   height: 100%;
 }

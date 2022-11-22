@@ -1,4 +1,4 @@
-<!-- <template>
+<template>
 
   <div class="page-box" >
     <el-container>
@@ -36,15 +36,7 @@
 </template>
     <script>
 import { Search } from "@element-plus/icons-vue";
-ws.onopen=()=>{
-console.log("链接成功")
-}
-ws.onmessage=()=>{
 
-}
-ws.onclose=()=>{
-
-}
 
 </script>
     <style>
@@ -73,4 +65,4 @@ ws.onclose=()=>{
   height: 100%
 
 }
-</style> -->
+</style>

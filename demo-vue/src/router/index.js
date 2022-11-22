@@ -9,12 +9,14 @@ import List from '../views/forum/list.vue'
 import Forum_publish from '../views/forum/forum_publish.vue'
 import User from '../views/user.vue'
 import Moments from '../views/moments2.vue'
-import Information from '../views/information2.vue'
+import Information2 from '../views/information2.vue'
+import Information from '../views/information.vue'
 import Commission from '../views/commission.vue'
 import Person from '../views/person.vue'
 import Forum from '../views/forum.vue'
 import Chat from '../views/person/chat.vue'
 import PersonInformation from '../views/person/person_information.vue'
+import Setting from '../views/setting.vue'
 const routes = [{
 	path: '/',
 	redirect: '/login'
@@ -52,12 +54,20 @@ const routes = [{
 			component: Moments
 		},
 		{
+			path: '/home/information2',
+			component: Information2
+		},
+		{
 			path: '/home/information',
 			component: Information
 		},
 		{
 			path: '/home/commission',
 			component: Commission
+		},
+		{
+			path: '/home/setting',
+			component: Setting
 		},
 		{
 			path: '/home/person',

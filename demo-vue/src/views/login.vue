@@ -46,7 +46,9 @@ const login = () => {
         sessionStorage.setItem("username", res.data.result.username);
         sessionStorage.setItem("studentId", res.data.result.studentId);
         sessionStorage.setItem("studentName", res.data.result.studentName);
+        sessionStorage.setItem("avatar", res.data.result.avatar);
         console.log("token", sessionStorage.getItem("token"));
+        console.log("avatar", sessionStorage.getItem("avatar"));
         console.log("studentId", sessionStorage.getItem("studentId"));
         ws.onopen = () => {
     console.log("链接成功");

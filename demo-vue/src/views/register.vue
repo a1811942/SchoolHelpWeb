@@ -81,6 +81,25 @@
         </el-card>
       </el-main>
     </el-container>
+    <!-- 外面评论对话框 -->
+    <el-dialog v-model="dialogTableVisible" title="评论">
+      <el-input
+        :rows="2"
+        type="textarea"
+        placeholder="评论"
+        class="textarea"
+        clearable
+        v-model="comment"
+      />
+
+      <br />
+      <br />
+      <el-row justify="end">
+        <el-button type="primary" round @click="saveComment(selectMomentstId)"
+          >评论</el-button
+        >
+      </el-row>
+    </el-dialog>
   </div>
 </template>
 <script lang="ts" setup>

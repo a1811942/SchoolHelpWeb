@@ -42,6 +42,7 @@ public class CommissionServiceImpl extends ServiceImpl<CommissionDao, Commission
         String orderField = null;
         String orderType=null;
 
+        //获取查询条件
         if (substring!=null && ""!=substring) {
             if (substring.substring(0, 1).equals("a")) {
                 orderType = substring.substring(0, 3);
@@ -54,7 +55,7 @@ public class CommissionServiceImpl extends ServiceImpl<CommissionDao, Commission
             }
         }
         List<Map<String, Object>> list = commissionDao.getCommissionAndStudent(orderType,orderField,status);
-        if (list.size()>1){
+        if (list.size()>0){
             for (Map<String, Object> map : list) {
                 Timestamp dateTime = (Timestamp) map.get("date");
                 String s = DetermineTime.showDate(dateTime, "yyyy年MM月dd日HH:mm");

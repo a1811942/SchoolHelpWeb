@@ -53,11 +53,8 @@ public class StudentController {
             redisTemplate.opsForValue().set(token,map.get("username"), Duration.ofMinutes(30L));
             map.put("token",token);
             HttpSession session = request.getSession();
-            System.out.println("session名称1===="+session);
             session.setAttribute("studentId",map.get("studentId"));
             session.setAttribute("studentName",map.get("studentName"));
-            System.out.println("session=="+ session.getAttribute("studentId"));
-            System.out.println("studentNameSession=="+ session.getAttribute("studentName"));
             return Result.getSuccessResult(map);
         } else if("-1".equals(map.get("map"))) {
             return Result.getMessageResult(null, "A001");
@@ -72,10 +69,11 @@ public class StudentController {
      * @param request
      * @return
      */
-    @PostMapping("/loginOut")
+    @DeleteMapping("/loginOut")
     public Result<Map<String ,String >> loginOut( HttpServletRequest request){
         String token = request.getHeader("token");
         Boolean res = redisTemplate.delete(token);
+        
         if (res=false){
             return Result.getMessageResult(null,"A002");
         }

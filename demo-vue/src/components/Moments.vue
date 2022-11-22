@@ -372,25 +372,6 @@
       </span>
     </template>
   </el-dialog>
-      <!-- 外面评论对话框 -->
-      <el-dialog v-model="dialogTableVisible2" title="评论">
-      <el-input
-        :rows="2"
-        type="textarea"
-        placeholder="评论"
-        class="textarea"
-        clearable
-        v-model="comment"
-      />
-
-      <br />
-      <br />
-      <el-row justify="end">
-        <el-button type="primary" round @click="saveComment(selectMomentstId)"
-          >评论</el-button
-        >
-      </el-row>
-    </el-dialog>
 </template>
     <script setup lang="ts">
 import { Search } from "@element-plus/icons-vue";
@@ -408,12 +389,9 @@ import { InfoFilled } from "@element-plus/icons-vue";
 import router from "../router";
 const activeName = ref("first");
 const dialogTableVisible = ref(false);
-const dialogTableVisible2 = ref(false);
 const ruleFormRef = ref<FormInstance>();
 const nowStudentId = sessionStorage.getItem("studentId");
 const headerObj = ref({ token: sessionStorage.getItem("token") });
-const selectMomentstId=ref('')
-
 //修改个人质料表单
 const ruleForm = reactive({
   name: "Hello",
@@ -463,37 +441,6 @@ onMounted(() => {
   getCommission();
   getMoments();
 });
-//-------------------------------------动态---------动态------------动态------动态------------------------
-//删除动态
-const deleteMoments = (momentsId) => {
-  ElMessageBox.confirm("这将永久删除此条动态，是否继续?", "警告", {
-    confirmButtonText: "确定",
-    cancelButtonText: "取消",
-    type: "warning",
-  })
-    .then(() => {
-      axios
-        .post("/demo/moments/deleteMoments", momentsId, {
-          headers: { token: sessionStorage.getItem("token") },
-        })
-        .then((res) => {
-          ElMessage({
-            type: "success",
-            message: "删除成功",
-          });
-          getMoments();
-        })
-        .catch((error) => {
-          ElMessage.error("点赞失败");
-        });
-    })
-    .catch(() => {
-      ElMessage({
-        type: "info",
-        message: "已取消",
-      });
-    });
-};
 //查询详细的动态信息
 const ViewInformation = (id) => {
   router.push({
@@ -558,7 +505,7 @@ const getMoments = () => {
 };
 //点击评论按钮
 const beforeComment=(id)=>{
-  dialogTableVisible2.value=true;
+  dialogTableVisible.value=true;
   selectMomentstId.value=id;
 }
 //评论
@@ -585,15 +532,13 @@ const saveComment = (momentsId) => {
         ElMessage.error("评论失败");
       }
 
-      dialogTableVisible2.value = false;
+      dialogTableVisible.value = false;
       getMoments();
     })
     .catch((error) => {
       ElMessage.error("评论失败");
     });
 };
-//-----个人资料--个人资料-------个人资料-----------个人资料----------------------个人资料-----------个人资料
-
 //获取个人信息
 const getPerson = () => {
   axios
@@ -619,6 +564,41 @@ const getPerson = () => {
     .catch((error) => {
       ElMessage.error("查看评论失败");
     });
+};
+//根据id查询委托(修改委托)
+const postCommission = (commissionId) => {
+  centerDialogVisible.value = true;
+  axios
+    .post(
+      "/demo/commission/getCommissionAndStudentBycommissionId",
+      commissionId,
+      {
+        headers: {
+          token: sessionStorage.getItem("token"),
+        },
+      }
+    )
+    .then((res) => {
+      form.name = res.data.result.name;
+      form.sex = res.data.result.sex;
+      form.content = res.data.result.content;
+      form.money = res.data.result.money;
+      form.id = res.data.result.id;
+      form.contact = res.data.result.contact;
+      form.address = res.data.result.address;
+    })
+    .catch((error) => {
+      ElMessage.error("查看评论失败");
+    });
+};
+
+const handleClick = (tab: TabsPaneContext, event: Event) => {
+  console.log(tab, event);
+};
+
+//编辑资料
+const updatePerson = () => {
+  dialogTableVisible.value = true;
 };
 //修改个人资料
 const submitForm = async (formEl: FormInstance | undefined) => {
@@ -670,8 +650,6 @@ const options = Array.from({ length: 150 }).map((_, idx) => ({
 //上传头像(修改头像)
 const uploadAvatar = () => {};
 
-
-//-----------------------委托-------委托*-------------------------委托*******************----------------委托
 const getAcceptStudentByAcceptStudentId = (id) => {
   axios
     .post(
@@ -691,42 +669,6 @@ const getAcceptStudentByAcceptStudentId = (id) => {
       ElMessage.error("查询委托失败");
     });
 };
-//根据id查询委托(修改委托)
-const postCommission = (commissionId) => {
-  centerDialogVisible.value = true;
-  axios
-    .post(
-      "/demo/commission/getCommissionAndStudentBycommissionId",
-      commissionId,
-      {
-        headers: {
-          token: sessionStorage.getItem("token"),
-        },
-      }
-    )
-    .then((res) => {
-      form.name = res.data.result.name;
-      form.sex = res.data.result.sex;
-      form.content = res.data.result.content;
-      form.money = res.data.result.money;
-      form.id = res.data.result.id;
-      form.contact = res.data.result.contact;
-      form.address = res.data.result.address;
-    })
-    .catch((error) => {
-      ElMessage.error("查看评论失败");
-    });
-};
-
-const handleClick = (tab: TabsPaneContext, event: Event) => {
-  console.log(tab, event);
-};
-
-//编辑资料
-const updatePerson = () => {
-  dialogTableVisible.value = true;
-};
-
 //查询自己的委托
 const getCommission = () => {
   axios

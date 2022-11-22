@@ -13,5 +13,7 @@ public interface MomentsDao extends BaseMapper<Moments> {
     public Map<String ,Object> getMomentsAndStudentById(String momentsId);
     //发布动态
     Boolean saveMoments(Moments moments);
+    //根据学生id查询所有动态
+    List<Map<String, Object>> getMomentAndStudentByStuId(String studentId);
 
 }

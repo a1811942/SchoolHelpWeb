@@ -1,0 +1,408 @@
+2022-11-21 09:20:56.541 [main] INFO  com.example.demo.DemoApplication -
+				Starting DemoApplication using Java 15.0.7 on DESKTOP-UN3KSEH with PID 9932 (C:\Users\liu\Desktop\MyProject\demo\target\classes started by liu in C:\Users\liu\Desktop\MyProject\demo)
+2022-11-21 09:20:56.549 [main] INFO  com.example.demo.DemoApplication -
+				No active profile set, falling back to 1 default profile: "default"
+2022-11-21 09:20:57.667 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate -
+				Multiple Spring Data modules found, entering strict repository configuration mode
+2022-11-21 09:20:57.672 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate -
+				Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2022-11-21 09:20:57.733 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate -
+				Finished Spring Data repository scanning in 23 ms. Found 0 Redis repository interfaces.
+2022-11-21 09:20:58.483 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer -
+				Tomcat initialized with port(s): 8080 (http)
+2022-11-21 09:20:58.494 [main] INFO  org.apache.coyote.http11.Http11NioProtocol -
+				Initializing ProtocolHandler ["http-nio-8080"]
+2022-11-21 09:20:58.495 [main] INFO  org.apache.catalina.core.StandardService -
+				Starting service [Tomcat]
+2022-11-21 09:20:58.495 [main] INFO  org.apache.catalina.core.StandardEngine -
+				Starting Servlet engine: [Apache Tomcat/9.0.65]
+2022-11-21 09:20:58.624 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] -
+				Initializing Spring embedded WebApplicationContext
+2022-11-21 09:20:58.624 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext -
+				Root WebApplicationContext: initialization completed in 1995 ms
+2022-11-21 09:21:00.406 [main] INFO  org.quartz.impl.StdSchedulerFactory -
+				Using default implementation for ThreadExecutor
+2022-11-21 09:21:00.419 [main] INFO  org.quartz.core.SchedulerSignalerImpl -
+				Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+2022-11-21 09:21:00.420 [main] INFO  org.quartz.core.QuartzScheduler -
+				Quartz Scheduler v.2.3.2 created.
+2022-11-21 09:21:00.421 [main] INFO  org.quartz.simpl.RAMJobStore -
+				RAMJobStore initialized.
+2022-11-21 09:21:00.422 [main] INFO  org.quartz.core.QuartzScheduler -
+				Scheduler meta-data: Quartz Scheduler (v2.3.2) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
+  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+2022-11-21 09:21:00.423 [main] INFO  org.quartz.impl.StdSchedulerFactory -
+				Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
+2022-11-21 09:21:00.423 [main] INFO  org.quartz.impl.StdSchedulerFactory -
+				Quartz scheduler version: 2.3.2
+2022-11-21 09:21:00.424 [main] INFO  org.quartz.core.QuartzScheduler -
+				JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@154f8280
+2022-11-21 09:21:00.481 [main] INFO  org.apache.coyote.http11.Http11NioProtocol -
+				Starting ProtocolHandler ["http-nio-8080"]
+2022-11-21 09:21:00.507 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer -
+				Tomcat started on port(s): 8080 (http) with context path ''
+2022-11-21 09:21:00.509 [main] INFO  o.s.scheduling.quartz.SchedulerFactoryBean -
+				Starting Quartz Scheduler now
+2022-11-21 09:21:00.509 [main] INFO  org.quartz.core.QuartzScheduler -
+				Scheduler quartzScheduler_$_NON_CLUSTERED started.
+2022-11-21 09:21:00.536 [main] INFO  com.example.demo.DemoApplication -
+				Started DemoApplication in 4.798 seconds (JVM running for 6.018)
+2022-11-21 09:21:29.624 [http-nio-8080-exec-1] INFO  org.apache.tomcat.util.http.parser.Cookie -
+				A cookie header was received [Hm_lvt_5804d09853fcc4866132fbc306348993=1655279936,1655287959;] that contained an invalid cookie. That cookie will be ignored.
+ Note: further occurrences of this error will be logged at DEBUG level.
+2022-11-21 09:21:29.640 [http-nio-8080-exec-1] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] -
+				Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-11-21 09:21:29.640 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet -
+				Initializing Servlet 'dispatcherServlet'
+2022-11-21 09:21:29.643 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet -
+				Completed initialization in 3 ms
+2022-11-21 09:21:35.817 [http-nio-8080-exec-5] INFO  com.zaxxer.hikari.HikariDataSource -
+				HikariPool-1 - Starting...
+2022-11-21 09:21:36.127 [http-nio-8080-exec-5] INFO  com.zaxxer.hikari.HikariDataSource -
+				HikariPool-1 - Start completed.
+2022-11-21 09:47:21.622 [SpringApplicationShutdownHook] INFO  org.quartz.core.QuartzScheduler -
+				Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+2022-11-21 09:47:21.744 [SpringApplicationShutdownHook] INFO  o.s.scheduling.quartz.SchedulerFactoryBean -
+				Shutting down Quartz Scheduler
+2022-11-21 09:47:21.744 [SpringApplicationShutdownHook] INFO  org.quartz.core.QuartzScheduler -
+				Scheduler quartzScheduler_$_NON_CLUSTERED shutting down.
+2022-11-21 09:47:21.746 [SpringApplicationShutdownHook] INFO  org.quartz.core.QuartzScheduler -
+				Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+2022-11-21 09:47:21.747 [SpringApplicationShutdownHook] INFO  org.quartz.core.QuartzScheduler -
+				Scheduler quartzScheduler_$_NON_CLUSTERED shutdown complete.
+2022-11-21 09:47:21.757 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource -
+				HikariPool-1 - Shutdown initiated...
+2022-11-21 09:47:21.781 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource -
+				HikariPool-1 - Shutdown completed.
+2022-11-21 09:47:38.304 [main] INFO  com.example.demo.DemoApplication -
+				Starting DemoApplication using Java 15.0.7 on DESKTOP-UN3KSEH with PID 1136 (C:\Users\liu\Desktop\MyProject\demo\target\classes started by liu in C:\Users\liu\Desktop\MyProject\demo)
+2022-11-21 09:47:38.307 [main] INFO  com.example.demo.DemoApplication -
+				No active profile set, falling back to 1 default profile: "default"
+2022-11-21 09:47:39.221 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate -
+				Multiple Spring Data modules found, entering strict repository configuration mode
+2022-11-21 09:47:39.224 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate -
+				Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2022-11-21 09:47:39.255 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate -
+				Finished Spring Data repository scanning in 16 ms. Found 0 Redis repository interfaces.
+2022-11-21 09:47:39.850 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer -
+				Tomcat initialized with port(s): 8080 (http)
+2022-11-21 09:47:39.860 [main] INFO  org.apache.coyote.http11.Http11NioProtocol -
+				Initializing ProtocolHandler ["http-nio-8080"]
+2022-11-21 09:47:39.861 [main] INFO  org.apache.catalina.core.StandardService -
+				Starting service [Tomcat]
+2022-11-21 09:47:39.862 [main] INFO  org.apache.catalina.core.StandardEngine -
+				Starting Servlet engine: [Apache Tomcat/9.0.65]
+2022-11-21 09:47:39.997 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] -
+				Initializing Spring embedded WebApplicationContext
+2022-11-21 09:47:39.997 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext -
+				Root WebApplicationContext: initialization completed in 1607 ms
+2022-11-21 09:47:42.103 [main] INFO  org.quartz.impl.StdSchedulerFactory -
+				Using default implementation for ThreadExecutor
+2022-11-21 09:47:42.119 [main] INFO  org.quartz.core.SchedulerSignalerImpl -
+				Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+2022-11-21 09:47:42.119 [main] INFO  org.quartz.core.QuartzScheduler -
+				Quartz Scheduler v.2.3.2 created.
+2022-11-21 09:47:42.121 [main] INFO  org.quartz.simpl.RAMJobStore -
+				RAMJobStore initialized.
+2022-11-21 09:47:42.122 [main] INFO  org.quartz.core.QuartzScheduler -
+				Scheduler meta-data: Quartz Scheduler (v2.3.2) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
+  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+2022-11-21 09:47:42.123 [main] INFO  org.quartz.impl.StdSchedulerFactory -
+				Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
+2022-11-21 09:47:42.124 [main] INFO  org.quartz.impl.StdSchedulerFactory -
+				Quartz scheduler version: 2.3.2
+2022-11-21 09:47:42.124 [main] INFO  org.quartz.core.QuartzScheduler -
+				JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@26c6288d
+2022-11-21 09:47:42.214 [main] INFO  org.apache.coyote.http11.Http11NioProtocol -
+				Starting ProtocolHandler ["http-nio-8080"]
+2022-11-21 09:47:42.232 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer -
+				Tomcat started on port(s): 8080 (http) with context path ''
+2022-11-21 09:47:42.235 [main] INFO  o.s.scheduling.quartz.SchedulerFactoryBean -
+				Starting Quartz Scheduler now
+2022-11-21 09:47:42.235 [main] INFO  org.quartz.core.QuartzScheduler -
+				Scheduler quartzScheduler_$_NON_CLUSTERED started.
+2022-11-21 09:47:42.256 [main] INFO  com.example.demo.DemoApplication -
+				Started DemoApplication in 5.557 seconds (JVM running for 8.28)
+2022-11-21 09:48:05.146 [http-nio-8080-exec-2] INFO  org.apache.tomcat.util.http.parser.Cookie -
+				A cookie header was received [Hm_lvt_5804d09853fcc4866132fbc306348993=1655279936,1655287959;] that contained an invalid cookie. That cookie will be ignored.
+ Note: further occurrences of this error will be logged at DEBUG level.
+2022-11-21 09:48:05.146 [http-nio-8080-exec-1] INFO  org.apache.tomcat.util.http.parser.Cookie -
+				A cookie header was received [Hm_lvt_5804d09853fcc4866132fbc306348993=1655279936,1655287959;] that contained an invalid cookie. That cookie will be ignored.
+ Note: further occurrences of this error will be logged at DEBUG level.
+2022-11-21 09:48:05.146 [http-nio-8080-exec-3] INFO  org.apache.tomcat.util.http.parser.Cookie -
+				A cookie header was received [Hm_lvt_5804d09853fcc4866132fbc306348993=1655279936,1655287959;] that contained an invalid cookie. That cookie will be ignored.
+ Note: further occurrences of this error will be logged at DEBUG level.
+2022-11-21 09:48:05.153 [http-nio-8080-exec-1] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] -
+				Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-11-21 09:48:05.155 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet -
+				Initializing Servlet 'dispatcherServlet'
+2022-11-21 09:48:05.156 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet -
+				Completed initialization in 1 ms
+2022-11-21 09:48:05.691 [http-nio-8080-exec-1] INFO  com.zaxxer.hikari.HikariDataSource -
+				HikariPool-1 - Starting...
+2022-11-21 09:48:05.854 [http-nio-8080-exec-1] INFO  com.zaxxer.hikari.HikariDataSource -
+				HikariPool-1 - Start completed.
+2022-11-21 09:56:53.801 [SpringApplicationShutdownHook] INFO  org.quartz.core.QuartzScheduler -
+				Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+2022-11-21 09:56:53.834 [SpringApplicationShutdownHook] INFO  o.s.scheduling.quartz.SchedulerFactoryBean -
+				Shutting down Quartz Scheduler
+2022-11-21 09:56:53.835 [SpringApplicationShutdownHook] INFO  org.quartz.core.QuartzScheduler -
+				Scheduler quartzScheduler_$_NON_CLUSTERED shutting down.
+2022-11-21 09:56:53.835 [SpringApplicationShutdownHook] INFO  org.quartz.core.QuartzScheduler -
+				Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+2022-11-21 09:56:53.835 [SpringApplicationShutdownHook] INFO  org.quartz.core.QuartzScheduler -
+				Scheduler quartzScheduler_$_NON_CLUSTERED shutdown complete.
+2022-11-21 09:56:53.850 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource -
+				HikariPool-1 - Shutdown initiated...
+2022-11-21 09:56:53.902 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource -
+				HikariPool-1 - Shutdown completed.
+2022-11-21 09:56:58.522 [main] INFO  com.example.demo.DemoApplication -
+				Starting DemoApplication using Java 15.0.7 on DESKTOP-UN3KSEH with PID 1408 (C:\Users\liu\Desktop\MyProject\demo\target\classes started by liu in C:\Users\liu\Desktop\MyProject\demo)
+2022-11-21 09:56:58.524 [main] INFO  com.example.demo.DemoApplication -
+				No active profile set, falling back to 1 default profile: "default"
+2022-11-21 09:56:59.247 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate -
+				Multiple Spring Data modules found, entering strict repository configuration mode
+2022-11-21 09:56:59.249 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate -
+				Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2022-11-21 09:56:59.279 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate -
+				Finished Spring Data repository scanning in 14 ms. Found 0 Redis repository interfaces.
+2022-11-21 09:56:59.828 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer -
+				Tomcat initialized with port(s): 8080 (http)
+2022-11-21 09:56:59.838 [main] INFO  org.apache.coyote.http11.Http11NioProtocol -
+				Initializing ProtocolHandler ["http-nio-8080"]
+2022-11-21 09:56:59.839 [main] INFO  org.apache.catalina.core.StandardService -
+				Starting service [Tomcat]
+2022-11-21 09:56:59.840 [main] INFO  org.apache.catalina.core.StandardEngine -
+				Starting Servlet engine: [Apache Tomcat/9.0.65]
+2022-11-21 09:57:00.001 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] -
+				Initializing Spring embedded WebApplicationContext
+2022-11-21 09:57:00.002 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext -
+				Root WebApplicationContext: initialization completed in 1414 ms
+2022-11-21 09:57:01.580 [main] INFO  org.quartz.impl.StdSchedulerFactory -
+				Using default implementation for ThreadExecutor
+2022-11-21 09:57:01.588 [main] INFO  org.quartz.core.SchedulerSignalerImpl -
+				Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+2022-11-21 09:57:01.588 [main] INFO  org.quartz.core.QuartzScheduler -
+				Quartz Scheduler v.2.3.2 created.
+2022-11-21 09:57:01.589 [main] INFO  org.quartz.simpl.RAMJobStore -
+				RAMJobStore initialized.
+2022-11-21 09:57:01.590 [main] INFO  org.quartz.core.QuartzScheduler -
+				Scheduler meta-data: Quartz Scheduler (v2.3.2) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
+  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+2022-11-21 09:57:01.590 [main] INFO  org.quartz.impl.StdSchedulerFactory -
+				Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
+2022-11-21 09:57:01.590 [main] INFO  org.quartz.impl.StdSchedulerFactory -
+				Quartz scheduler version: 2.3.2
+2022-11-21 09:57:01.590 [main] INFO  org.quartz.core.QuartzScheduler -
+				JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@154f8280
+2022-11-21 09:57:01.626 [main] INFO  org.apache.coyote.http11.Http11NioProtocol -
+				Starting ProtocolHandler ["http-nio-8080"]
+2022-11-21 09:57:01.634 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer -
+				Tomcat started on port(s): 8080 (http) with context path ''
+2022-11-21 09:57:01.635 [main] INFO  o.s.scheduling.quartz.SchedulerFactoryBean -
+				Starting Quartz Scheduler now
+2022-11-21 09:57:01.635 [main] INFO  org.quartz.core.QuartzScheduler -
+				Scheduler quartzScheduler_$_NON_CLUSTERED started.
+2022-11-21 09:57:01.645 [main] INFO  com.example.demo.DemoApplication -
+				Started DemoApplication in 3.834 seconds (JVM running for 4.741)
+2022-11-21 09:57:06.415 [SpringApplicationShutdownHook] INFO  org.quartz.core.QuartzScheduler -
+				Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+2022-11-21 09:57:06.470 [SpringApplicationShutdownHook] INFO  o.s.scheduling.quartz.SchedulerFactoryBean -
+				Shutting down Quartz Scheduler
+2022-11-21 09:57:06.471 [SpringApplicationShutdownHook] INFO  org.quartz.core.QuartzScheduler -
+				Scheduler quartzScheduler_$_NON_CLUSTERED shutting down.
+2022-11-21 09:57:06.471 [SpringApplicationShutdownHook] INFO  org.quartz.core.QuartzScheduler -
+				Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+2022-11-21 09:57:06.472 [SpringApplicationShutdownHook] INFO  org.quartz.core.QuartzScheduler -
+				Scheduler quartzScheduler_$_NON_CLUSTERED shutdown complete.
+2022-11-21 09:57:13.115 [main] INFO  com.example.demo.DemoApplication -
+				Starting DemoApplication using Java 15.0.7 on DESKTOP-UN3KSEH with PID 2776 (C:\Users\liu\Desktop\MyProject\demo\target\classes started by liu in C:\Users\liu\Desktop\MyProject\demo)
+2022-11-21 09:57:13.118 [main] INFO  com.example.demo.DemoApplication -
+				No active profile set, falling back to 1 default profile: "default"
+2022-11-21 09:57:13.745 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate -
+				Multiple Spring Data modules found, entering strict repository configuration mode
+2022-11-21 09:57:13.747 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate -
+				Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2022-11-21 09:57:13.773 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate -
+				Finished Spring Data repository scanning in 13 ms. Found 0 Redis repository interfaces.
+2022-11-21 09:57:14.285 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer -
+				Tomcat initialized with port(s): 8080 (http)
+2022-11-21 09:57:14.293 [main] INFO  org.apache.coyote.http11.Http11NioProtocol -
+				Initializing ProtocolHandler ["http-nio-8080"]
+2022-11-21 09:57:14.293 [main] INFO  org.apache.catalina.core.StandardService -
+				Starting service [Tomcat]
+2022-11-21 09:57:14.293 [main] INFO  org.apache.catalina.core.StandardEngine -
+				Starting Servlet engine: [Apache Tomcat/9.0.65]
+2022-11-21 09:57:14.446 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] -
+				Initializing Spring embedded WebApplicationContext
+2022-11-21 09:57:14.446 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext -
+				Root WebApplicationContext: initialization completed in 1268 ms
+2022-11-21 09:57:16.077 [main] INFO  org.quartz.impl.StdSchedulerFactory -
+				Using default implementation for ThreadExecutor
+2022-11-21 09:57:16.092 [main] INFO  org.quartz.core.SchedulerSignalerImpl -
+				Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+2022-11-21 09:57:16.092 [main] INFO  org.quartz.core.QuartzScheduler -
+				Quartz Scheduler v.2.3.2 created.
+2022-11-21 09:57:16.094 [main] INFO  org.quartz.simpl.RAMJobStore -
+				RAMJobStore initialized.
+2022-11-21 09:57:16.096 [main] INFO  org.quartz.core.QuartzScheduler -
+				Scheduler meta-data: Quartz Scheduler (v2.3.2) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
+  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+2022-11-21 09:57:16.098 [main] INFO  org.quartz.impl.StdSchedulerFactory -
+				Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
+2022-11-21 09:57:16.098 [main] INFO  org.quartz.impl.StdSchedulerFactory -
+				Quartz scheduler version: 2.3.2
+2022-11-21 09:57:16.098 [main] INFO  org.quartz.core.QuartzScheduler -
+				JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@31183ee2
+2022-11-21 09:57:16.166 [main] INFO  org.apache.coyote.http11.Http11NioProtocol -
+				Starting ProtocolHandler ["http-nio-8080"]
+2022-11-21 09:57:16.177 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer -
+				Tomcat started on port(s): 8080 (http) with context path ''
+2022-11-21 09:57:16.179 [main] INFO  o.s.scheduling.quartz.SchedulerFactoryBean -
+				Starting Quartz Scheduler now
+2022-11-21 09:57:16.179 [main] INFO  org.quartz.core.QuartzScheduler -
+				Scheduler quartzScheduler_$_NON_CLUSTERED started.
+2022-11-21 09:57:16.190 [main] INFO  com.example.demo.DemoApplication -
+				Started DemoApplication in 3.754 seconds (JVM running for 4.587)
+2022-11-21 09:57:22.631 [http-nio-8080-exec-1] INFO  org.apache.tomcat.util.http.parser.Cookie -
+				A cookie header was received [Hm_lvt_5804d09853fcc4866132fbc306348993=1655279936,1655287959;] that contained an invalid cookie. That cookie will be ignored.
+ Note: further occurrences of this error will be logged at DEBUG level.
+2022-11-21 09:57:22.643 [http-nio-8080-exec-3] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] -
+				Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-11-21 09:57:22.643 [http-nio-8080-exec-3] INFO  org.springframework.web.servlet.DispatcherServlet -
+				Initializing Servlet 'dispatcherServlet'
+2022-11-21 09:57:22.644 [http-nio-8080-exec-3] INFO  org.springframework.web.servlet.DispatcherServlet -
+				Completed initialization in 1 ms
+2022-11-21 09:57:23.184 [http-nio-8080-exec-2] INFO  com.zaxxer.hikari.HikariDataSource -
+				HikariPool-1 - Starting...
+2022-11-21 09:57:23.298 [http-nio-8080-exec-2] INFO  com.zaxxer.hikari.HikariDataSource -
+				HikariPool-1 - Start completed.
+2022-11-21 10:08:45.394 [SpringApplicationShutdownHook] INFO  org.quartz.core.QuartzScheduler -
+				Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+2022-11-21 10:08:45.483 [SpringApplicationShutdownHook] INFO  o.s.scheduling.quartz.SchedulerFactoryBean -
+				Shutting down Quartz Scheduler
+2022-11-21 10:08:45.486 [SpringApplicationShutdownHook] INFO  org.quartz.core.QuartzScheduler -
+				Scheduler quartzScheduler_$_NON_CLUSTERED shutting down.
+2022-11-21 10:08:45.487 [SpringApplicationShutdownHook] INFO  org.quartz.core.QuartzScheduler -
+				Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+2022-11-21 10:08:45.489 [SpringApplicationShutdownHook] INFO  org.quartz.core.QuartzScheduler -
+				Scheduler quartzScheduler_$_NON_CLUSTERED shutdown complete.
+2022-11-21 10:08:45.502 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource -
+				HikariPool-1 - Shutdown initiated...
+2022-11-21 10:08:45.592 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource -
+				HikariPool-1 - Shutdown completed.
+2022-11-21 10:09:29.834 [main] INFO  com.example.demo.DemoApplication -
+				Starting DemoApplication using Java 15.0.7 on DESKTOP-UN3KSEH with PID 12580 (C:\Users\liu\Desktop\MyProject\demo\target\classes started by liu in C:\Users\liu\Desktop\MyProject\demo)
+2022-11-21 10:09:29.836 [main] INFO  com.example.demo.DemoApplication -
+				No active profile set, falling back to 1 default profile: "default"
+2022-11-21 10:09:30.489 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate -
+				Multiple Spring Data modules found, entering strict repository configuration mode
+2022-11-21 10:09:30.492 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate -
+				Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2022-11-21 10:09:30.525 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate -
+				Finished Spring Data repository scanning in 16 ms. Found 0 Redis repository interfaces.
+2022-11-21 10:09:31.160 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer -
+				Tomcat initialized with port(s): 8080 (http)
+2022-11-21 10:09:31.173 [main] INFO  org.apache.coyote.http11.Http11NioProtocol -
+				Initializing ProtocolHandler ["http-nio-8080"]
+2022-11-21 10:09:31.174 [main] INFO  org.apache.catalina.core.StandardService -
+				Starting service [Tomcat]
+2022-11-21 10:09:31.175 [main] INFO  org.apache.catalina.core.StandardEngine -
+				Starting Servlet engine: [Apache Tomcat/9.0.65]
+2022-11-21 10:09:31.350 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] -
+				Initializing Spring embedded WebApplicationContext
+2022-11-21 10:09:31.350 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext -
+				Root WebApplicationContext: initialization completed in 1460 ms
+2022-11-21 10:09:33.039 [main] INFO  org.quartz.impl.StdSchedulerFactory -
+				Using default implementation for ThreadExecutor
+2022-11-21 10:09:33.048 [main] INFO  org.quartz.core.SchedulerSignalerImpl -
+				Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+2022-11-21 10:09:33.048 [main] INFO  org.quartz.core.QuartzScheduler -
+				Quartz Scheduler v.2.3.2 created.
+2022-11-21 10:09:33.049 [main] INFO  org.quartz.simpl.RAMJobStore -
+				RAMJobStore initialized.
+2022-11-21 10:09:33.051 [main] INFO  org.quartz.core.QuartzScheduler -
+				Scheduler meta-data: Quartz Scheduler (v2.3.2) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
+  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+2022-11-21 10:09:33.052 [main] INFO  org.quartz.impl.StdSchedulerFactory -
+				Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
+2022-11-21 10:09:33.052 [main] INFO  org.quartz.impl.StdSchedulerFactory -
+				Quartz scheduler version: 2.3.2
+2022-11-21 10:09:33.052 [main] INFO  org.quartz.core.QuartzScheduler -
+				JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@3bcedb06
+2022-11-21 10:09:33.117 [main] INFO  org.apache.coyote.http11.Http11NioProtocol -
+				Starting ProtocolHandler ["http-nio-8080"]
+2022-11-21 10:09:33.131 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer -
+				Tomcat started on port(s): 8080 (http) with context path ''
+2022-11-21 10:09:33.132 [main] INFO  o.s.scheduling.quartz.SchedulerFactoryBean -
+				Starting Quartz Scheduler now
+2022-11-21 10:09:33.132 [main] INFO  org.quartz.core.QuartzScheduler -
+				Scheduler quartzScheduler_$_NON_CLUSTERED started.
+2022-11-21 10:09:33.144 [main] INFO  com.example.demo.DemoApplication -
+				Started DemoApplication in 3.925 seconds (JVM running for 4.725)
+2022-11-21 10:09:37.708 [http-nio-8080-exec-2] INFO  org.apache.tomcat.util.http.parser.Cookie -
+				A cookie header was received [Hm_lvt_5804d09853fcc4866132fbc306348993=1655279936,1655287959;] that contained an invalid cookie. That cookie will be ignored.
+ Note: further occurrences of this error will be logged at DEBUG level.
+2022-11-21 10:09:37.708 [http-nio-8080-exec-1] INFO  org.apache.tomcat.util.http.parser.Cookie -
+				A cookie header was received [Hm_lvt_5804d09853fcc4866132fbc306348993=1655279936,1655287959;] that contained an invalid cookie. That cookie will be ignored.
+ Note: further occurrences of this error will be logged at DEBUG level.
+2022-11-21 10:09:37.708 [http-nio-8080-exec-3] INFO  org.apache.tomcat.util.http.parser.Cookie -
+				A cookie header was received [Hm_lvt_5804d09853fcc4866132fbc306348993=1655279936,1655287959;] that contained an invalid cookie. That cookie will be ignored.
+ Note: further occurrences of this error will be logged at DEBUG level.
+2022-11-21 10:09:37.708 [http-nio-8080-exec-4] INFO  org.apache.tomcat.util.http.parser.Cookie -
+				A cookie header was received [Hm_lvt_5804d09853fcc4866132fbc306348993=1655279936,1655287959;] that contained an invalid cookie. That cookie will be ignored.
+ Note: further occurrences of this error will be logged at DEBUG level.
+2022-11-21 10:09:37.722 [http-nio-8080-exec-4] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] -
+				Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-11-21 10:09:37.722 [http-nio-8080-exec-4] INFO  org.springframework.web.servlet.DispatcherServlet -
+				Initializing Servlet 'dispatcherServlet'
+2022-11-21 10:09:37.725 [http-nio-8080-exec-4] INFO  org.springframework.web.servlet.DispatcherServlet -
+				Completed initialization in 3 ms
+2022-11-21 10:09:38.295 [http-nio-8080-exec-3] INFO  com.zaxxer.hikari.HikariDataSource -
+				HikariPool-1 - Starting...
+2022-11-21 10:09:38.428 [http-nio-8080-exec-3] INFO  com.zaxxer.hikari.HikariDataSource -
+				HikariPool-1 - Start completed.
+2022-11-21 12:27:29.169 [SpringApplicationShutdownHook] INFO  org.quartz.core.QuartzScheduler -
+				Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+2022-11-21 12:27:29.198 [SpringApplicationShutdownHook] INFO  o.s.scheduling.quartz.SchedulerFactoryBean -
+				Shutting down Quartz Scheduler
+2022-11-21 12:27:29.198 [SpringApplicationShutdownHook] INFO  org.quartz.core.QuartzScheduler -
+				Scheduler quartzScheduler_$_NON_CLUSTERED shutting down.
+2022-11-21 12:27:29.198 [SpringApplicationShutdownHook] INFO  org.quartz.core.QuartzScheduler -
+				Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+2022-11-21 12:27:29.199 [SpringApplicationShutdownHook] INFO  org.quartz.core.QuartzScheduler -
+				Scheduler quartzScheduler_$_NON_CLUSTERED shutdown complete.
+2022-11-21 12:27:29.204 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource -
+				HikariPool-1 - Shutdown initiated...
+2022-11-21 12:27:29.208 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource -
+				HikariPool-1 - Shutdown completed.

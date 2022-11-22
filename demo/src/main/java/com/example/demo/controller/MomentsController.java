@@ -78,4 +78,15 @@ public class MomentsController {
         return Result.getSuccessResult(res);
 
     }
+
+    /**\
+     *根据学生id查询所有动态
+     * @param studentId
+     * @return
+     */
+    @GetMapping("/getMomentsAndStudentByStuId")
+    public Result<List<Map<String,Object>>> getMomentsAndStudentByStuId( String studentId){
+        List<Map<String, Object>> list = momentsService.getMomentsAndStudentByStuId(studentId);
+        return Result.getSuccessResult(list);
+    }
 }
