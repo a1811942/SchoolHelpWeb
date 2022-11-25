@@ -11,6 +11,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
+/**
+ * 点赞
+ */
 @Service
 public class LikeServiceImpl extends ServiceImpl<LikeDao, UserLike> implements LikeService {
     @Autowired

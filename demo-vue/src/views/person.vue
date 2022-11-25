@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="background">
     <el-container>
       <el-header width="100%">
         <el-card class="box-card1" shadow="hover">
@@ -27,10 +27,11 @@
           <br />
           <div style="float: right">
             <el-button type="info" @click="updatePerson">编辑资料</el-button>
+            <br/>
+            <br/>
           </div>
-          <br />
-          <br />
-          <div style="text-align: center">
+          
+          <div >
             <el-upload
               class="avatar-uploader"
               action=" http://localhost:8080/demo/UpdateAndDown/upload"
@@ -48,10 +49,21 @@
                 class="avatar2"
               />
             </el-upload>
+            <div class="name" >{{ruleForm.name}}</div>
+            {{ruleForm.username}}
+            <br/><br/>
+            {{ruleForm.signature}}
+            <br/><br/>
+            <el-button link type="" key="plain" style="font-size:20px" >关注</el-button>
+            <el-button link type="" key="plain" style="font-size:20px">粉丝</el-button>
           </div>
           <el-tabs v-model="activeName" class="aa" @tab-click="handleClick">
             <div class="aa">
               <el-tab-pane label="委托" name="first" @click="getCommission">
+                <el-button color="#626aef" >我的发布</el-button>
+                <el-button color="#626aef" >Default</el-button>
+                <el-button color="#626aef" >我的接单</el-button>
+
                 <div
                   v-for="o in commissions.commission"
                   :key="o"
@@ -124,7 +136,6 @@
                 </div>
               </el-tab-pane>
             </div>
-            <button @click="getCommission">aaaaaa</button>
             <el-tab-pane label="动态" name="second" @click="getMoments">
               <div v-for="o in moments.moments" :key="o">
                 <el-card
@@ -237,9 +248,10 @@
                 </el-card>
               </div>
             </el-tab-pane>
-            <el-tab-pane label="文章" name="third">Role</el-tab-pane>
-            <el-tab-pane label="关注" name="fourth">Task</el-tab-pane>
+            <el-tab-pane label="文章" name="third"></el-tab-pane>
+            <el-tab-pane label="关注" name="fourth"></el-tab-pane>
           </el-tabs>
+
         </el-aside>
         <el-main>Main</el-main>
       </el-container>
@@ -428,6 +440,7 @@ const ruleForm = reactive({
   avatar: "",
   signature: "",
   age: "",
+  username:""
 });
 //修改委托表单
 const form = reactive({
@@ -593,6 +606,7 @@ const saveComment = (momentsId) => {
     });
 };
 //-----个人资料--个人资料-------个人资料-----------个人资料----------------------个人资料-----------个人资料
+//点关注
 
 //获取个人信息
 const getPerson = () => {
@@ -615,6 +629,7 @@ const getPerson = () => {
       ruleForm.birthday = res.data.result.birthday;
       ruleForm.signature = res.data.result.signature;
       ruleForm.age = res.data.result.age;
+      ruleForm.username = res.data.result.username;
     })
     .catch((error) => {
       ElMessage.error("查看评论失败");
@@ -647,6 +662,10 @@ const submitForm = async (formEl: FormInstance | undefined) => {
         )
         .then((res) => {
           dialogTableVisible.value = false;
+          sessionStorage.removeItem("studentName")
+          sessionStorage.setItem("studentName",ruleForm.name)
+          location.reload()
+
         })
         .catch((error) => {
           ElMessage.error("修改个人信息失败");
@@ -976,7 +995,13 @@ const rules2 = reactive<FormRules>({
     <style>
 .top-card {
   font-weight: bold;
+  
   font-size: x-large;
+}
+.name{
+  font-weight: 550;
+  
+  font-size: larger;
 }
 .headerInput {
   width: 400px;
@@ -1047,5 +1072,8 @@ const rules2 = reactive<FormRules>({
   height: 178px;
   border-radius: 89px;
   text-align: center;
+}
+.background{
+  background-color: #ffffff;
 }
 </style>

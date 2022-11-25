@@ -25,6 +25,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+/**
+ * 论坛
+ */
 @Service
 public class ForumServiceImpl extends ServiceImpl<ForumDao, Forum> implements ForumService {
     @Autowired

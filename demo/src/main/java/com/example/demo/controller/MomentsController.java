@@ -35,7 +35,6 @@ public class MomentsController {
     @PostMapping("/getMomentsAndStudent")
     public Result<List<Map<String, Object>>> getMomentsAndStudent(HttpServletRequest request) {
         List<Map<String, Object>> list = momentsService.getMomentsStudent();
-        System.out.println("session=="+ request.getSession().getAttribute("studentId"));
         return Result.getSuccessResult(list);
 
     }

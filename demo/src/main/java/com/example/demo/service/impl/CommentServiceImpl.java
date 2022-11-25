@@ -16,7 +16,9 @@ import java.sql.Timestamp;
 import java.util.List;
 import java.util.Map;
 
-
+/**
+ * 评论
+ */
 @Service
 public class CommentServiceImpl extends ServiceImpl<CommentDao, Comment> implements CommentService {
 

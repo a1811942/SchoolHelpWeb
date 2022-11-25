@@ -1,5 +1,5 @@
 <template class="page-box" >
-  <div >
+  <div>
     <el-container>
       <!-- 头部卡片 -->
       <el-header width="100%">
@@ -67,8 +67,14 @@
               <el-container>
                 <el-aside width="50px">
                   <!-- 头像 -->
-                  <el-avatar :size="50" :src="'http://localhost:8080/demo/UpdateAndDown/down?name=' +o.avatar"
-                   @click="checkPerson(o.studentId)" class="avatar"
+                  <el-avatar
+                    :size="50"
+                    :src="
+                      'http://localhost:8080/demo/UpdateAndDown/down?name=' +
+                      o.avatar
+                    "
+                    @click="seekPerson(o.studentId)"
+                    class="avatar"
                 /></el-aside>
                 <el-container>
                   <el-header height="10px">
@@ -128,22 +134,31 @@
                 size="large"
                 border
               >
-
                 <el-descriptions-item label="学校">
                   <el-tag size="small">{{ o.school }}</el-tag>
                 </el-descriptions-item>
                 <el-descriptions-item label="地址">{{
                   o.commissionAddress
                 }}</el-descriptions-item>
-                <div v-if="o.status == '1' && o.employeeId == studentId">
+
+                  <!-- 如果是自己的委托 可以查看联系方式 -->
+                <div v-if="o.studentId == studentId">
                   <el-descriptions-item label="联系方式" :span="2">
                     {{ o.contact }}
                   </el-descriptions-item>
                 </div>
+
+                <!-- 如果接了这个委托 可以查看联系方式 -->
+                <div v-if="o.status == '1' && o.acceptStudentId == studentId">
+                  <el-descriptions-item label="联系方式" :span="2">
+                    {{ o.contact }}
+                  </el-descriptions-item>
+                </div>
+                <!-- 未接单 不可查看 -->
                 <div
                   v-if="
                     o.status == '0' ||
-                    (o.status == '1' && o.employeeId != studentId)
+                    (o.status == '1' && o.acceptStudentId != studentId)
                   "
                 >
                   <el-descriptions-item label="联系方式" :span="2">
@@ -162,11 +177,7 @@
           </div>
         </el-aside>
         <el-main>
-
-          <el-card class="right-card" >
-
-          </el-card>
-
+          <el-card class="right-card"> </el-card>
         </el-main>
       </el-container>
     </el-container>
@@ -222,14 +233,12 @@
       </template>
     </el-dialog>
     <!-- 成功对话框 -->
-    <el-dialog  v-model="centerDialogVisible2" width="300px" :show-close="false">
-      <el-result
-        icon="success"
-        title="发布成功"
-        sub-title=""
-      >
+    <el-dialog v-model="centerDialogVisible2" width="300px" :show-close="false">
+      <el-result icon="success" title="发布成功" sub-title="">
         <template #extra>
-          <el-button type="primary" @click="centerDialogVisible2=false">返回</el-button>
+          <el-button type="primary" @click="centerDialogVisible2 = false"
+            >返回</el-button
+          >
         </template>
       </el-result>
     </el-dialog>
@@ -271,20 +280,36 @@ const form = reactive({
   region: "",
   date1: "",
   date2: "",
-  address:"",
-  contact:"",
+  address: "",
+  contact: "",
   sex: "",
   content: "",
   money: "",
 });
-//点击头像查看信息
-const  checkPerson=(a)=>{
-  console.log("aaaaaaaaaaaaaa",a)
+
+//查看用户信息，将想要查看的用户id传到person_other中
+
+const seekPerson = (id) => {
+  if(id===sessionStorage.getItem("studentId")){
+    router.push({
+    path: "/home/person",
+  });
+  }
+  else{
+    router.push({
+    path: "/home/person_other",
+    query: { toStudentId: id },
+  });
+  }
+
+};
+//进行聊天
+const checkPersonChat = (id) => {
   router.push({
-          path: "/home/person/chat",
-          query: { toStudentId: a }
-        });
-}
+    path: "/home/person/chat",
+    query: { toStudentId: id },
+  });
+};
 //发布委托表单
 const submitForm = async (formEl: FormInstance | undefined) => {
   if (!formEl) return;
@@ -299,8 +324,8 @@ const submitForm = async (formEl: FormInstance | undefined) => {
             limitSex: form.sex,
             content: form.content,
             money: form.money,
-            contact:form.contact,
-            address:form.address
+            contact: form.contact,
+            address: form.address,
           },
           {
             headers: {
@@ -356,7 +381,11 @@ const recept = (id) => {
     .post(
       "/demo/commission/setStatusOne",
 
-      { id: id, acceptStudentId: sessionStorage.getItem("studentId"),acceptName:sessionStorage.getItem("studentName") },
+      {
+        id: id,
+        acceptStudentId: sessionStorage.getItem("studentId"),
+        acceptName: sessionStorage.getItem("studentName"),
+      },
       {
         headers: {
           token: sessionStorage.getItem("token"),
@@ -389,24 +418,24 @@ const commissions = reactive({
   commission: [],
 });
 //查询接单人信息
-const getAcceptStudentByAcceptStudentId = (AcceptStudentId) => {
-  axios
-    .post(
-      "/demo/commission/getAcceptStudentByAcceptStudentId",
-      {
-        headers: {
-          token: sessionStorage.getItem("token"),
-        },
-      }
-    )
-    .then((res) => {
-      commissions.commission = res.data.result;
-      console.log("");
-    })
-    .catch((error) => {
-      ElMessage.error("查看评论失败");
-    });
-};
+// const getAcceptStudentByAcceptStudentId = (AcceptStudentId) => {
+//   axios
+//     .post(
+//       "/demo/commission/getAcceptStudentByAcceptStudentId",
+//       {
+//         headers: {
+//           token: sessionStorage.getItem("token"),
+//         },
+//       }
+//     )
+//     .then((res) => {
+//       commissions.commission = res.data.result;
+//       console.log("");
+//     })
+//     .catch((error) => {
+//       ElMessage.error("查看评论失败");
+//     });
+// };
 //查询所有的委托信息
 const getCommissionAndStudent = () => {
   axios
@@ -593,21 +622,21 @@ const rules = reactive<FormRules>({
   font-size: larger;
   height: 30px;
 }
-body{
+body {
   height: 100%;
 }
-.page-box{
+.page-box {
   background-color: brown;
   height: 100%;
 }
-.right-card{
+.right-card {
   position: fixed;
   height: 600px;
   width: 380px;
   top: 80px;
   color: coral;
 }
-.avatar{
+.avatar {
   cursor: pointer;
 }
 </style>

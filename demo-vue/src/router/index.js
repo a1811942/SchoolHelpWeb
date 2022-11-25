@@ -13,6 +13,7 @@ import Information2 from '../views/information2.vue'
 import Information from '../views/information.vue'
 import Commission from '../views/commission.vue'
 import Person from '../views/person.vue'
+import Person_other from '../views/person_other.vue'
 import Forum from '../views/forum.vue'
 import Chat from '../views/person/chat.vue'
 import PersonInformation from '../views/person/person_information.vue'
@@ -81,6 +82,11 @@ const routes = [{
 		
 			]
 
+		},
+		{
+			path: '/home/person_other',
+			component: Person_other,
+			
 		},
 		{
 			path: '/home/forum',

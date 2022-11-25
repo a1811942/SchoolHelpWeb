@@ -21,7 +21,7 @@ import Header from "../components/Header.vue";
   padding-bottom: 0px;
   -webkit-transition: left 0.3s ease-in-out;
   transition: left 0.3s ease-in-out;
-  background: #f0f0f0;
+  background: #ffffff;
 }
 
 .content-collapse {
@@ -39,7 +39,7 @@ import Header from "../components/Header.vue";
   height: 99%;
   padding: 0px;
   box-sizing: border-box;
-  background: #f0f0f0;
+  background: #ffffff;
   overflow-y: auto;
 }
 </style>

@@ -126,8 +126,15 @@
 
             <br />
             <br />
-            <el-row justify="end">
-              <el-button type="primary" round @click="saveComment"
+            <el-row justify="end" v-if="comment===''">
+              
+              <el-button type="primary" round @click="saveComment" disabled="false"
+                >评论</el-button
+              >
+            </el-row>
+            <el-row justify="end" v-if="comment!=''">
+              
+              <el-button type="primary" round @click="saveComment" 
                 >评论</el-button
               >
             </el-row>
@@ -293,6 +300,7 @@ const deleteComment = (commentId) => {
             message: "删除成功",
           });
           getCommentAndStudentByMomentId();
+          getMomentsAndStudentById();
           }
           if(res.data.result<=0){
             ElMessage.error("删除评论失败");

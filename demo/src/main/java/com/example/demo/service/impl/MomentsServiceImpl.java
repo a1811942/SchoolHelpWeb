@@ -56,7 +56,6 @@ public class MomentsServiceImpl extends ServiceImpl<MomentsDao, Moments> impleme
     @Override
     public List<Map<String, Object>> getMomentsStudent() {
         List<Map<String, Object>> list = momentsDao.getMomentsAndStudent();//查询所有动态
-        LambdaQueryWrapper<Comment> queryWrapper = new LambdaQueryWrapper<>();
 
 
         for (Map<String, Object> stringObjectMap : list) {//遍历
@@ -67,6 +66,7 @@ public class MomentsServiceImpl extends ServiceImpl<MomentsDao, Moments> impleme
             stringObjectMap.put("photoName", photoList);//放到map中
             String s = DetermineTime.showDate(date, "yyyy年MM月dd日HH:mm");
             //根据动态id获取评论数量
+            LambdaQueryWrapper<Comment> queryWrapper = new LambdaQueryWrapper<>();
             queryWrapper.eq(Comment::getMomentsId,momentsId);
             Integer count = commentDao.selectCount(queryWrapper);
             stringObjectMap.put("count", count);
@@ -97,7 +97,7 @@ public class MomentsServiceImpl extends ServiceImpl<MomentsDao, Moments> impleme
         int likeCount = likeService.getLikeCount(key);
         //根据动态id获取评论数量
         LambdaQueryWrapper<Comment> queryWrapper = new LambdaQueryWrapper<>();
-        queryWrapper.eq(Comment::getMomentsId,momentsId);
+         queryWrapper.eq(Comment::getMomentsId,momentsId);
         Integer count = commentDao.selectCount(queryWrapper);
         map.put("commentCount", count);
         map.put("date", dateString);
