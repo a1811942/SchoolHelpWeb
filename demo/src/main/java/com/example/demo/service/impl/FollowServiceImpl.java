@@ -71,4 +71,30 @@ public class FollowServiceImpl extends ServiceImpl<FollowDao, Follow> implements
         //未关注
         return "2";
     }
+
+    /**
+     * 根据当前用户查看关注的人数的总数量
+     * @param selfStudentId
+     * @return
+     */
+    @Override
+    public Integer getFollowCount(String selfStudentId) {
+        LambdaQueryWrapper<Follow> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.eq(Follow::getSelfStudentId,selfStudentId);
+        Integer count = followDao.selectCount(queryWrapper);
+        return count;
+    }
+
+    /**
+     * 根据当前用户查看 粉丝的人数的总数量
+     * @param followStudentId
+     * @return
+     */
+    @Override
+    public Integer getFansCount(String followStudentId) {
+        LambdaQueryWrapper<Follow> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.eq(Follow::getFollowStudentId,followStudentId);
+        Integer count = followDao.selectCount(queryWrapper);
+        return count;
+    }
 }

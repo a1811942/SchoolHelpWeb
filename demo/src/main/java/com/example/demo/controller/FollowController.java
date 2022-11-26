@@ -34,4 +34,26 @@ public class FollowController {
         String res = followService.isPointStudent(follow);
         return Result.getSuccessResult(res);
     }
+
+    /**
+     * 根据当前用户查看关注的人数的总数量
+     * @param selfStudentId
+     * @return
+     */
+    @PostMapping("/getFollowCount")
+    public Result<Integer> getFollowCount(@RequestBody  String selfStudentId){
+        Integer count = followService.getFollowCount(selfStudentId);
+        return Result.getSuccessResult(count);
+    }
+
+    /**
+     * 根据当前用户查看 粉丝的人数的总数量
+     * @param selfStudentId
+     * @return
+     */
+    @PostMapping("/getFansCount")
+    public Result<Integer> getFansCount(@RequestBody  String followStudentId){
+        Integer count = followService.getFansCount(followStudentId);
+        return Result.getSuccessResult(count);
+    }
 }

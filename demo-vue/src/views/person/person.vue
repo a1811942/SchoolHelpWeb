@@ -27,11 +27,11 @@
           <br />
           <div style="float: right">
             <el-button type="info" @click="updatePerson">编辑资料</el-button>
-            <br/>
-            <br/>
+            <br />
+            <br />
           </div>
-          
-          <div >
+
+          <div>
             <el-upload
               class="avatar-uploader"
               action=" http://localhost:8080/demo/UpdateAndDown/upload"
@@ -49,20 +49,26 @@
                 class="avatar2"
               />
             </el-upload>
-            <div class="name" >{{ruleForm.name}}</div>
-            {{ruleForm.username}}
-            <br/><br/>
-            {{ruleForm.signature}}
-            <br/><br/>
-            <el-button link type="" key="plain" style="font-size:20px" >关注</el-button>
-            <el-button link type="" key="plain" style="font-size:20px">粉丝</el-button>
+            <div class="name">{{ ruleForm.name }}</div>
+            {{ ruleForm.username }}
+            <br /><br />
+            {{ ruleForm.signature }}
+            <br /><br />
+           
+           
+            <el-button link type="" key="plain" style="font-size: 20px" @click="getfollows()"
+              >{{ follow.count}}关注</el-button
+            >&nbsp;&nbsp;
+            <el-button link type="" key="plain" style="font-size: 20px"
+              >{{follow.fans}}粉丝</el-button
+            >
           </div>
           <el-tabs v-model="activeName" class="aa" @tab-click="handleClick">
             <div class="aa">
               <el-tab-pane label="委托" name="first" @click="getCommission">
-                <el-button color="#626aef" >我的发布</el-button>
-                <el-button color="#626aef" >Default</el-button>
-                <el-button color="#626aef" >我的接单</el-button>
+                <el-button color="#626aef">我的发布</el-button>
+                <el-button color="#626aef">Default</el-button>
+                <el-button color="#626aef">我的接单</el-button>
 
                 <div
                   v-for="o in commissions.commission"
@@ -251,7 +257,6 @@
             <el-tab-pane label="文章" name="third"></el-tab-pane>
             <el-tab-pane label="关注" name="fourth"></el-tab-pane>
           </el-tabs>
-
         </el-aside>
         <el-main>Main</el-main>
       </el-container>
@@ -384,25 +389,25 @@
       </span>
     </template>
   </el-dialog>
-      <!-- 外面评论对话框 -->
-      <el-dialog v-model="dialogTableVisible2" title="评论">
-      <el-input
-        :rows="2"
-        type="textarea"
-        placeholder="评论"
-        class="textarea"
-        clearable
-        v-model="comment"
-      />
+  <!-- 外面评论对话框 -->
+  <el-dialog v-model="dialogTableVisible2" title="评论">
+    <el-input
+      :rows="2"
+      type="textarea"
+      placeholder="评论"
+      class="textarea"
+      clearable
+      v-model="comment"
+    />
 
-      <br />
-      <br />
-      <el-row justify="end">
-        <el-button type="primary" round @click="saveComment(selectMomentstId)"
-          >评论</el-button
-        >
-      </el-row>
-    </el-dialog>
+    <br />
+    <br />
+    <el-row justify="end">
+      <el-button type="primary" round @click="saveComment(selectMomentstId)"
+        >评论</el-button
+      >
+    </el-row>
+  </el-dialog>
 </template>
     <script setup lang="ts">
 import { Search } from "@element-plus/icons-vue";
@@ -417,14 +422,14 @@ import {
 } from "element-plus";
 import axios from "axios";
 import { InfoFilled } from "@element-plus/icons-vue";
-import router from "../router";
+import router from "../../router"
 const activeName = ref("first");
 const dialogTableVisible = ref(false);
 const dialogTableVisible2 = ref(false);
 const ruleFormRef = ref<FormInstance>();
 const nowStudentId = sessionStorage.getItem("studentId");
 const headerObj = ref({ token: sessionStorage.getItem("token") });
-const selectMomentstId=ref('')
+const selectMomentstId = ref("");
 
 //修改个人质料表单
 const ruleForm = reactive({
@@ -440,7 +445,7 @@ const ruleForm = reactive({
   avatar: "",
   signature: "",
   age: "",
-  username:""
+  username: "",
 });
 //修改委托表单
 const form = reactive({
@@ -472,8 +477,14 @@ const moments = reactive({
 });
 const centerDialogVisible = ref(false);
 onMounted(() => {
+  //查看关注数量
+  getFollowCount();
+  getFansCount();
+  //获取个人信息
   getPerson();
+  //获取委托
   getCommission();
+  //获取动态
   getMoments();
 });
 //-------------------------------------动态---------动态------------动态------动态------------------------
@@ -570,10 +581,10 @@ const getMoments = () => {
     });
 };
 //点击评论按钮
-const beforeComment=(id)=>{
-  dialogTableVisible2.value=true;
-  selectMomentstId.value=id;
-}
+const beforeComment = (id) => {
+  dialogTableVisible2.value = true;
+  selectMomentstId.value = id;
+};
 //评论
 const comment = ref("");
 const saveComment = (momentsId) => {
@@ -594,7 +605,7 @@ const saveComment = (momentsId) => {
     )
     .then((res) => {
       comment.value = "";
-      if(res.data.result===false){
+      if (res.data.result === false) {
         ElMessage.error("评论失败");
       }
 
@@ -603,6 +614,48 @@ const saveComment = (momentsId) => {
     })
     .catch((error) => {
       ElMessage.error("评论失败");
+    });
+};
+
+//关注****----------------------关注--------------------关注-------------------关注-------------
+const follow = reactive({
+  count: "",
+  fans:"",
+});
+//查看关注的人 跳转页面
+const getfollows=()=>{
+  router.push({
+    path:"/home/person/person_follow"
+  })
+}
+//根据用户id查看粉丝的数量
+const getFansCount = () => {
+  axios
+    .post("/demo/follow/getFansCount", nowStudentId, {
+      headers: {
+        token: sessionStorage.getItem("token"),
+      },
+    })
+    .then((res) => {
+      follow.fans = res.data.result;
+    })
+    .catch((error) => {
+      ElMessage.error("查看粉丝数量失败");
+    });
+};
+//根据用户id查看关注的数量
+const getFollowCount = () => {
+  axios
+    .post("/demo/follow/getFollowCount", nowStudentId, {
+      headers: {
+        token: sessionStorage.getItem("token"),
+      },
+    })
+    .then((res) => {
+      follow.count = res.data.result;
+    })
+    .catch((error) => {
+      ElMessage.error("查看关注数量失败");
     });
 };
 //-----个人资料--个人资料-------个人资料-----------个人资料----------------------个人资料-----------个人资料
@@ -662,10 +715,9 @@ const submitForm = async (formEl: FormInstance | undefined) => {
         )
         .then((res) => {
           dialogTableVisible.value = false;
-          sessionStorage.removeItem("studentName")
-          sessionStorage.setItem("studentName",ruleForm.name)
-          location.reload()
-
+          sessionStorage.removeItem("studentName");
+          sessionStorage.setItem("studentName", ruleForm.name);
+          location.reload();
         })
         .catch((error) => {
           ElMessage.error("修改个人信息失败");
@@ -688,7 +740,6 @@ const options = Array.from({ length: 150 }).map((_, idx) => ({
 }));
 //上传头像(修改头像)
 const uploadAvatar = () => {};
-
 
 //-----------------------委托-------委托*-------------------------委托*******************----------------委托
 const getAcceptStudentByAcceptStudentId = (id) => {
@@ -995,12 +1046,12 @@ const rules2 = reactive<FormRules>({
     <style>
 .top-card {
   font-weight: bold;
-  
+
   font-size: x-large;
 }
-.name{
+.name {
   font-weight: 550;
-  
+
   font-size: larger;
 }
 .headerInput {
@@ -1073,7 +1124,7 @@ const rules2 = reactive<FormRules>({
   border-radius: 89px;
   text-align: center;
 }
-.background{
+.background {
   background-color: #ffffff;
 }
 </style>

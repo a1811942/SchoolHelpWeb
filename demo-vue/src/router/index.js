@@ -12,8 +12,9 @@ import Moments from '../views/moments2.vue'
 import Information2 from '../views/information2.vue'
 import Information from '../views/information.vue'
 import Commission from '../views/commission.vue'
-import Person from '../views/person.vue'
-import Person_other from '../views/person_other.vue'
+import Person from '../views/person/person.vue'
+import Person_other from '../views/person/person_other.vue'
+import Person_follow from '../views/person/person_follow.vue'
 import Forum from '../views/forum.vue'
 import Chat from '../views/person/chat.vue'
 import PersonInformation from '../views/person/person_information.vue'
@@ -79,10 +80,17 @@ const routes = [{
 					path: '/home/person/person_information',
 					component: PersonInformation
 				},
+			
 		
 			]
 
 		},
+		{
+			path: '/home/person/person_follow',
+			component: Person_follow
+			
+		},
+
 		{
 			path: '/home/person_other',
 			component: Person_other,
